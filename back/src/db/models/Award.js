@@ -7,13 +7,13 @@ class Award {
       return createdNewAward;
     }
     
-    // 
+    // 수상이력의 고유한 id로 수상이력 검색(수정 할 때 사용)
     static async findById({ awardId }) {
       const award = await AwardModel.findOne({ id: awardId });
       return award;
     }
 
-    // 
+    // 입력받은 userId의 모든 수상이력 검색
     static async findByUserId({ userId }) {
       const awards = await AwardModel.find({ userId });
       return awards;
