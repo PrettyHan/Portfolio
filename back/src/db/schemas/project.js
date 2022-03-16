@@ -7,20 +7,20 @@ const projectSchema = new Schema(
       required: true,
     },
     userId: {
-        type: String,
-        required: true,
-    },
-    title: {
       type: String,
       required: true,
     },
-    period: {
+    title: {
       type: String,
       required: true,
     },
     description: {
       type: String,
       required: false,
+    },
+    period: {
+      type: String,
+      required: true,
     },
   },
   {
