@@ -7,8 +7,8 @@ class certificateAuthService {
         const id = uuidv4();
         const newCertificate = {id, userId, title, description, when_date};
 
-        const createNewCertificate = await Certificate.create({newCertificate});
-        createNewCertificate.errorMessage = null;
+        const createdNewCertificate = await Certificate.create({newCertificate});
+        createdNewCertificate.errorMessage = null;
 
         return createdNewCertificate;
     }
