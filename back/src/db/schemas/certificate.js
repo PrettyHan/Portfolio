@@ -2,17 +2,16 @@ import {Schema, model} from 'mongoose';
 
 const CertificateSchema = new Schema({
     id: {
+      // Certificate의 Id  
       type: String,
       required: true,
     },
-    email: {
+    userId: {
+        // 사용자의 Id
         type: String,
         required: true,
     },
-    password: {
-        type: String,
-        required: true,
-    },
+
     title:{
         type: String,
         required: true,
