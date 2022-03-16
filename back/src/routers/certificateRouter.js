@@ -5,6 +5,7 @@ import { certificateAuthService } from "../services/certificateService";
 
 const certificateAuthRouter = Router();
 
+// certificateAuthRouter.use(login_required);
 
 certificateAuthRouter.post('/certificate/create', async function(req,res,next){
     try {
