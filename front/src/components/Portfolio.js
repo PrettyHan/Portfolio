@@ -5,7 +5,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
-import Education from './education/Education';
+import EducationForm from './education/Education';
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ function Portfolio() {
         <Col>
 
           <div style={{ textAlign: "center" }}>
-            <Education/>
+            <EducationForm/>
           </div>
 
         </Col>

@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import { Card, Row, Button, Col } from "react-bootstrap";
-import EducationItem from './EducationItem';
+import EducationForm from './EducationForm';
+import EducationList  from './EducationList';
 
 const Education = () => {
   
@@ -9,21 +10,31 @@ const Education = () => {
   const [data, setData] = useState([]); //일단 변수 사용해서 test!
   
   const onCreate = (school, major, position) => {
+    console.log("Education:", school);
     const newItem = {
       school,
       major,
       position
     };
-    setData([newItem]);
+    setData([newItem, ...data]);
+    console.log(data);
   };
 
    return (
     <Card>
     <Card.Body>
         <Card.Title>학력</Card.Title>
+        {data.map((item) => (
+          <EducationList 
+           key={item.id}
+           school={item.school}
+           major={item.major}
+           position={item.position}
+          />         
+        ))}
         <Button onClick={() => setOpen(true)}>+</Button>
         {open && (
-          <EducationItem onCreate = {onCreate}/>
+          <EducationForm onCreate={onCreate}/>
         )}
      </Card.Body>
    </Card> 

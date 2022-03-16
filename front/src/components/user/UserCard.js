@@ -6,6 +6,14 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
+        <Col className="justify-content-md-center">
+          <Card.Img
+            style={{ width: "10rem", height: "8rem" }}
+            className="mb-3"
+            src="http://placekitten.com/200/200"
+            alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+          />
+        </Col>
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle>{user?.email}</Card.Subtitle>
         <Card.Text>{user?.description}</Card.Text>
