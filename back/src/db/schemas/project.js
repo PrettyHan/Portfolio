@@ -6,6 +6,10 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
+    userId: {
+        type: String,
+        required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -24,6 +28,6 @@ const projectSchema = new Schema(
   }
 );
 
-const UserModel = model("User", UserSchema);
+const ProjectModel = model("Project", projectSchema);
 
-export { UserModel };
+export { ProjectModel };
