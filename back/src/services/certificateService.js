@@ -13,30 +13,35 @@ class certificateAuthService {
         return createdNewCertificate;
     }
     // 자격증 목록 불러오기
-    static async getCertificates({}){
-        const  certificates = await Certificate.findAll();
+    static async getCertificates({certificateId}){
+        const  certificates = await Certificate.findById({certificateId})
         return certificates;
     }
     // 자격증 내용 수정
-    static async setCertificate({toUpdate}){
-        const certificate = await Certificate.findById(certificateId);
+    static async setCertificate({certificateId,toUpdate}){
+        let certificate = await Certificate.findById({certificateId});
         
+        if (!certificate) {
+            const errorMessage = `해당 id를 가진 자격증 이력은 없습니다. 다시 한 번 확인해주세요.`;
+            return {errorMessage};
+        }
+
         if(toUpdate.title) {
             const fieldToUpdate = "title";
             const newValue = toUpdate.title;
-            certificate = await Certificate.update({fieldToUpdate,newValue});
+            certificate = await Certificate.update({certificateId,fieldToUpdate,newValue});
         }
 
         if(toUpdate.description) {
             const fieldToUpdate = "description";
             const newValue = toUpdate.description;
-            certificate = await Certificate.update({fieldToUpdate,newValue});
+            certificate = await Certificate.update({certificateId,fieldToUpdate,newValue});
         }
 
         if (toUpdate.when_date) {
             const fieldToUpdate = "when_date";
             const newValue = toUpdate.when_date;
-            certificate = await Certificate.update({fieldToUpdate,newValue});
+            certificate = await Certificate.update({certidicateId,fieldToUpdate,newValue});
         }
         return certificate;
     }

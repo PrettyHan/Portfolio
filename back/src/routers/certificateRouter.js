@@ -44,14 +44,19 @@ certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
     try{
         // 사용자가 가지고 있는 자격증 목록 얻음
         const certificateId = req.params.id;
-        const certificates = await certificateAuthService.getCertificates({certificateId});
-        res.status(200).send(certificates);
+        const currentCertificateInfo = await certificateAuthService.getCertificates({certificateId});
+        res.status(200).send(currentCertificateInfo);
+
+        if (currentCertificateInfo.errorMessage){
+            throw new Error(currentCertificateInfo.errorMessage);
+        }
+        res.status(200).send(currentCertificateInfo);
     }catch (error){
         next(error);
     }
 })
 
-certificateAuthRouter.put('/certificates/:id',login_required,
+certificateAuthRouter.put('/certificates/:id',
     async function (req,res,next){
         try {
             //URI로부터 사용자 id 추출
