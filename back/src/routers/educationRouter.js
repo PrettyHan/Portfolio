@@ -8,11 +8,12 @@ educationRouter.use(login_required)
 
 educationRouter.post("/education/register", async (req, res, next) => {
   const { college, major } = req.body;
-  const newEducation = await EducationService.addUser({
-    college: college, 
+  const newEducation = await EducationService.addEducation({
+    school: school, 
     major: major, 
-
+    user_status: user_status
 });
+
 })
 
 export {educationRouter}
