@@ -23,10 +23,10 @@ certificateAuthRouter.post('/certificate/create', async function(req,res,next){
 
         // 위 데이터를 자격증 db에 추가하기
         const newCertificate = await certificateAuthService.addCertificate({
-            userId,
-            title,
-            description,
-            when_date,
+            userId : userId,
+            title : title,
+            description : description,
+            when_date : when_date,
         });
         
         if (newCertificate.errorMessage) {
