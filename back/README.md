@@ -71,3 +71,20 @@ yarn start
 - src/middlewares:
   - jwt토큰을 다루는 미들웨어인 login_required.js
   - 학습 편의를 위해 일괄 http 400 코드로 에러를 변환하는 에러핸들러인 errorMiddleware.js
+
+
+  ------------------------------------------------------------
+  - 평가기준표
+  https://docs.google.com/spreadsheets/d/1nTPLktKTqtcTsV30Bc5nZ3xSL-7FhY8d4-8wX-Ka81M/edit#gid=1769867877
+
+  - 자바스크립트 문법 Tip
+  https://www.notion.so/elice/Tip-d4cb90b5806545f387442a9a2d2a71e2
+
+  - 에러 대처하기
+  https://www.notion.so/elice/4fa70d8cc9ec4909bb5dd18f9f5f1222
+
+  - 포트폴리오 웹 서비스 예시
+  http://34.64.140.205/
+
+  - 포트폴리오 웹 서비스 API 문서 예시
+  https://documenter.getpostman.com/view/19463141/UVsJwSZr#671cc36e-34a9-4b72-b56d-15e526f22e75
