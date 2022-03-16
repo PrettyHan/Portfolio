@@ -8,12 +8,12 @@ const awardSchema = new Schema(
         required: true,
     },
     // 상 이름
-    awardTitle: {
+    title: {
       type: String,
       required: true,
     },
     // 상 내용
-    awardContent: {
+    description: {
       type: String,
       required: true,
     },
