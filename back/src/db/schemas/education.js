@@ -6,15 +6,15 @@ const EducationSchema = new Schema(
             type: String,
             required: true,
         },
-        user_status: {
-            type: String,
-            required: true,
-        },
         school: {
             type: String,
             required: true,
         },
         major: {
+            type: String,
+            required: true,
+        },
+        position: {
             type: String,
             required: true,
         },

@@ -5,7 +5,7 @@ import { login_required } from "../middlewares/login_required";
 const educationRouter = Router();
 // register
 
-educationRouter.use(login_required)
+
 
 educationRouter.post("/education/register", async (req, res, next) => {
   try {
@@ -15,7 +15,7 @@ educationRouter.post("/education/register", async (req, res, next) => {
         "혹은 내용이 비어있습니다."
       )
     }
-    const { school, major } = req.body;
+    const { school, major, position } = req.body;
     const newEducation = await EducationService.addEducation({
       school: school,
       major: major,

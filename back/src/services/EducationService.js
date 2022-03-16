@@ -1,7 +1,10 @@
-class EducationService {
-    static async addEducation({ school, major, user_status }) {
+import { Education } from "../db"
+import { v4 as uuidv4 } from "uuid";
 
-      const newEducation = { school, major, user_status };
+class EducationService {
+    static async addEducation({ school, major, position }) {
+      const id = uuidv4();
+      const newEducation = { id, school, major, position };
   
       // db에 저장
       const createdNewUser = await Education.create({ newEducation });
@@ -10,3 +13,5 @@ class EducationService {
       return createdNewUser;
     }
 }    
+
+export {EducationService}
