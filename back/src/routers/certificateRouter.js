@@ -82,4 +82,16 @@ certificateAuthRouter.put('/certificates/:id',
     }
 )
 
+certificateAuthRouter.get('/certificatelist/:user_id',
+    async function (req,res,next){
+        try{
+            const userId = req.params.userId;
+            const certificateList = await certificateAuthService.getCertificateList({userId});
+            res.status(200).send(certificateList);
+        } catch(error){
+            next(error);
+        }
+    }
+)
+
 export {certificateAuthRouter};

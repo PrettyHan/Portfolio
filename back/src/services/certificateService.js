@@ -45,5 +45,10 @@ class certificateAuthService {
         }
         return certificate;
     }
+
+    static async getCertificateList({userId}){
+        const certificates = await Certificate.findByUserId({userId});
+        return certificates;
+    }
 }
 export {certificateAuthService};
