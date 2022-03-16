@@ -7,28 +7,21 @@ const EducationForm = ({onCreate, dataList}) => {
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
-
-  const education_id = 1;
   
+  const education_id = 2;
+  console.log(education_id);
+
   const handleSubmit = async(e) => {
      e.preventDefault();
-    
+
+     setSchool("");
+     setMajor("");
+     setPosition("");
+
      onCreate(school, major, position);
-     console.log(dataList.education_id);
+  };
+  
 
-    await Api.post("education/register", {
-       school,
-        major,
-        position,
-        education_id 
-    });
-
-
-      const res = await Api.get(`education/${education_id}`);
-      console.log(res);
-
-  };   
-     
   return (
      <Form onSubmit={handleSubmit}>
         <Form.Group>
@@ -49,36 +42,44 @@ const EducationForm = ({onCreate, dataList}) => {
             placeholder="전공" />
         </Form.Group>
 
-        <div className="mb-3 mt-3">
-             <Form.Check 
-             inline 
-             label="재학중"
-              name="재학중" 
-             value={position}
-             onChange = {(e) => { e.target.checked ? setPosition("재학중") : setPosition("")}}
-             ></Form.Check>
-             <Form.Check 
-             inline 
-              label="학사졸업"
-              name="학사졸업" 
-              value={position} 
-              onChange = {(e) => { e.target.checked ? setPosition("학사졸업") : setPosition("")}}
-              ></Form.Check>
-             <Form.Check
-              inline 
-             label="석사졸업" 
-             name="석사졸업"
-             value={position}
-             onChange = {(e) => { e.target.checked ? setPosition("석사졸업") : setPosition("")}}
-             ></Form.Check>
-             <Form.Check 
-             inline 
-             label="박사졸업" 
-             name="박사졸업" 
-             value={position}
-             onChange = {(e) => { e.target.checked ? setPosition("박사졸업") : setPosition("")}} 
-             ></Form.Check>
-        </div>
+        <div key={`inline-radio`} className="mb-3 mt-3">
+        <Form.Check
+          inline
+          label="재학중"
+          type="radio"
+          name="position"
+          value="재학중"
+          checked={position === "재학중"}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+        <Form.Check
+          inline
+          label="학사졸업"
+          type="radio"
+          name="position"
+          value="학사졸업"
+          checked={position === "학사졸업"}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+        <Form.Check
+          inline
+          label="석사졸업"
+          type="radio"
+          name="position"
+          value="석사졸업"
+          checked={position === "석사졸업"}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+        <Form.Check
+          inline
+          label="박사졸업"
+          type="radio"
+          name="position"
+          value="박사졸업"
+          checked={position === "박사졸업"}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+      </div>
 
         <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
