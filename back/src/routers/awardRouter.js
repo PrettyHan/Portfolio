@@ -33,5 +33,33 @@ awardRouter.post("/award/create", async function (req, res, next) {
   }
 });
 
+awardRouter.get("/awards/:id", async function (req, res, next) {
+    try {
+      // req (request) 에서 id 가져오기
+      const awardId = req.params.id;
+  
+      // 위 id를 이용하여 db에서 데이터 찾기
+      const award = await AwardService.getAward({ awardId });
+  
+      if (award.errorMessage) {
+        throw new Error(award.errorMessage);
+      }
+  
+      res.status(200).send(award);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  awardRouter.get("/awardlist/:userId", async function (req, res, next) {
+      try {
+          const userId = req.params.userId;
+          const awardList = await AwardService.getAwardList({ userId });
+          res.status(200).send(awardList);
+      } catch(error){
+          next(error);
+      }
+  });
+
 
 export { awardRouter }

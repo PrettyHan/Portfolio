@@ -12,6 +12,22 @@ class AwardService {
 
     return createdNewAward;
 }
+
+  static async getAward({ awardId }) {
+    // 해당 id를 가진 데이터가 db에 존재 여부 확인
+    const award = await Award.findById({ awardId });
+    if (!award){
+        const errorMessage = "해당 id를 가진 수상 이력은 없습니다. 다시 한 번 확인해주세요.";
+        return { errorMessage }
+    }
+    return award
+  }
+
+  static async getAwardList({ userId }) {
+      const awards = await Award.findByUserId({ userId });
+      return awards;
+  }
+
 }
 
 export { AwardService }
