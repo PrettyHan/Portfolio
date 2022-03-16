@@ -19,9 +19,9 @@ class Education {
     return findNewEducation
   }
 
-  static async findByStatus ({user_status}) {
-    // 입력 받은 status를 기준으로 db에서 검색하여 추출
-    const findNewEducation = await EducationModel.findOne({user_status})
+  static async findByStatus ({position}) {
+    // 입력 받은 position을 기준으로 db에서 검색하여 추출
+    const findNewEducation = await EducationModel.findOne({position})
     return findNewEducation
   }
 
