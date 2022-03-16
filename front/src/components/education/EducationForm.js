@@ -2,23 +2,37 @@ import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
-const EducationForm = ({onCreate, dataList}) => {
+// 학력 입력 컴포넌트 입니다. 
+
+const EducationForm = ({
+  onCreate, 
+  userId, 
+  setOpen,
+  dataList}) => {
 
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
   
-  const education_id = 2;
-  console.log(education_id);
+  console.log("userId",userId);
+  console.log("dataList", dataList);
+
+  // const education_id = dataList.education_id;
+  // console.log(education_id);
 
   const handleSubmit = async(e) => {
      e.preventDefault();
-
-     setSchool("");
-     setMajor("");
-     setPosition("");
-
      onCreate(school, major, position);
+     setOpen(false);
+ 
+    //  // 사용자가 입력한 데이터, post 요청! 
+    //  await Api.post(`education/register}`, {
+    //   user_id,
+    //   school,
+    //   major,
+    //   position,
+    // });
+
   };
   
 
