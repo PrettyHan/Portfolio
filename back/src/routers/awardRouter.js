@@ -61,5 +61,25 @@ awardRouter.get("/awards/:id", async function (req, res, next) {
       }
   });
 
+  awardRouter.put("/awards/:id", async function (req, res, next) {
+      try{
+          const awardId = req.params.id;
+
+          const title = req.body.title ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
+          const description = req.body.description ?? null;
+
+          const toUpdate = { title, description };
+
+          const award = await AwardService.setAward({ awardId, toUpdate });
+
+          if (award.errorMessage) {
+              throw new Error(award.errorMessage);
+          }
+          res.status(200).send(award);
+      } catch(error) {
+          next(error);
+      }
+  });
+
 
 export { awardRouter }
