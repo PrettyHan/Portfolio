@@ -73,7 +73,7 @@ yarn start
   - 학습 편의를 위해 일괄 http 400 코드로 에러를 변환하는 에러핸들러인 errorMiddleware.js
 
 
-  ------------------------------------------------------------
+  --------------------------------------------------------------
   - 평가기준표
   https://docs.google.com/spreadsheets/d/1nTPLktKTqtcTsV30Bc5nZ3xSL-7FhY8d4-8wX-Ka81M/edit#gid=1769867877
 
@@ -88,3 +88,9 @@ yarn start
 
   - 포트폴리오 웹 서비스 API 문서 예시
   https://documenter.getpostman.com/view/19463141/UVsJwSZr#671cc36e-34a9-4b72-b56d-15e526f22e75
+
+  - 멋쟁이 코더처럼 피그마
+  https://www.figma.com/file/JpoCaOXFlCOvywjAfUHeHG/%EB%A9%8B%EC%9F%81%EC%9D%B4-%EC%BD%94%EB%8D%94%EC%B2%98%EB%9F%BC?node-id=0%3A1
+
+  - 멋쟁이 코더처럼 노션
+  https://www.notion.so/f2b0b6f046ab4d8b950da3c99d95450b
