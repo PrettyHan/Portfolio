@@ -5,7 +5,7 @@ import { login_required } from "../middlewares/login_required";
 const educationRouter = Router();
 // register
 
-
+educationRouter.use(login_required);
 
 educationRouter.post("/education/register", async (req, res, next) => {
   try {
