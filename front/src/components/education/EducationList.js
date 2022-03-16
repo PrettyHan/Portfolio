@@ -1,7 +1,7 @@
 import React from 'react'
-import { Card, Row, Col} from "react-bootstrap";
+import { Card, Row, Col, Button} from "react-bootstrap";
 
-const EducationList = ({key,school, major, position }) => {
+const EducationList = ({school, major, position }) => {
   
   // console.log(key);
   // console.log(school);
@@ -9,19 +9,28 @@ const EducationList = ({key,school, major, position }) => {
   // console.log(position);
 
   return (
-    <Card.Text>
-    <Row className="align-items-start">
-      <Col>
-        <div class="align-items-start" role="alert">
-        <span>{school}</span>
-         <br />
-        <span className="text-muted">{`${major} (${
-          position || ""
-        })`}</span>
-      </div>
-      </Col>
-    </Row>
-  </Card.Text>
+    <Card.Text className='text-start'>
+      <div class="alert alert-primary" role="alert">
+      <Row className="align-items-start">
+        <Col>
+          <span>{school}</span>
+          <br />
+          <span className="text-muted">{`${major} (${
+            position || ""
+          })`}</span>
+        </Col>
+          <Col xs lg="1">
+            <Button
+              variant="outline-info"
+              size="sm" 
+              className="mr-3"
+            >
+              편집
+            </Button>
+          </Col>
+      </Row>
+       </div>
+    </Card.Text>
   );
 
 }
