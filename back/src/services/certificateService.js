@@ -8,7 +8,7 @@ class certificateAuthService {
         const newCertificate = {id, userId, title, description, when_date};
 
         const createdNewCertificate = await Certificate.create({newCertificate});
-
+        createdNewCertificate.errorMessage=null;
         return createdNewCertificate;
     }
     // 자격증 목록 불러오기
