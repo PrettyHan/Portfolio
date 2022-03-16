@@ -7,6 +7,12 @@ const awardSchema = new Schema(
         type: String,
         required: true,
     },
+    // 사용자 id
+    userId: {
+      type: String,
+      required: true,
+    },
+
     // 상 이름
     title: {
       type: String,
