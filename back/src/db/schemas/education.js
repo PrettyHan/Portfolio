@@ -6,7 +6,7 @@ const EducationSchema = new Schema(
             type: String,
             required: true,
         },
-        user_id: {
+        user_status: {
             type: String,
             required: true,
         },
@@ -18,11 +18,6 @@ const EducationSchema = new Schema(
             type: String,
             required: true,
         },
-        description: {
-            type: String,
-            required: false,
-            default: "학교, 전공에 대한 정보입니다."
-        }
     },
     {
         timestamps: true,
