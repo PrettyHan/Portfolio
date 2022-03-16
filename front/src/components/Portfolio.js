@@ -5,6 +5,8 @@ import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
+import AwardAddForm from "./award/AwardAddForm";
+import AwardEditFrom from "./award/AwardEditForm";
 
 function Portfolio() {
   const navigate = useNavigate();
