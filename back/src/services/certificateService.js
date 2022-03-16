@@ -20,7 +20,7 @@ class certificateAuthService {
     }
     // 자격증 내용 수정
     static async setCertificate({toUpdate}){
-        const certificate = await Certificate.findAll();
+        const certificate = await Certificate.findById(certificateId);
         
         if(toUpdate.title) {
             const fieldToUpdate = "title";
