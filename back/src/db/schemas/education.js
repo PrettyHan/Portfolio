@@ -6,6 +6,10 @@ const EducationSchema = new Schema(
             type: String,
             required: true,
         },
+        education_id: {
+            type: String,
+            required: true,
+        },
         school: {
             type: String,
             required: true,
