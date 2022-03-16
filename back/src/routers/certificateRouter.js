@@ -49,4 +49,29 @@ certificateAuthRouter.get('/certificates/:id', login_required,async function(req
     }
 })
 
+certificateAuthRouter.put('/certificates/:id',login_required,
+    async function (req,res,next){
+        try {
+            //URI로부터 사용자 id 추출
+            const user_id = req.params.id;
+            // body data로부터 업데이트할 사용자 정보를 추출
+            const title = req.body.title ?? null;
+            const description = req.body.description ?? null;
+            const when_date = req.body.when_date ?? null;
+
+            const toUpdate = {title, description, when_date};
+            // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트. 업데이트 내용 없을 시 생략
+            const updateCertificate = await certificateAuthService.setCertificate({user_id,toUpdate});
+
+            if(updateCertificate.errorMessgae) {
+                throw new Error(updateCertificate.errorMessgae);
+            }
+            
+            res.status(200).json(updateCertificate);
+        } catch(error){
+            next(error);
+        }
+    }
+)
+
 export {certificateAuthRouter};
