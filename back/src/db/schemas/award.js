@@ -33,6 +33,6 @@ const awardSchema = new Schema(
   }
 );
 
-const awardModel = model("award", awardSchema);
+const AwardModel = model("Award", awardSchema);
 
-export { awardSchema };
+export { AwardModel };
