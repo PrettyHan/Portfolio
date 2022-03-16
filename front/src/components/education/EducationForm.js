@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
+import * as Api from "../../api";
 
 const EducationForm = ({onCreate}) => {
 
@@ -7,10 +8,19 @@ const EducationForm = ({onCreate}) => {
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
    
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
      e.preventDefault();
+     
+     // Post 
+    //  await Api.post("education/register", {
+    //   school,
+    //   major,
+    //   position,
+    // });
+     
 
      onCreate(school, major, position);
+
   };   
      
   return (

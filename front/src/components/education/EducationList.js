@@ -1,20 +1,27 @@
 import React from 'react'
-import { Card, Row} from "react-bootstrap";
+import { Card, Row, Col} from "react-bootstrap";
 
-const EducationList = ({key,school, major, position}) => {
-
-  console.log(key);
-  console.log(school);
-  console.log(major);
-  console.log(position);
+const EducationList = ({key,school, major, position }) => {
+  
+  // console.log(key);
+  // console.log(school);
+  // console.log(major);
+  // console.log(position);
 
   return (
-     <Card>
-        <Row className="mt-3 text-center text-info">
-          <Card.Text>{school}</Card.Text>
-          <Card.Text>{major}({position})</Card.Text>
-        </Row>
-     </Card>
+    <Card.Text>
+    <Row className="align-items-start">
+      <Col>
+        <div class="align-items-start" role="alert">
+        <span>{school}</span>
+         <br />
+        <span className="text-muted">{`${major} (${
+          position || ""
+        })`}</span>
+      </div>
+      </Col>
+    </Row>
+  </Card.Text>
   );
 
 }

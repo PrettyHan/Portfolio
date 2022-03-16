@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import { Card, Row, Button, Col } from "react-bootstrap";
 import EducationForm from './EducationForm';
 import EducationList  from './EducationList';
@@ -9,21 +9,27 @@ const Education = () => {
 
   const [data, setData] = useState([]); //일단 변수 사용해서 test!
   
+  const dataId = useRef(0); // Id를 생성하기 위해! => useRef 사용 
+
   const onCreate = (school, major, position) => {
-    console.log("Education:", school);
     const newItem = {
       school,
       major,
-      position
+      position,
+      id: dataId.current
     };
     setData([newItem, ...data]);
     console.log(data);
   };
 
+  const onEdit = () => {
+
+  }
+
    return (
     <Card>
     <Card.Body>
-        <Card.Title>학력</Card.Title>
+        <Card.Title className='text-start'>학력</Card.Title>
         {data.map((item) => (
           <EducationList 
            key={item.id}
@@ -34,7 +40,7 @@ const Education = () => {
         ))}
         <Button onClick={() => setOpen(true)}>+</Button>
         {open && (
-          <EducationForm onCreate={onCreate}/>
+          <EducationForm onCreate={onCreate} onEdit={onEdit}/>
         )}
      </Card.Body>
    </Card> 
