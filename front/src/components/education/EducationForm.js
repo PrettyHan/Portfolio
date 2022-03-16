@@ -2,24 +2,30 @@ import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
-const EducationForm = ({onCreate}) => {
+const EducationForm = ({onCreate, dataList}) => {
 
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
-   
+
+  const education_id = 1;
+  
   const handleSubmit = async(e) => {
      e.preventDefault();
-     
-     // Post 
-    //  await Api.post("education/register", {
-    //   school,
-    //   major,
-    //   position,
-    // });
-     
-
+    
      onCreate(school, major, position);
+     console.log(dataList.education_id);
+
+    await Api.post("education/register", {
+       school,
+        major,
+        position,
+        education_id 
+    });
+
+
+      const res = await Api.get(`education/${education_id}`);
+      console.log(res);
 
   };   
      
@@ -54,19 +60,22 @@ const EducationForm = ({onCreate}) => {
              <Form.Check 
              inline 
               label="학사졸업"
-              name="학사졸업"  
+              name="학사졸업" 
+              value={position} 
               onChange = {(e) => { e.target.checked ? setPosition("학사졸업") : setPosition("")}}
               ></Form.Check>
              <Form.Check
               inline 
              label="석사졸업" 
              name="석사졸업"
+             value={position}
              onChange = {(e) => { e.target.checked ? setPosition("석사졸업") : setPosition("")}}
              ></Form.Check>
              <Form.Check 
              inline 
              label="박사졸업" 
              name="박사졸업" 
+             value={position}
              onChange = {(e) => { e.target.checked ? setPosition("박사졸업") : setPosition("")}} 
              ></Form.Check>
         </div>
