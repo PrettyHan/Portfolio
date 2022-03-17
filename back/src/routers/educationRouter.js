@@ -31,13 +31,13 @@ educationRouter.post("/education/register", async (req, res, next) => {
   }
 })
 
-educationRouter.get("/education/:id", async function (req, res, next) {
+educationRouter.get("/education/:userId", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
-    const education_id = req.params.id;
+    const userId = req.params.userId;
 
     // 위 id를 이용하여 db에서 데이터 찾기
-    const education = await EducationService.getEducation({ education_id });
+    const education = await EducationService.getEducation({ userId });
 
     if (education.errorMessage) {
       throw new Error(education.errorMessage);

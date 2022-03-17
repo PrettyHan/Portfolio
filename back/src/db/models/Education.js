@@ -24,12 +24,12 @@ class Education {
     const findNewEducation = await EducationModel.findOne({position})
     return findNewEducation
   }
-  static async findById({ education_id }) {
-    const education = await EducationModel.findOne({ id: education_id });
+  static async findById({ userId }) {
+    const education = await EducationModel.findOne({ userId });
     return education;
   }
   static async findByUserId({ userId }) {
-    const educations = await EducationModel.find({ id: userId });
+    const educations = await EducationModel.find({ userId });
     return educations;
   }
   static async update({ education_id, fieldToUpdate, newValue }) {

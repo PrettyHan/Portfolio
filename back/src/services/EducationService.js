@@ -12,9 +12,9 @@ class EducationService {
 
     return createdNewUser;
   }
-  static async getEducation({ education_id }) {
+  static async getEducation({ userId }) {
 
-    const education = await Education.findById({ education_id })
+    const education = await Education.findById({ userId })
     if (!education) {
       const errorMessage = "해당 id를 가진 데이터는 없습니다"
       return { errorMessage }
