@@ -3,6 +3,7 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 import Award from "./Award";
 import AwardAddForm from "./AwardAddForm";
+import AwardEditForm from "./AwardEditForm";
 
 function Awards({ portfolioOwnerId, isEditable }) {
   //useState로 awards 상태를 생성함.
