@@ -7,7 +7,7 @@ const certificateAuthRouter = Router();
 
 // certificateAuthRouter.use(login_required);
 
-certificateAuthRouter.post('/certificate/create', async function(req,res,next){
+certificateAuthRouter.post('/certificates/create', async function(req,res,next){
     try {
         // 사용자의 새로운 자격증 등록
         if(is.emptyObject(req.body)){
