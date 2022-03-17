@@ -60,8 +60,7 @@ educationRouter.get("/educationlist/:userId", async function (req, res, next) {
 });
 educationRouter.put("/educations/:userId", async function (req, res, next) {
   try{
-      const userId = req.params.userId;
-
+      const userId = req.body.userId ?? null
       const school = req.body.school ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
       const major = req.body.major ?? null;
       const position = req.body.position ?? null;

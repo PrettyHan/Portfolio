@@ -43,9 +43,9 @@ class EducationService {
       const newValue = toUpdate.major;
       education = await Education.update({ userId, fieldToUpdate, newValue });
     }
-    if (toUpdate.school) {
-      const fieldToUpdate = "school";
-      const newValue = toUpdate.school;
+    if (toUpdate.position) {
+      const fieldToUpdate = "position";
+      const newValue = toUpdate.position;
       education = await Education.update({ userId, fieldToUpdate, newValue });
     }
     return education;
