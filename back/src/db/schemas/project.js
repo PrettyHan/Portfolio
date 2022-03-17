@@ -14,12 +14,16 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
+    content: {
       type: String,
       required: false,
     },
-    period: {
-      type: String,
+    from_date: {
+      type: Date,
+      required: true,
+    },
+    to_date: {
+      type: Date,
       required: true,
     },
   },
