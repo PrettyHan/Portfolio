@@ -82,7 +82,7 @@ certificateAuthRouter.put('/certificates/:id',
     }
 )
 
-certificateAuthRouter.get('/certificatelist/:user_id',
+certificateAuthRouter.get('/certificatelist/:userId',
     async function (req,res,next){
         try{
             const userId = req.params.userId;
