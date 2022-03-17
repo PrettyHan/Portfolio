@@ -38,53 +38,61 @@ const ProjectForm = ({
 
   
   return (
-     <Form onSubmit={handleSubmit}>
-        <Form.Group>
-            <Form.Control 
+     <Form onSubmit={handleSubmit}  className="d-grid gap-2">
+        <Form.Group as={Row} className="mt-3">
+        <Form.Control
+            className="p-2 bg-light border mb-2"
             type="text"
             onChange={(e) => setProject(e.target.value)}
             name="projectTitle"
             value={project}
             placeholder="프로젝트 제목"/>
-        </Form.Group>
 
-        <Form.Group >
-            <Form.Control 
+         <Form.Control
+            className="p-2 bg-light border mb-2" 
             type="text"
             name="content"
             value={content} 
             onChange={(e) => setContent(e.target.value)}
-            placeholder="상세내역" />
-        </Form.Group>
+            placeholder="상세내역" /> 
 
-        <Form.Group as={Row} className="mt-3">
-          <Col>
           <Form.Control
+          className="mr-3"
+          style={{width: 200}}
           type="date"
           placeholder="시작날짜"
           value={fromDate}
           onChange={(e) => setFromDate(e.target.value)}
         />
-          </Col>
-          <Col>
           <Form.Control
+          className='mr-3'
+          style={{width: 200}}
           type="date"
           placeholder="종료날짜"
           value={toDate}
           onChange={(e) => setToDate(e.target.value)}
         />
-          </Col>
       </Form.Group>
 
        <Form.Group as={Row} className="mt-3 text-center">
-        <Col sm={{ span: 20 }}>
-        <Button 
+        <Col sm={{ span: 20}}>
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#339AF0"
+        }} 
         variant="primary" 
         type="submit" 
         className="me-3">
          확인
         </Button>
-        <Button 
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#C4C4C4"
+        }} 
         variant="secondary" 
         onClick={() => setOpen((prev) => !prev)}
         >

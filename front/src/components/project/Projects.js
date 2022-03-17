@@ -32,7 +32,14 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
           />         
         ))}
         {isEditable && (
-        <Button onClick={() => setOpen(true)}>+</Button>
+        <Button
+         className='m-3'
+         style={{
+          border:"none",
+          backgroundColor:"#CFD3FF",
+          borderRadius:50
+        }} 
+        onClick={() => setOpen(true)}>+</Button>
         )}
           {open && (
           <ProjectForm  
