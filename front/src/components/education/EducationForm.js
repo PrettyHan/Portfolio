@@ -1,9 +1,9 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
 const EducationForm = ({
-  userId, 
+  portfolioOwnerId, 
   setOpen,
   setData,
   data
@@ -13,21 +13,26 @@ const EducationForm = ({
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
 
+  const userId = portfolioOwnerId;
+  
   const handleSubmit = async(e) => {
      e.preventDefault();
    //  onCreate(school, major, position);
 
+   console.log(`userId: ${userId}`);
+
      //사용자가 입력한 데이터, post 요청! 
      await Api.post("education/register", {
+       userId : userId,
        school : school,
        major : major,
        position : major,
    });
 
        const res = await Api.get(`educationlist/${userId}`);
-       console.log("get성공",res);
+       console.log("우성님",portfolioOwnerId);
        setData(res.data);
-       console.log(`res: ${res}`);
+       console.log(res);
        setOpen(false); // 성공적으로 끝나면 setOpen 상태 false
   };
 
@@ -97,7 +102,10 @@ const EducationForm = ({
         className="me-3">
          확인
         </Button>
-        <Button variant="secondary" >
+        <Button 
+        variant="secondary" 
+        onClick={() => setOpen((prev) => !prev)}
+        >
          취소
         </Button>
         </Col>

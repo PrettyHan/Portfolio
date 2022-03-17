@@ -5,28 +5,31 @@ import { Card, Row, Col, Button} from "react-bootstrap";
  * 학력 목록 컴포넌트입니다.
  * item : EducationForm 에서 전달받음.
  */
-const EducationList = ({item, setIsEditing}) => {
+const EducationList = ({addItem, isEditable,setIsEditing}) => {
+  console.log(`item: ${addItem}`);
   return (
     <Card.Text className='text-start'>
       <div class="alert alert-primary" role="alert">
       <Row className="align-items-start">
         <Col>
-          <span>{item.school}</span>
+          <span>{addItem.school}</span>
           <br />
-          <span className="text-muted">{`${item.major} (${
-            item.position || ""
+          <span className="text-muted">{`${addItem.major} (${
+            addItem.position || ""
           })`}</span>
         </Col>
+        {isEditable && (
           <Col xs lg="1">
             <Button
               variant="outline-info"
-              size="sm" 
+              size="sm"
+              onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
-              onClick={() => setIsEditing((prev) => !prev)} 
             >
               편집
             </Button>
           </Col>
+        )}
       </Row>
        </div>
     </Card.Text>

@@ -4,33 +4,31 @@ import * as Api from "../../api";
 
 // 학력 수정 컴포넌트 입니다. 
 
-const EducationForm = ({
-  userId, 
-  isEditable,
-  dataList}) => {
+const EducationForm = ({editItem, setEditData, setIsEditing}) => {
 
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
   
-  console.log("userId",userId);
-  console.log("dataList", dataList);
-
-  const education_id = dataList.education_id;
-  console.log(education_id);
-
   const handleSubmit = async(e) => {
      e.preventDefault();
-     //onCreate(school, major, position);
+     
+     const userId = editItem.userId;
+     console.log(`edit : ${userId}`);
 
- 
       // 사용자가 입력한 데이터, post 요청! 
-      await Api.post(`education/register}`, {
+      await Api.put(`educations/${userId}}`, {
        userId,
        school,
        major,
        position,
      });
+
+     const res = await Api.get(`educationlist/${userId}`);
+     console.log("get성공",res);
+     setEditData(res.data);
+     console.log(`res: ${res}`);
+     setIsEditing(false); 
 
   };
   
@@ -102,7 +100,10 @@ const EducationForm = ({
         className="me-3">
          확인
         </Button>
-        <Button variant="secondary" >
+        <Button
+         variant="secondary"
+         onClick={() => setIsEditing(false)}
+          >
          취소
         </Button>
         </Col>
