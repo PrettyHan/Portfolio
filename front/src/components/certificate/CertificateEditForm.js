@@ -23,19 +23,19 @@ function CertificateEditForm({
     e.preventDefault();
 
     // currentCertificate의 user_id를 user_id 변수에 할당함.
-    const user_id = currentCertificate.user_id;
+    const userId = currentCertificate.userId;
     const when_date = whenDate.toISOString().split("T")[0];
 
     // "certificates/자격증id" 엔드포인트로 PUT 요청함.
     await Api.put(`certificates/${currentCertificate.id}`, {
-      user_id,
+      userId,
       title,
       description,
       when_date,
     });
 
     // "certificatelist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("certificatelist", user_id);
+    const res = await Api.get("certificatelist", userId);
     // certificates를 response의 data로 세팅함.
     setCertificates(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
