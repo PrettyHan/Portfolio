@@ -67,7 +67,7 @@ educationRouter.put("/educations/:education_id", async function (req, res, next)
 
       const toUpdate = { school, major, position };
 
-      const education = await ProjectService.setEducation({ education_id, toUpdate });
+      const education = await EducationService.setEducation({ education_id, toUpdate });
 
       if (education.errorMessage) {
           throw new Error(education.errorMessage);

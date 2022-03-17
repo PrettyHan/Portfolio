@@ -26,7 +26,7 @@ class EducationService {
     return educations;
   }
   static async setEducation({ education_id, toUpdate }) {
-    let education = await education.findById({ education_id })
+    let education = await Education.findById({ education_id })
 
     if (!education) {
       const errorMessage = "해당 id를 가진 프로젝트는 없습니다. 다시 한 번 확인해주세요.";
@@ -36,19 +36,19 @@ class EducationService {
     if (toUpdate.school) {
       const fieldToUpdate = "school";
       const newValue = toUpdate.school;
-      education = await Project.update({ education_id, fieldToUpdate, newValue });
+      education = await Education.update({ education_id, fieldToUpdate, newValue });
     }
     if (toUpdate.major) {
       const fieldToUpdate = "major";
       const newValue = toUpdate.major;
-      education = await Project.update({ education_id, fieldToUpdate, newValue });
+      education = await Education.update({ education_id, fieldToUpdate, newValue });
     }
     if (toUpdate.school) {
       const fieldToUpdate = "school";
       const newValue = toUpdate.school;
-      education = await Project.update({ education_id, fieldToUpdate, newValue });
+      education = await Education.update({ education_id, fieldToUpdate, newValue });
     }
-    return project;
+    return education;
   }
 
 }
