@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
-import DatePicker from "react-datepicker";
 import * as Api from "../../api";
 
 const ProjectForm = ({
@@ -58,22 +57,26 @@ const ProjectForm = ({
             placeholder="상세내역" />
         </Form.Group>
 
-        <Form.Group as={Row}
-        className="mt-3" 
-        >
-        <Col xs="auto">
-          <DatePicker
-            selected={fromDate}
-            onChange={(date) => setFromDate(date)}
-          />
-        </Col>
-        <Col xs="auto">
-          <DatePicker selected={toDate} onChange={(date) => setToDate(date)} />
-        </Col>
+        <Form.Group as={Row} className="mt-3">
+          <Col>
+          <Form.Control
+          type="date"
+          placeholder="시작날짜"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+        />
+          </Col>
+          <Col>
+          <Form.Control
+          type="date"
+          placeholder="종료날짜"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+        />
+          </Col>
       </Form.Group>
 
-   
-        <Form.Group as={Row} className="mt-3 text-center">
+       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
         <Button 
         variant="primary" 
