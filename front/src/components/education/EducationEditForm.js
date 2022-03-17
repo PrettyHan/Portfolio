@@ -4,7 +4,7 @@ import * as Api from "../../api";
 
 // 학력 수정 컴포넌트 입니다. 
 
-const EducationForm = ({editItem, setEditData, setIsEditing}) => {
+const EducationEditForm = ({editItem, setEditData, setIsEditing}) => {
 
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
@@ -17,7 +17,7 @@ const EducationForm = ({editItem, setEditData, setIsEditing}) => {
      console.log(`edit : ${userId}`);
 
       // 사용자가 입력한 데이터, post 요청! 
-      await Api.put(`educations/${userId}}`, {
+      await Api.put(`educations/${userId}`, {
        userId,
        school,
        major,
@@ -112,4 +112,4 @@ const EducationForm = ({editItem, setEditData, setIsEditing}) => {
 
   )}
 
-export default EducationForm;
+export default EducationEditForm;
