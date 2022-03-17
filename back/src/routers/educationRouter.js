@@ -51,10 +51,30 @@ educationRouter.get("/education/:id", async function (req, res, next) {
 educationRouter.get("/educationlist/:education_id", async function (req, res, next) {
   try {
     const education_id = req.params.education_id
-    const educationlist = await EducationService.geteducationlist({ education_id });
+    const educationlist = await EducationService.getEducationlist({ education_id });
     res.status(200).send(educationlist);
   } catch (error) {
     next(error);
+  }
+});
+educationRouter.put("/educations/:education_id", async function (req, res, next) {
+  try{
+      const education_id = req.params.education_id;
+
+      const school = req.body.school ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
+      const major = req.body.major ?? null;
+      const position = req.body.position ?? null;
+
+      const toUpdate = { school, major, position };
+
+      const education = await ProjectService.setEducation({ education_id, toUpdate });
+
+      if (education.errorMessage) {
+          throw new Error(education.errorMessage);
+      }
+      res.status(200).send(education);
+  } catch(error) {
+      next(error);
   }
 });
 
