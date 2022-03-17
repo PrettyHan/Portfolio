@@ -5,7 +5,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
-import EducationForm from './education/Education';
+import Educations from './education/Educations';
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ function Portfolio() {
   return (
     <Container fluid>
       <Row>
-        <Col md="3" lg="3">
+        <Col lg="3">
           <User
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
@@ -64,7 +64,10 @@ function Portfolio() {
         <Col>
 
           <div style={{ textAlign: "center" }}>
-            <EducationForm/>
+            <Educations
+             portfolioOwnerId={portfolioOwner.id} // 사용자 아이디 느낌...?
+             isEditable={portfolioOwner.id === userState.user?.id}
+            />
           </div>
 
         </Col>

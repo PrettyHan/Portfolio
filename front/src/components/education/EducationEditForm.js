@@ -1,38 +1,39 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
+// 학력 수정 컴포넌트 입니다. 
+
 const EducationForm = ({
   userId, 
-  setOpen,
-  setData,
-  data
-}) => {
+  isEditable,
+  dataList}) => {
 
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
+  
+  console.log("userId",userId);
+  console.log("dataList", dataList);
 
-
-  const education_id = useRef(data.length);
+  const education_id = dataList.education_id;
+  console.log(education_id);
 
   const handleSubmit = async(e) => {
      e.preventDefault();
-   //  onCreate(school, major, position);
+     //onCreate(school, major, position);
 
-     //사용자가 입력한 데이터, post 요청! 
+ 
+      // 사용자가 입력한 데이터, post 요청! 
       await Api.post(`education/register}`, {
-        education_id,
-        school,
-        major,
-        position,
-      });
+       userId,
+       school,
+       major,
+       position,
+     });
 
-      const res = await Api.get("education", education_id);
-      setData(res.data);
-      console.log(`res: ${res}`);
-      setOpen(false);
   };
+  
 
   return (
      <Form onSubmit={handleSubmit}>
@@ -92,6 +93,7 @@ const EducationForm = ({
           onChange={(e) => setPosition(e.target.value)}
         />
       </div>
+
         <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
         <Button 
