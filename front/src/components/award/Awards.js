@@ -5,13 +5,13 @@ import Award from "./Award";
 import AwardAddForm from "./AwardAddForm";
 
 function Awards({ portfolioOwnerId, isEditable }) {
-  //useState로 awards 상태를 생성함.
+  //useState로 awards 상태를 생성
   const [awards, setAwards] = useState([]);
-  //useState로 isAdding 상태를 생성함.
+  //useState로 isAdding 상태를 생성
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
-    // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅함.
+    // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅
     Api.get("awardlist", portfolioOwnerId).then((res) => setAwards(res.data));
   }, [portfolioOwnerId]);
 

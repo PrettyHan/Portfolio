@@ -3,29 +3,29 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
-  //useState로 title 상태를 생성함.
+  //useState로 title 상태를 생성
   const [title, setTitle] = useState("");
-  //useState로 description 상태를 생성함.
+  //useState로 description 상태를 생성
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // portfolioOwnerId를 user_id 변수에 할당함.
+    // portfolioOwnerId를 user_id 변수에 할당
     const user_id = portfolioOwnerId;
 
-    // "award/create" 엔드포인트로 post요청함.
+    // "award/create" 엔드포인트로 POST 요청
     await Api.post("award/create", {
       user_id: portfolioOwnerId,
       title,
       description,
     });
 
-    // "awardlist/유저id" 엔드포인트로 get요청함.
+    // "awardlist/유저id" 엔드포인트로 GET 요청
     const res = await Api.get("awardlist", user_id);
-    // awards를 response의 data로 세팅함.
+    // awards를 response의 data로 세팅
     setAwards(res.data);
-    // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
+    // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅
     setIsAdding(false);
   };
 
