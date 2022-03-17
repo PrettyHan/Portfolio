@@ -12,17 +12,18 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
   const [data, setData] = useState([]);
   
   console.log(isEditable);
+  const userId = portfolioOwnerId;
   
    useEffect(() => {
     //사용자의 educations 이력 받아옴. 
-    Api.get(`educationlist` ,portfolioOwnerId).then((res) =>
+    Api.get(`educationlist/${userId}`).then((res) =>
      setData(res.data));
-    }, [portfolioOwnerId]);
+    }, [userId]);
 
    return (
     <Card>
     <Card.Body>
-        <Card.Title className='text-start'>학력</Card.Title>
+        <Card.Title className='text-start'>프로젝트</Card.Title>
         { data.map((item) => (
           <ProjectEdit 
               item={item} 
@@ -35,7 +36,7 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
         )}
           {open && (
           <ProjectForm  
-          portfolioOwnerId = {portfolioOwnerId}
+           portfolioOwnerId = {portfolioOwnerId}
            setOpen = {setOpen}
            data = {data}
            setData = {setData} 

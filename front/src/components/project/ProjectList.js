@@ -2,37 +2,36 @@ import React from 'react'
 import { Card, Row, Col, Button} from "react-bootstrap";
 
 /**
- * 학력 목록 컴포넌트입니다.
- * item : EducationForm 에서 전달받음.
+ * item : ProjectForm 에서 전달받음.
  */
 const ProjectList = ({addItem, isEditable,setIsEditing}) => {
   console.log(`item: ${addItem}`);
   return (
-    <Card.Text className='text-start'>
-      <div class="alert alert-primary" role="alert">
-      <Row className="align-items-start">
-        <Col>
-          <span>{addItem.school}</span>
-          <br />
-          <span className="text-muted">{`${addItem.major} (${
-            addItem.position || ""
-          })`}</span>
+    <Card.Text>
+    <Row className="justify-content-between align-items-center mb-2">
+      <Col>
+        {addItem.project}
+        <br />
+        <span className="text-muted">{addItem.content}</span>
+        <br />
+        <span className="text-muted">
+          {`${addItem.from_date} ~ ${addItem.to_date}`}
+        </span>
+      </Col>
+      {isEditable && (
+        <Col xs lg="1">
+          <Button
+            variant="outline-info"
+            size="sm"
+            onClick={() => setIsEditing((prev) => !prev)}
+            className="mr-3"
+          >
+            편집
+          </Button>
         </Col>
-        {isEditable && (
-          <Col xs lg="1">
-            <Button
-              variant="outline-info"
-              size="sm"
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="mr-3"
-            >
-              편집
-            </Button>
-          </Col>
-        )}
-      </Row>
-       </div>
-    </Card.Text>
+      )}
+    </Row>
+  </Card.Text>
   );
 
 }
