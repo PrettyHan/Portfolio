@@ -2,9 +2,9 @@ import { Education } from "../db"
 import { v4 as uuidv4 } from "uuid";
 
 class EducationService {
-  static async addEducation({ school, major, position }) {
+  static async addEducation({ userId, school, major, position }) {
     const id = uuidv4();
-    const newEducation = { id, school, major, position };
+    const newEducation = { id, userId, school, major, position };
 
     // db에 저장
     const createdNewUser = await Education.create({ newEducation });
@@ -21,8 +21,8 @@ class EducationService {
     }
     return education
   }
-  static async getEducationlist({ education_id }) {
-    const educations = await Education.findByUserId({ education_id });
+  static async getEducationlist({ userId }) {
+    const educations = await Education.findByUserId({ userId });
     return educations;
   }
   static async setEducation({ education_id, toUpdate }) {
