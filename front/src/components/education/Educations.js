@@ -11,12 +11,12 @@ const Educations = ({portfolioOwnerId,isEditable}) => {
   const [open, setOpen] = useState(false); // Add 버튼 누르면 open!
   const [data, setData] = useState([]); //일단 변수 사용해서 test!
   
-   useEffect(() => {
-     //사용자의 educations 이력 받아옴. 
-     Api.get("educationlist", portfolioOwnerId).then((res) =>
-     setData(res.data)
-     );
-   }, [portfolioOwnerId]);
+  //  useEffect(() => {
+  //    //사용자의 educations 이력 받아옴. 
+  //    Api.get("educationlist", portfolioOwnerId).then((res) =>
+  //    setData(res.data)
+  //    );
+  //  }, [portfolioOwnerId]);
 
   // const onCreate = async(school, major, position) => {
   //   const newItem = {
