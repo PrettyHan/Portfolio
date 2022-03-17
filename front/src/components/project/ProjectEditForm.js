@@ -23,7 +23,7 @@ const ProjectForm = ({
     const to_date = toDate.toISOString().split("T")[0];
 
     // "project/create" 엔드포인트로 post요청함.
-    await Api.post("project/create", {
+    await Api.put(`projects/${userId}`, {
       userId,
       project,
       content,
