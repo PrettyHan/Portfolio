@@ -1,3 +1,5 @@
+// Award MVP, Certificate MVP 작성 완료된 통합본
+
 import React, { useState } from "react";
 import CertificateCard from "./CertificateCard";
 import CertificateEditForm from "./CertificateEditForm";

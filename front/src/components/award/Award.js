@@ -1,3 +1,5 @@
+// Award MVP, Certificate MVP 작성 완료된 통합본
+
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
