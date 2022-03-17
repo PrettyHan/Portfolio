@@ -2,8 +2,6 @@ import React, {useState, useRef} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
-// 학력 입력 컴포넌트 입니다. 
-
 const EducationForm = ({
   userId, 
   setOpen,
@@ -15,26 +13,23 @@ const EducationForm = ({
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
 
-  const education_id = useRef(data.length);
-
   const handleSubmit = async(e) => {
      e.preventDefault();
    //  onCreate(school, major, position);
 
      //사용자가 입력한 데이터, post 요청! 
-      await Api.post(`education/register}`, {
-        education_id,
-        school,
-        major,
-        position,
-      });
+     await Api.post("education/register", {
+       school : school,
+       major : major,
+       position : major,
+   });
 
-      const res = await Api.get("education", education_id);
-      setData(res.data);
-      console.log(`res: ${res}`);
-      setOpen(false);
+       const res = await Api.get(`educationlist/${userId}`);
+       console.log("get성공",res);
+       setData(res.data);
+       console.log(`res: ${res}`);
+       setOpen(false); // 성공적으로 끝나면 setOpen 상태 false
   };
-  
 
   return (
      <Form onSubmit={handleSubmit}>
@@ -94,7 +89,6 @@ const EducationForm = ({
           onChange={(e) => setPosition(e.target.value)}
         />
       </div>
-
         <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
         <Button 
@@ -111,5 +105,6 @@ const EducationForm = ({
       </Form>
 
   )}
+
 
 export default EducationForm;
