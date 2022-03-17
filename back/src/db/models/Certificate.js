@@ -22,7 +22,10 @@ class Certificate {
         const updateCertificate = await CertificateModel.findOneAndUpdate( filter, update, option);
         return updateCertificate;
     }
-    
+    static async delete({createdCertificate}){
+        const deletedCertificate = await CertificateModel.delete({createdCertificate});
+        return deletedCertificate;
+    }
 
 }
 
