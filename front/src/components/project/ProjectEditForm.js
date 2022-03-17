@@ -9,7 +9,7 @@ const ProjectForm = ({
   data
 }) => {
 
-  const [project, setProject] = useState("");
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [fromDate, setFromDate] = useState(new Date());
   const [toDate, setToDate] = useState(new Date());
@@ -24,7 +24,7 @@ const ProjectForm = ({
     // "project/create" 엔드포인트로 post요청함.
     await Api.put(`projects/${userId}`, {
       userId,
-      project,
+      title,
       content,
       from_date,
       to_date,
@@ -43,9 +43,9 @@ const ProjectForm = ({
        <Form.Control
            className="p-2 bg-light border mb-2"
            type="text"
-           onChange={(e) => setProject(e.target.value)}
+           onChange={(e) => setTitle(e.target.value)}
            name="projectTitle"
-           value={project}
+           value={title}
            placeholder="프로젝트 제목"/>
 
         <Form.Control

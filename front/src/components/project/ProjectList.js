@@ -10,7 +10,7 @@ const ProjectList = ({addItem, isEditable,setIsEditing}) => {
     <Card.Text>
     <Row className="justify-content-between align-items-center mb-2">
       <Col>
-        {addItem.project}
+        {addItem.title}
         <br />
         <span className="text-muted">{addItem.content}</span>
         <br />
