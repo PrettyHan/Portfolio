@@ -28,8 +28,8 @@ class Education {
     const education = await EducationModel.findOne({ id: education_id });
     return education;
   }
-  static async findByUserId({ education_id }) {
-    const educations = await EducationModel.find({ id: education_id });
+  static async findByUserId({ userId }) {
+    const educations = await EducationModel.find({ id: userId });
     return educations;
   }
   static async update({ education_id, fieldToUpdate, newValue }) {

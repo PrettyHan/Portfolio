@@ -15,8 +15,9 @@ educationRouter.post("/education/register", async (req, res, next) => {
         "혹은 내용이 비어있습니다."
       )
     }
-    const {school, major, position } = req.body;
+    const {userId, school, major, position } = req.body;
     const newEducation = await EducationService.addEducation({
+      userId: userId,
       school: school,
       major: major,
       position: position
@@ -48,10 +49,10 @@ educationRouter.get("/education/:id", async function (req, res, next) {
   }
 });
 
-educationRouter.get("/educationlist/:education_id", async function (req, res, next) {
+educationRouter.get("/educationlist/:userId", async function (req, res, next) {
   try {
-    const education_id = req.params.education_id
-    const educationlist = await EducationService.getEducationlist({ education_id });
+    const userId = req.params.userId
+    const educationlist = await EducationService.getEducationlist({ userId });
     res.status(200).send(educationlist);
   } catch (error) {
     next(error);
