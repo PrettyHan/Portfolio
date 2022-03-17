@@ -15,14 +15,13 @@ educationRouter.post("/education/register", async (req, res, next) => {
         "혹은 내용이 비어있습니다."
       )
     }
-    const { education_id, school, major, position } = req.body;
+    const {school, major, position } = req.body;
     const newEducation = await EducationService.addEducation({
-      education_id: education_id,
       school: school,
       major: major,
       position: position
     });
-    if(newEducation.errorMessage) {
+    if (newEducation.errorMessage) {
       throw new Error(newEducation.errorMessage)
     }
     res.status(201).json(newEducation);
@@ -44,6 +43,16 @@ educationRouter.get("/education/:id", async function (req, res, next) {
     }
 
     res.status(200).send(education);
+  } catch (error) {
+    next(error);
+  }
+});
+
+educationRouter.get("/educationlist/:education_id", async function (req, res, next) {
+  try {
+    const education_id = req.params.education_id
+    const educationlist = await EducationService.geteducationlist({ education_id });
+    res.status(200).send(educationlist);
   } catch (error) {
     next(error);
   }
