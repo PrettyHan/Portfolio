@@ -11,10 +11,9 @@ const Educations = ({portfolioOwnerId, isEditable}) => {
   const [educations, setEducations] = useState([]);
   
   
-   useEffect(() => {
-    //사용자의 educations 이력 받아옴. 
+   useEffect(() => { 
     Api.get(`educationlist` ,portfolioOwnerId).then((res) =>
-     setData(res.data));
+    setEducations(res.data));
     }, [portfolioOwnerId]);
 
    return (

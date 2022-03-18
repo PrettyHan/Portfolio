@@ -12,8 +12,10 @@ const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
   const handleSubmit = async(e) => {
      e.preventDefault();
      
-     const userId = editItem.userId;
-     console.log(`edit : ${userId}`);
+     const userId = editEducation.userId;
+     
+     console.log("editEducation.userId",userId);
+     console.log("editEducation.id", editEducation.id);
 
       await Api.put(`educations/${editEducation.id}`, {
        userId,
