@@ -8,7 +8,7 @@ class Education {
   }
   static async findById({ educationId }) {
     // 입력 받은 userId를 기준으로 db에서 하나만 검색하여 추출
-    const education = await EducationModel.findOne({ educationId });
+    const education = await EducationModel.findOne({ id: educationId });
     return education;
   }
   static async findByUserId({ userId }) {

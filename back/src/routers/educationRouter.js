@@ -15,12 +15,12 @@ educationRouter.post("/education/register", async (req, res, next) => {
         "혹은 내용이 비어있습니다."
       )
     }
-    const {userId, school, major, position } = req.body;
+    const { userId, school, major, position } = req.body;
     const newEducation = await EducationService.addEducation({
-      userId: userId,
-      school: school,
-      major: major,
-      position: position
+      userId,
+      school,
+      major,
+      position
     });
     if (newEducation.errorMessage) {
       throw new Error(newEducation.errorMessage)
@@ -31,10 +31,10 @@ educationRouter.post("/education/register", async (req, res, next) => {
   }
 })
 
-educationRouter.get("/education/:educationId", async function (req, res, next) {
+educationRouter.get("/education/:id", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
-    const educationId = req.params.educationId;
+    const educationId = req.params.id;
 
     // 위 id를 이용하여 db에서 데이터 찾기
     const education = await EducationService.getEducation({ educationId });
@@ -59,22 +59,22 @@ educationRouter.get("/educationlist/:userId", async function (req, res, next) {
   }
 });
 educationRouter.put("/educations/:id", async function (req, res, next) {
-  try{
-      const educationId = req.body.id
-      const school = req.body.school ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
-      const major = req.body.major ?? null;
-      const position = req.body.position ?? null;
+  try {
+    const educationId = req.params.id;
+    const school = req.body.school ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
+    const major = req.body.major ?? null;
+    const position = req.body.position ?? null;
 
-      const toUpdate = { school, major, position }; 
+    const toUpdate = { school, major, position };
 
-      const education = await EducationService.setEducation({ educationId, toUpdate }); // 업데이트 할 목록을 toUpdate 변수에 담아 ServiceLayer 의 setEducation에 전달
+    const education = await EducationService.setEducation({ educationId, toUpdate }); // 업데이트 할 목록을 toUpdate 변수에 담아 ServiceLayer 의 setEducation에 전달
 
-      if (education.errorMessage) {
-          throw new Error(education.errorMessage);
-      }
-      res.status(200).send(education);
-  } catch(error) {
-      next(error);
+    if (education.errorMessage) {
+      throw new Error(education.errorMessage);
+    }
+    res.status(200).send(education);
+  } catch (error) {
+    next(error);
   }
 });
 
