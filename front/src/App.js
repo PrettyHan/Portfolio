@@ -9,7 +9,7 @@ import LoginForm from "./components/user/LoginForm";
 import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
-
+import Certificate from './components/certificate/Certificate';
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
 
