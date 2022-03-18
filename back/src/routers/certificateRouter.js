@@ -7,6 +7,7 @@ const certificateAuthRouter = Router();
 
 // certificateAuthRouter.use(login_required);
 
+// 자격증 추가 Post 요청
 certificateAuthRouter.post('/certificate/create', async function(req,res,next){
     try {
         // 사용자의 새로운 자격증 등록
@@ -41,9 +42,10 @@ certificateAuthRouter.post('/certificate/create', async function(req,res,next){
     }
 });
 
+// 사용자가 가지고 있는 자격증들 get 요청 
 certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
     try{
-        // 사용자가 가지고 있는 자격증 목록 얻음
+        // 자격증 Id 기준 불러오기
         const certificateId = req.params.id;
         const currentCertificateInfo = await certificateAuthService.getCertificates({certificateId});
         res.status(200).send(currentCertificateInfo);
@@ -57,6 +59,7 @@ certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
     }
 })
 
+// 사용자의 자격증 수정 put 요청
 certificateAuthRouter.put('/certificates/:id',
     async function (req,res,next){
         try {
@@ -82,6 +85,7 @@ certificateAuthRouter.put('/certificates/:id',
     }
 )
 
+// 사용자가 보유한 자격증 목록 불러오기 get 요청
 certificateAuthRouter.get('/certificatelist/:userId',
     async function (req,res,next){
         try{
@@ -94,16 +98,17 @@ certificateAuthRouter.get('/certificatelist/:userId',
     }
 )
 
-certificateAuthRouter.delete('certificatelist/:userId',
-    async function (req, res, next){
-        try {
-            const userId = req.params.userId;
-            const deletedCertificateList = await certificateAuthService.deleteCertificateList({userId});
-            res.status(200).send(deletedCertificateList);
-        }catch(error){
-            next(error);
-        }
-    }
-)
+// 보유한 자격증 삭제 delete 요청 자격증Id 기준으로 삭제
+// certificateAuthRouter.delete('certificatelist/:userId',
+//     async function (req, res, next){
+//         try {
+//             const userId = req.params.userId;
+//             const deletedCertificateList = await certificateAuthService.deleteCertificateList({userId});
+//             res.status(200).send(deletedCertificateList);
+//         }catch(error){
+//             next(error);
+//         }
+//     }
+// )
 
 export {certificateAuthRouter};
