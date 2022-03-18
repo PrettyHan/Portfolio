@@ -13,9 +13,9 @@ class ProjectService {
     return createdNewProject;
 }
 
-  static async getProject({ projectId }) {
+  static async getProject({ userId }) {
     // 해당 id를 가진 데이터가 db에 존재 여부 확인
-    const project = await Project.findById({ projectId });
+    const project = await Project.findById({ userId });
     if (!project){
         const errorMessage = "해당 id를 가진 프로젝트는 없습니다. 다시 한 번 확인해주세요.";
         return { errorMessage }
@@ -28,8 +28,8 @@ class ProjectService {
       return projects;
   }
 
-  static async setProject({ projectId, toUpdate }) {
-    let project = await Project.findById({ projectId })
+  static async setProject({ userId, toUpdate }) {
+    let project = await Project.findById({ userId })
 
     if (!project) {
         const errorMessage = "해당 id를 가진 프로젝트는 없습니다. 다시 한 번 확인해주세요.";
@@ -39,22 +39,22 @@ class ProjectService {
     if(toUpdate.title){
         const fieldToUpdate = "title";
         const newValue = toUpdate.title;
-        project = await Project.update({ projectId, fieldToUpdate, newValue });
+        project = await Project.update({ userId, fieldToUpdate, newValue });
     }
     if(toUpdate.content){
         const fieldToUpdate = "content";
         const newValue = toUpdate.content;
-        project = await Project.update({ projectId, fieldToUpdate, newValue });
+        project = await Project.update({ userId, fieldToUpdate, newValue });
     }
     if(toUpdate.from_date){
         const fieldToUpdate = "from_date";
         const newValue = toUpdate.from_date;
-        project = await Project.update({ projectId, fieldToUpdate, newValue });
+        project = await Project.update({ userId, fieldToUpdate, newValue });
     }
     if(toUpdate.to_date){
       const fieldToUpdate = "to_date";
       const newValue = toUpdate.to_date;
-      project = await Project.update({ projectId, fieldToUpdate, newValue });
+      project = await Project.update({ userId, fieldToUpdate, newValue });
   }
     return project;
   }

@@ -38,13 +38,13 @@ projectRouter.post("/project/create", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projects/:id", async function (req, res, next) {
+projectRouter.get("/projects/:userId", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
-      const projectId = req.params.id;
+      const userId = req.params.userId;
   
       // 위 id를 이용하여 db에서 데이터 찾기
-      const project = await ProjectService.getProject({ projectId });
+      const project = await ProjectService.getProject({ userId });
   
       if (project.errorMessage) {
         throw new Error(project.errorMessage);
@@ -66,18 +66,18 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
       }
   });
 
-  projectRouter.put("/projects/:id", async function (req, res, next) {
+  projectRouter.put("/projects/:userId", async function (req, res, next) {
       try{
-          const projectId = req.params.id;
+          const userId = req.params.userId;
 
           const title = req.body.title ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
           const content = req.body.content ?? null;
           const from_date = req.body.from_date ?? null;
           const to_date = req.body.to_date ?? null;
 
-          const toUpdate = { title, content, form_date, to_date };
+          const toUpdate = { title, content, from_date, to_date };
 
-          const project = await ProjectService.setProject({ projectId, toUpdate });
+          const project = await ProjectService.setProject({ userId, toUpdate });
 
           if (project.errorMessage) {
               throw new Error(project.errorMessage);
