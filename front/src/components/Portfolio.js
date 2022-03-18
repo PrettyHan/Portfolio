@@ -6,7 +6,7 @@ import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
 import Awards from "./award/Awards";
-// import Certificates from "./certificate/Certificates";
+import Certificates from "./certificate/Certificates";
 // import Educations from './education/Educations';
 // import Projects from "./project/Projects";
 
@@ -88,12 +88,12 @@ function Portfolio() {
             />
           </div> */}
 
-          {/* <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center" }}>
             <Certificates
               portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
-          </div> */}
+          </div>
 
         </Col>
       </Row>
