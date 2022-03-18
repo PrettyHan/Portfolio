@@ -13,7 +13,7 @@ class certificateAuthService {
         return createdNewCertificate;
     }
 
-    // 보유한 자격증 불러오기
+    // 자격증 내용 불러오기
     static async getCertificates({certificateId}){
         const  certificates = await Certificate.findById({certificateId})
         return certificates;

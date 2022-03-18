@@ -42,7 +42,7 @@ certificateAuthRouter.post('/certificate/create', async function(req,res,next){
     }
 });
 
-// 사용자가 가지고 있는 자격증들 get 요청 
+// 사용자가 가지고 있는 자격증 내용 get 요청 
 certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
     try{
         // 자격증 Id 기준 불러오기
