@@ -21,10 +21,15 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Col>
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
-                <Button
-                  variant="outline-info"
-                  size="sm"
-                  onClick={() => setIsEditing(true)}
+              <Button
+               mb="10"
+               style={{
+                border:"none",
+                backgroundColor:"#339AF0",
+                color: "#fffff"
+                }} 
+                size="sm"
+                onClick={() => setIsEditing(true)}
                 >
                   편집
                 </Button>

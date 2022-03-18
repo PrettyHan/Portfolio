@@ -6,6 +6,12 @@ import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
 import Educations from './education/Educations';
+import Awards from "./award/Awards";
+import Certificates from "./certificate/Certificates";
+// import Educations from './education/Educations';
+// import Projects from "./project/Projects";
+
+import Projects from './project/Projects';
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -61,16 +67,45 @@ function Portfolio() {
             isEditable={portfolioOwner.id === userState.user?.id}
           />
         </Col>
-        <Col>
-
+         <Col>
+          <div style={{ textAlign: "center" }}>
+            <Projects
+             portfolioOwnerId={portfolioOwner.id} // 사용자 아이디 느낌...?
+             isEditable={portfolioOwner.id === userState.user?.id}
+             />
+             </div>
+         </Col>
+         <Col>
           <div style={{ textAlign: "center" }}>
             <Educations
              portfolioOwnerId={portfolioOwner.id} // 사용자 아이디 느낌...?
              isEditable={portfolioOwner.id === userState.user?.id}
+             />
+             </div>
+          </Col>   
+          <Col>
+           <div style={{ textAlign: "center" }}>
+            <Awards
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
             />
           </div>
-
+          </Col>
+          {/* <div style={{ textAlign: "center" }}>
+            <Projects
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div> */}
+          <Col>
+          <div style={{ textAlign: "center" }}>
+            <Certificates
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div>
         </Col>
+
       </Row>
     </Container>
   );
