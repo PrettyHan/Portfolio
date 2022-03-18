@@ -95,6 +95,20 @@ function Portfolio() {
             />
           </div>
 
+          {/* <div style={{ textAlign: "center" }}>
+            <Projects
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div> */}
+
+          {/* <div style={{ textAlign: "center" }}>
+            <Certificates
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div> */}
+
         </Col>
       </Row>
     </Container>
