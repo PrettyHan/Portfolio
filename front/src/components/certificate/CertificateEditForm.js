@@ -8,13 +8,13 @@ function CertificateEditForm({
   setCertificates,
   setIsEditing,
 }) {
-  //useState로 title 상태를 생성함.
+  //useState로 title 상태를 생성
   const [title, setTitle] = useState(currentCertificate.title);
-  //useState로 description 상태를 생성함.
+  //useState로 description 상태를 생성
   const [description, setDescription] = useState(
     currentCertificate.description
   );
-  //useState로 whenDate 상태를 생성함.
+  //useState로 whenDate 상태를 생성
   const [whenDate, setWhenDate] = useState(
     new Date(currentCertificate.when_date)
   );
@@ -22,23 +22,23 @@ function CertificateEditForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // currentCertificate의 user_id를 user_id 변수에 할당함.
-    const userId = currentCertificate.userId;
+    // currentCertificate의 user_id를 user_id 변수에 할당
+    const user_id = currentCertificate.user_id;
     const when_date = whenDate.toISOString().split("T")[0];
 
-    // "certificates/자격증id" 엔드포인트로 PUT 요청함.
+    // "certificates/자격증id" 엔드포인트로 PUT 요청
     await Api.put(`certificates/${currentCertificate.id}`, {
-      userId,
+      user_id,
       title,
       description,
       when_date,
     });
 
-    // "certificatelist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("certificatelist", userId);
-    // certificates를 response의 data로 세팅함.
+    // "certificatelist/유저id" 엔드포인트로 GET 요청
+    const res = await Api.get("certificatelist", user_id);
+    // certificates를 response의 data로 세팅
     setCertificates(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
+    // 편집 과정이 끝났으므로, isEditing을 false로 세팅
     setIsEditing(false);
   };
 

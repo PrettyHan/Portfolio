@@ -8,33 +8,33 @@ function CertificateAddForm({
   setCertificates,
   setIsAdding,
 }) {
-  //useState로 title 상태를 생성함.
+  //useState로 title 상태를 생성
   const [title, setTitle] = useState("");
-  //useState로 description 상태를 생성함.
+  //useState로 description 상태를 생성
   const [description, setDescription] = useState("");
-  //useState로 whenDate 상태를 생성함.
+  //useState로 whenDate 상태를 생성
   const [whenDate, setWhenDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // portfolioOwnerId를 user_id 변수에 할당함.
-    const userId = portfolioOwnerId;
+    // portfolioOwnerId를 user_id 변수에 할당
+    const user_id = portfolioOwnerId;
     const when_date = whenDate.toISOString().split("T")[0];
 
-    // "certificate/create" 엔드포인트로 post요청함.
+    // "certificate/create" 엔드포인트로 POST 요청
     await Api.post("certificate/create", {
-      userId,
+      user_id,
       title,
       description,
       when_date,
     });
 
-    // "educationlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("certificatelist", userId);
-    // certificates를 response의 data로 세팅함.
+    // "educationlist/유저id" 엔드포인트로 GET 요청
+    const res = await Api.get("certificatelist", user_id);
+    // certificates를 response의 data로 세팅
     setCertificates(res.data);
-    // certificate를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
+    // certificate를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅
     setIsAdding(false);
   };
 
