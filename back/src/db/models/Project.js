@@ -8,8 +8,8 @@ class Project {
     }
     
     // 프로젝트의 고유한 id로 프로젝트 검색(수정 할 때 사용)
-    static async findById({ userId }) {
-      const project = await ProjectModel.findOne({ userId });
+    static async findById({ projectId }) {
+      const project = await ProjectModel.findOne({ projectId });
       return project;
     }
 
