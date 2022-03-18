@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { User } from "./models/User";
+import {Education} from "./models/Education"
 import { Project } from "./models/Project"
 import { Award } from "./models/Award"
 
@@ -18,5 +19,6 @@ db.on("error", (error) =>
 );
 
 export { User };
+export {Education}
 export { Project };
 export { Award };
