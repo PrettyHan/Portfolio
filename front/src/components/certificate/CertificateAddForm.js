@@ -18,7 +18,7 @@ function CertificateAddForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // portfolioOwnerId를 user_id 변수에 할당
+    // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
     const when_date = whenDate.toISOString().split("T")[0];
 
