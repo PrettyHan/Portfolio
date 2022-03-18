@@ -26,8 +26,8 @@ class Certificate {
         return updateCertificate;
     }
     // 자격증 삭제
-    static async delete({createdCertificate}){
-        const deletedCertificate = await CertificateModel.delete({createdCertificate});
+    static async delete({certificateId}){
+        const deletedCertificate = await CertificateModel.delete({certificateId});
         return deletedCertificate;
     }
 
