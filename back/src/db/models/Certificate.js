@@ -1,7 +1,7 @@
 import {CertificateModel} from '../schemas/certificate';
 
 class Certificate {
-    // 새로운 자격증 등록
+    // 자격증 추가
     static async create({newCertificate}){
         const createdNewCertificate = await CertificateModel.create(newCertificate);
         return createdNewCertificate;
