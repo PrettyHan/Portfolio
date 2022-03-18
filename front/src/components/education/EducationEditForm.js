@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
-// 학력 수정 컴포넌트 입니다. 
 
-const EducationEditForm = ({editItem, setEditData, setIsEditing}) => {
+const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
 
-  const [school, setSchool] = useState("");
-  const [major, setMajor] = useState("");
-  const [position, setPosition] = useState("");
+  const [school, setSchool] = useState(editEducation.school);
+  const [major, setMajor] = useState(editEducation.major);
+  const [position, setPosition] = useState(editEducation.position);
   
   const handleSubmit = async(e) => {
      e.preventDefault();
@@ -16,8 +15,7 @@ const EducationEditForm = ({editItem, setEditData, setIsEditing}) => {
      const userId = editItem.userId;
      console.log(`edit : ${userId}`);
 
-      // 사용자가 입력한 데이터, post 요청! 
-      await Api.put(`educations/${userId}`, {
+      await Api.put(`educations/${editEducation.id}`, {
        userId,
        school,
        major,
@@ -25,9 +23,7 @@ const EducationEditForm = ({editItem, setEditData, setIsEditing}) => {
      });
 
      const res = await Api.get(`educationlist/${userId}`);
-     console.log("get성공",res);
-     setEditData(res.data);
-     console.log(`res: ${res}`);
+     setEditEducation(res.data);
      setIsEditing(false); 
 
   };

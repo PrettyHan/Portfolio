@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import EducationList from "./EducationList";
+import EducationList from "./EducationCard";
 import EducationEditForm from "./EducationEditForm";
 
-function EducationEdit({ item, setData, isEditable , setOpen}) {
+function Education({ education, setEducations,isEditable}) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   return (
     <>
       {isEditing ? (
         <EducationEditForm
-          editItem={item}
-          setEditData={setData}
+          editEducation={education}
+          setEditEducation={setEducations}
           setIsEditing={setIsEditing}
-          setOpen = {setOpen}
         />
       ) : (
         <EducationList
-          addItem={item}
+        education={education}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
         />
@@ -25,4 +24,4 @@ function EducationEdit({ item, setData, isEditable , setOpen}) {
   );
 }
 
-export default EducationEdit;
+export default Education;

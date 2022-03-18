@@ -5,17 +5,17 @@ import { Card, Row, Col, Button} from "react-bootstrap";
  * 학력 목록 컴포넌트입니다.
  * item : EducationForm 에서 전달받음.
  */
-const EducationList = ({addItem, isEditable,setIsEditing}) => {
-  console.log(`item: ${addItem}`);
+const EducationCard = ({education, isEditable,setIsEditing}) => {
+
   return (
     <Card.Text className='text-start'>
       <div class="alert alert-primary" role="alert">
       <Row className="align-items-start">
         <Col>
-          <span>{addItem.school}</span>
+          <span>{education.school}</span>
           <br />
-          <span className="text-muted">{`${addItem.major} (${
-            addItem.position || ""
+          <span className="text-muted">{`${education.major} (${
+            education.position || ""
           })`}</span>
         </Col>
         {isEditable && (
@@ -37,4 +37,4 @@ const EducationList = ({addItem, isEditable,setIsEditing}) => {
 
 }
 
-export default EducationList;
+export default EducationCard;
