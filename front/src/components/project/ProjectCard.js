@@ -4,8 +4,8 @@ import { Card, Row, Col, Button} from "react-bootstrap";
 /**
  * item : ProjectForm 에서 전달받음.
  */
-const ProjectCard = ({project, isEditable,setIsEditing}) => {
-  console.log(`item: ${project}`);
+const ProjectCard = ({project, isEditable, setIsEditing}) => {
+ 
   return (
     <Card.Text>
     <Row className="justify-content-between align-items-center mb-2">
@@ -15,7 +15,7 @@ const ProjectCard = ({project, isEditable,setIsEditing}) => {
         <span className="text-muted">{project.content}</span>
         <br />
         <span className="text-muted">
-          {`${project.fromDate} ~ ${project.toDate}`}
+          {`${project.f_date.substring(0,10)} ~ ${project.t_date.substring(0,10)}`}
         </span>
       </Col>
       {isEditable && (

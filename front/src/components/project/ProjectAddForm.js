@@ -10,16 +10,14 @@ const ProjectAddForm = ({
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [from_date, setFromDate] = useState(new Date());
-  const [to_date, setToDate] = useState(new Date());
+  const [f_date, setFromDate] = useState(new Date());
+  const [t_date, setToDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userId = portfolioOwnerId;
 
-    const fromDate = from_date.toISOString().split("T")[0];
-    const toDate = to_date.toISOString().split("T")[0];
     console.log(userId);
 
     // "project/create" 엔드포인트로 post요청함.
@@ -27,8 +25,8 @@ const ProjectAddForm = ({
       userId,
       title,
       content,
-      fromDate,
-      toDate
+      f_date,
+      t_date
     });
 
     // "projectlist/유저id" 엔드포인트로 get요청함.
@@ -62,7 +60,7 @@ const ProjectAddForm = ({
           style={{width: 200}}
           type="date"
           placeholder="시작날짜"
-          value={from_date}
+          value={f_date}
           onChange={(e) => setFromDate(e.target.value)}
         />
           <Form.Control
@@ -70,7 +68,7 @@ const ProjectAddForm = ({
           style={{width: 200}}
           type="date"
           placeholder="종료날짜"
-          value={to_date}
+          value={t_date}
           onChange={(e) => setToDate(e.target.value)}
         />
       </Form.Group>

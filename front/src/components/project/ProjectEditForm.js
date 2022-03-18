@@ -6,26 +6,20 @@ const ProjectEdictForm = ({ editProject, setEditProject, setIsEditing,}) => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [from_date, setFromDate] = useState(new Date(editProject.fromDate));
-  const [to_date, setToDate] = useState(new Date(editProject.toDate));
+  const [f_date, setFromDate] = useState(new Date());
+  const [t_date, setToDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userId = editProject.userId;
-
-    // console.log(`여기서: -------------${userId}`);
-    // console.log(`여기서: -------------${editProject.id}`)
-
-    const fromDate = from_date.toISOString().split("T")[0];
-    const toDate = to_date.toISOString().split("T")[0];
  
     await Api.put(`projects/${editProject.id}`, {
       userId,
       title,
       content,
-      fromDate,
-      toDate
+      f_date,
+      t_date
     });
 
     const res = await Api.get(`projectlist/${userId}`);
@@ -58,7 +52,7 @@ const ProjectEdictForm = ({ editProject, setEditProject, setIsEditing,}) => {
          style={{width: 200}}
          type="date"
          placeholder="시작날짜"
-         value={from_date}
+         value={f_date}
          onChange={(e) => setFromDate(e.target.value)}
        />
          <Form.Control
@@ -66,7 +60,7 @@ const ProjectEdictForm = ({ editProject, setEditProject, setIsEditing,}) => {
          style={{width: 200}}
          type="date"
          placeholder="종료날짜"
-         value={to_date}
+         value={t_date}
          onChange={(e) => setToDate(e.target.value)}
        />
      </Form.Group>

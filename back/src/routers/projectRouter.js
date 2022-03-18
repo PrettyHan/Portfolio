@@ -21,7 +21,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
     const title = req.body.title;
     const content = req.body.content;
     const f_date = req.body.f_date;
-    const toDate = req.body.toDate;
+    const t_date = req.body.t_date;
 
     // 위 데이터를 유저 db에 추가하기
     const newProject = await ProjectService.addProject({
