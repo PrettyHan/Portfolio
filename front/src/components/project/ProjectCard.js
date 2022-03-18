@@ -15,7 +15,7 @@ const ProjectCard = ({project, isEditable,setIsEditing}) => {
         <span className="text-muted">{project.content}</span>
         <br />
         <span className="text-muted">
-          {`${project.from_date} ~ ${project.to_date}`}
+          {`${project.fromDate} ~ ${project.toDate}`}
         </span>
       </Col>
       {isEditable && (
