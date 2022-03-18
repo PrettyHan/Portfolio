@@ -4,18 +4,18 @@ import { Card, Row, Col, Button} from "react-bootstrap";
 /**
  * item : ProjectForm 에서 전달받음.
  */
-const ProjectList = ({addItem, isEditable,setIsEditing}) => {
-  console.log(`item: ${addItem}`);
+const ProjectCard = ({project, isEditable,setIsEditing}) => {
+  console.log(`item: ${project}`);
   return (
     <Card.Text>
     <Row className="justify-content-between align-items-center mb-2">
       <Col>
-        {addItem.title}
+        {project.title}
         <br />
-        <span className="text-muted">{addItem.content}</span>
+        <span className="text-muted">{project.content}</span>
         <br />
         <span className="text-muted">
-          {`${addItem.from_date} ~ ${addItem.to_date}`}
+          {`${project.from_date} ~ ${project.to_date}`}
         </span>
       </Col>
       {isEditable && (
@@ -36,4 +36,4 @@ const ProjectList = ({addItem, isEditable,setIsEditing}) => {
 
 }
 
-export default ProjectList;
+export default ProjectCard;

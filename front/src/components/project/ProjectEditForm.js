@@ -2,12 +2,7 @@ import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
-const ProjectForm = ({
-  portfolioOwnerId, 
-  setOpen,
-  setData,
-  data
-}) => {
+const ProjectEdictForm = ({ editProject, setEditProject, setIsEditing,}) => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -17,23 +12,22 @@ const ProjectForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userId = portfolioOwnerId
-    const from_date = fromDate.toISOString().split("T")[0];
-    const to_date = toDate.toISOString().split("T")[0];
+    const userId = editProject.userId;
 
-    // "project/create" 엔드포인트로 post요청함.
-    await Api.put(`projects/${userId}`, {
+    console.log(`여기서: -------------${userId}`);
+    console.log(`여기서: -------------${editProject.id}`)
+ 
+    await Api.put(`projects/${editProject.id}`, {
       userId,
       title,
       content,
-      from_date,
-      to_date,
+      fromDate,
+      toDate
     });
 
-    // "projectlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("projectlist", userId);
-    setProject(res.data);
-    setOpen(false);
+    const res = await Api.get(`projectlist/${userId}`);
+    setEditProject(res.data);
+    setIsEditing(false);
   };
 
   
@@ -94,7 +88,7 @@ const ProjectForm = ({
          backgroundColor:"#C4C4C4"
        }} 
        variant="secondary" 
-       onClick={() => setOpen((prev) => !prev)}
+       onClick={() => setIsEditing(false)}
        >
         취소
        </Button>
@@ -105,4 +99,4 @@ const ProjectForm = ({
  )}
 
 
-export default ProjectForm;
+export default ProjectEdictForm;

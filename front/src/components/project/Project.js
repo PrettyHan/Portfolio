@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import ProjectList from "./ProjectList";
+import ProjectCard from "./ProjectCard";
 import ProjectEditForm from "./ProjectEditForm";
 
-function ProjectEdit({ item, setData, isEditable , setOpen}) {
+function Project({ project, setProjects , isEditable}) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   return (
     <>
       {isEditing ? (
         <ProjectEditForm
-          editItem={item}
-          setEditData={setData}
+          editProject={project}
+          setEditProject={setProjects}
           setIsEditing={setIsEditing}
-          setOpen = {setOpen}
         />
       ) : (
-        <ProjectList
-          addItem={item}
+        <ProjectCard
+          project={project}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
         />
@@ -25,4 +24,4 @@ function ProjectEdit({ item, setData, isEditable , setOpen}) {
   );
 }
 
-export default ProjectEdit;
+export default Project;

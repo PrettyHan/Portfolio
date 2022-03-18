@@ -54,7 +54,7 @@ class ProjectService {
     if(toUpdate.toDate){
       const fieldToUpdate = "toDate";
       const newValue = toUpdate.toDate;
-      project = await Project.update({ userId, fieldToUpdate, newValue });
+      project = await Project.update({ projectId, fieldToUpdate, newValue });
   }
     return project;
   }
