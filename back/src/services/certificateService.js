@@ -4,7 +4,7 @@ import {v4 as uuidv4} from 'uuid';
 class certificateAuthService {
     // 자격증 추가
     static async addCertificate({userId, title, description,when_date}){
-        // 사용자의 id의 유니크 값
+        // 자격증 id의 유니크 값
         const id = uuidv4();
         const newCertificate = {id, userId, title, description, when_date};
         
