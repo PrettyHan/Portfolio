@@ -59,6 +59,7 @@ certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
     }
 })
 
+
 // 사용자의 자격증 수정 put 요청
 certificateAuthRouter.put('/certificates/:id',
     async function (req,res,next){
@@ -99,16 +100,18 @@ certificateAuthRouter.get('/certificatelist/:userId',
 )
 
 // 보유한 자격증 삭제 delete 요청 자격증Id 기준으로 삭제
-// certificateAuthRouter.delete('certificatelist/:userId',
-//     async function (req, res, next){
-//         try {
-//             const userId = req.params.userId;
-//             const deletedCertificateList = await certificateAuthService.deleteCertificateList({userId});
-//             res.status(200).send(deletedCertificateList);
-//         }catch(error){
-//             next(error);
-//         }
-//     }
-// )
+certificateAuthRouter.delete('certificates/:id',
+    async function (req, res, next){
+        try {
+            const certificateId = req.params.id;
+            const deletedCertificateList = await certificateAuthService.deleteCertificateList({certificateId});
+            res.status(200).send(deletedCertificateList);
+        }catch(error){
+            next(error);
+        }
+    }
+)
+
+
 
 export {certificateAuthRouter};

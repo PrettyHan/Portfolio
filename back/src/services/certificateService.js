@@ -19,6 +19,7 @@ class certificateAuthService {
         return certificates;
     }
 
+    
     // 자격증 내용 수정
     static async setCertificate({certificateId,toUpdate}){
         let certificate = await Certificate.findById({certificateId});
@@ -53,10 +54,12 @@ class certificateAuthService {
         const certificates = await Certificate.findByUserId({userId});
         return certificates;
     }
-    // 자격증 삭제
-    // static async deleteCertificateList({userId}){
-    //     const deletedCertificates = await Certificate.delete({userId});
-    //     return deletedCertificates;
-    // }
+
+     // 자격증 삭제
+    static async deleteCertificateList({certificateId}){
+        const deletedCertificates = await Certificate.delete({certificateId});
+        return deletedCertificates;
+    }
+
 }
 export {certificateAuthService};
