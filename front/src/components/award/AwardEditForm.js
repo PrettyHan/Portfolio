@@ -3,29 +3,29 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
-  //useState로 title 상태를 생성함.
+  //useState로 title 상태를 생성
   const [title, setTitle] = useState(currentAward.title);
-  //useState로 description 상태를 생성함.
+  //useState로 description 상태를 생성
   const [description, setDescription] = useState(currentAward.description);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // currentAward의 user_id를 user_id 변수에 할당함.
+    // currentAward의 user_id를 userId 변수에 할당
     const userId = currentAward.userId;
 
-    // "awards/수상 id" 엔드포인트로 PUT 요청함.
+    // "awards/수상 id" 엔드포인트로 PUT 요청
     await Api.put(`awards/${currentAward.id}`, {
       userId,
       title,
       description,
     });
 
-    // "awardlist/유저id" 엔드포인트로 GET 요청함.
+    // "awardlist/유저id" 엔드포인트로 GET 요청
     const res = await Api.get("awardlist", userId);
-    // awards를 response의 data로 세팅함.
+    // awards를 response의 data로 세팅
     setAwards(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
+    // 편집 과정이 끝났으므로, isEditing을 false로 세팅
     setIsEditing(false);
   };
 
