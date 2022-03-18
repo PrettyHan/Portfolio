@@ -17,9 +17,9 @@ const ProjectForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userId = portfolioOwnerId
-    const from_date = fromDate.toISOString().split("T")[0];
-    const to_date = toDate.toISOString().split("T")[0];
+    const userId = portfolioOwnerId;
+    const from_date = fromDate;
+    const to_date = toDate;
 
     // "project/create" 엔드포인트로 post요청함.
     await Api.post("project/create", {
@@ -27,12 +27,12 @@ const ProjectForm = ({
       title,
       content,
       from_date,
-      to_date,
+      to_date
     });
 
     // "projectlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("projectlist", userId);
-    setProject(res.data);
+    const res = await Api.get(`projectlist/${userId}`);
+    setData(res.data);
     setOpen(false);
   };
 

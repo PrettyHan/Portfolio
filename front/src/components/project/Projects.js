@@ -7,16 +7,13 @@ import * as Api from "../../api";
 // 제일 상위 컴포넌트! 
 const Projects = ({portfolioOwnerId, isEditable}) => {
   
-  //console.log(portfolioOwnerId);
   const [open, setOpen] = useState(false); // Add 버튼 누르면 open!
   const [data, setData] = useState([]);
   
-  console.log(isEditable);
   const userId = portfolioOwnerId;
   
    useEffect(() => {
-    //사용자의 educations 이력 받아옴. 
-    Api.get(`educationlist/${userId}`).then((res) =>
+    Api.get(`projectlist/${userId}`).then((res) =>
      setData(res.data));
     }, [userId]);
 
@@ -29,6 +26,7 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
               item={item} 
               setData= {setData}
               isEditable = {isEditable}
+              setOpen = {setOpen}
           />         
         ))}
         {isEditable && (
