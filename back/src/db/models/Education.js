@@ -6,27 +6,9 @@ class Education {
     const createdNewEducation = await EducationModel.create(newEducation);
     return createdNewEducation;
   }
-
-  static async findBySchool({ school }) {
-    // 입력 받은 school을 기준으로 db에서 검색하여 추출
-    const findNewEducation = await EducationModel.findOne({school})
-    return findNewEducation
-  }
-
-  static async findByMajor ({major}) {
-    // 입력 받은 major를 기준으로 db에서 검색하여 추출
-    const findNewEducation = await EducationModel.findOne({major})
-    return findNewEducation
-  }
-
-  static async findByStatus ({position}) {
-    // 입력 받은 position을 기준으로 db에서 검색하여 추출
-    const findNewEducation = await EducationModel.findOne({position})
-    return findNewEducation
-  }
-  static async findById({ userId }) {
+  static async findById({ educationId }) {
     // 입력 받은 userId를 기준으로 db에서 하나만 검색하여 추출
-    const education = await EducationModel.findOne({ userId });
+    const education = await EducationModel.findOne({ educationId });
     return education;
   }
   static async findByUserId({ userId }) {
@@ -35,9 +17,9 @@ class Education {
     return educations;
   }
    // 입력 받은 userId를 기준으로 데이터를 찾고 업데이트
-  static async update({ userId, fieldToUpdate, newValue }) {
+  static async update({ educationId, fieldToUpdate, newValue }) {
     // ServiceLayer에서 전달받은 인자들을 findOneAndUpdate 를 통해 리턴해줌.
-    const filter = { userId };
+    const filter = { id: educationId };
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
 
