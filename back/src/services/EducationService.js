@@ -15,10 +15,10 @@ class EducationService {
   }
   // Get ("/education/:userId") / 함수 
   static async getEducation({ userId }) {
-    
+
     const education = await Education.findById({ userId })
     if (!education) {
-      const errorMessage = "해당 id를 가진 데이터는 없습니다"
+      const errorMessage = "해당 userId를 가진 데이터는 없습니다"
       return { errorMessage }
     }
     return education
@@ -33,7 +33,7 @@ class EducationService {
     let education = await Education.findById({ userId })
 
     if (!education) {
-      const errorMessage = "해당 id를 가진 프로젝트는 없습니다. 다시 한 번 확인해주세요.";
+      const errorMessage = "해당 userId를 가진 프로젝트는 없습니다. 다시 한 번 확인해주세요.";
       return { errorMessage }
     }
 
@@ -54,7 +54,18 @@ class EducationService {
     }
     return education;
   }
+  static async deleteEducation({ userId }) {
+    const isDataDeleted = await Education.deleteById({ userId });
 
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!isDataDeleted) {
+      const errorMessage =
+        "해당 userId를 가진 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    return { status: "ok" };
+  }
 }
 
 export { EducationService }
