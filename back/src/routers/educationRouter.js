@@ -65,9 +65,9 @@ educationRouter.put("/educations/:userId", async function (req, res, next) {
       const major = req.body.major ?? null;
       const position = req.body.position ?? null;
 
-      const toUpdate = { school, major, position };
+      const toUpdate = { school, major, position }; 
 
-      const education = await EducationService.setEducation({ userId, toUpdate });
+      const education = await EducationService.setEducation({ userId, toUpdate }); // 업데이트 할 목록을 toUpdate 변수에 담아 ServiceLayer 의 setEducation에 전달
 
       if (education.errorMessage) {
           throw new Error(education.errorMessage);

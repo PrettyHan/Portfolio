@@ -1,7 +1,8 @@
 import { Education } from "../db"
 import { v4 as uuidv4 } from "uuid";
-
+// educatuinRouter에 사용 할 Service 함수 등록
 class EducationService {
+  // Post("/education/register") / 함수 
   static async addEducation({ userId, school, major, position }) {
     const id = uuidv4();
     const newEducation = { id, userId, school, major, position };
@@ -12,8 +13,9 @@ class EducationService {
 
     return createdNewUser;
   }
+  // Get ("/education/:userId") / 함수 
   static async getEducation({ userId }) {
-
+    
     const education = await Education.findById({ userId })
     if (!education) {
       const errorMessage = "해당 id를 가진 데이터는 없습니다"
@@ -21,10 +23,12 @@ class EducationService {
     }
     return education
   }
+  // Get ("/educationlist/:userId") / 함수
   static async getEducationlist({ userId }) {
     const educations = await Education.findByUserId({ userId });
     return educations;
   }
+  // Put ("/educations/:userId") / 함수
   static async setEducation({ userId, toUpdate }) {
     let education = await Education.findById({ userId })
 
