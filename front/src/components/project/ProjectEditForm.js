@@ -20,15 +20,15 @@ const ProjectEdictForm = ({ editItem, setEditData, setIsEditing,}) => {
     const to_date = toDate;
 
   
-    await Api.put(`projects/${id}`, {
-      id,
+    await Api.put(`projects/${userId}`, {
+      userId,
       title,
       content,
       from_date,
       to_date
     });
 
-    const res = await Api.get(`projectlist/${id}`);
+    const res = await Api.get(`projectlist/${userId}`);
     setEditData(res.data);
     setIsEditing(false);
   };
