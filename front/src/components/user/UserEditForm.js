@@ -29,7 +29,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   return (
-    <Card className="mb-2">
+    <Card>
       <Card.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="useEditName" className="mb-3">
