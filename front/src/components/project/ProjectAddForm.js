@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
 import * as Api from "../../api";
 
-const ProjectForm = ({
+const ProjectAddForm = ({
   portfolioOwnerId, 
   setOpen,
-  setData,
-  data
+  setProjects
 }) => {
 
   const [title, setTitle] = useState("");
@@ -17,22 +16,22 @@ const ProjectForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userId = portfolioOwnerId
-    const from_date = fromDate.toISOString().split("T")[0];
-    const to_date = toDate.toISOString().split("T")[0];
+    const userId = portfolioOwnerId;
+
+    console.log(userId);
 
     // "project/create" 엔드포인트로 post요청함.
     await Api.post("project/create", {
       userId,
       title,
       content,
-      from_date,
-      to_date,
+      fromDate,
+      toDate
     });
 
     // "projectlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("projectlist", userId);
-    setProject(res.data);
+    const res = await Api.get(`projectlist/${userId}`);
+    setProjects(res.data);
     setOpen(false);
   };
 
@@ -105,4 +104,4 @@ const ProjectForm = ({
   )}
 
 
-export default ProjectForm;
+export default ProjectAddForm;
