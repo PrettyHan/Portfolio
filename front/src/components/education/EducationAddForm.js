@@ -22,7 +22,7 @@ const EducationAddForm = ({
        userId : userId,
        school : school,
        major : major,
-       position : major,
+       position : position,
    });
 
        const res = await Api.get(`educationlist/${userId}`);

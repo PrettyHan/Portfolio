@@ -5,7 +5,7 @@ import { certificateAuthService } from "../services/certificateService";
 
 const certificateAuthRouter = Router();
 
-// certificateAuthRouter.use(login_required);
+certificateAuthRouter.use(login_required);
 
 // 자격증 추가 Post 요청
 certificateAuthRouter.post('/certificate/create', async function(req,res,next){
@@ -74,8 +74,8 @@ certificateAuthRouter.put('/certificates/:id',
             // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트. 업데이트 내용 없을 시 생략
             const updateCertificate = await certificateAuthService.setCertificate({certificateId,toUpdate});
 
-            if(updateCertificate.errorMessgae) {
-                throw new Error(updateCertificate.errorMessgae);
+            if(updateCertificate.errorMessage) {
+                throw new Error(updateCertificate.errorMessage);
             }
             
             res.status(200).json(updateCertificate);
