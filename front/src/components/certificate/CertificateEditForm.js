@@ -22,7 +22,7 @@ function CertificateEditForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // currentCertificate의 user_id를 user_id 변수에 할당
+    // currentCertificate의 userId를 userId 변수에 할당
     const userId = currentCertificate.userId;
     const when_date = whenDate.toISOString().split("T")[0];
 
