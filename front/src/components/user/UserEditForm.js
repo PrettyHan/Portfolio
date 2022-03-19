@@ -29,7 +29,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   return (
-    <Card className="mb-2">
+    <Card>
       <Card.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="useEditName" className="mb-3">
@@ -61,10 +61,22 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3">
+              <Button 
+               mb="10"
+               style={{
+                border:"none",
+                backgroundColor:"#339AF0"
+              }} 
+              variant="primary" type="submit" className="me-3">
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsEditing(false)}>
+              <Button 
+                mb="10"
+                style={{
+                 border:"none",
+                 backgroundColor:"#C4C4C4"
+               }} 
+              variant="secondary" onClick={() => setIsEditing(false)}>
                 취소
               </Button>
             </Col>
