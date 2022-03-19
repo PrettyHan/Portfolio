@@ -5,7 +5,6 @@ import { Card, Row, Col, Button} from "react-bootstrap";
  * item : ProjectForm 에서 전달받음.
  */
 const ProjectCard = ({project, isEditable,setIsEditing}) => {
-  console.log(`item: ${addItem}`);
   return (
     <Card.Text>
     <Row className="justify-content-between align-items-center mb-2">

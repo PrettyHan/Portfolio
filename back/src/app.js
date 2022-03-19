@@ -5,7 +5,6 @@ import { educationRouter } from "./routers/educationRouter";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { projectRouter } from "./routers/projectRouter";
 import { awardRouter } from "./routers/awardRouter";
-import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { certificateAuthRouter} from './routers/certificateRouter';
 const app = express();
 
