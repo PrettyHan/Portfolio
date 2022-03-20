@@ -17,6 +17,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle>{user?.email}</Card.Subtitle>
         <Card.Text>{user?.description}</Card.Text>
+        <Card.Footer>{user?.visited}</Card.Footer>
         {isEditable && (
           <Col>
             <Row className="mt-3 text-center text-info">
