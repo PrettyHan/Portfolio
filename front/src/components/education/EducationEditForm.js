@@ -9,25 +9,37 @@ const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
   const [major, setMajor] = useState(editEducation.major);
   const [position, setPosition] = useState(editEducation.position);
   
+  const positionArray = ["재학 중", "학사 졸업", "석사 졸업", "박사 졸업"];
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setPosition(value);
+  };
+
   const handleSubmit = async(e) => {
      e.preventDefault();
      
      const userId = editEducation.userId;
-     
-     console.log("editEducation.userId",userId);
-     console.log("editEducation.id", editEducation.id);
 
+     try{
       await Api.put(`educations/${editEducation.id}`, {
-       userId,
-       school,
-       major,
-       position,
-     });
+        userId,
+        school,
+        major,
+        position,
+      });
 
-     const res = await Api.get(`educationlist/${userId}`);
-     setEditEducation(res.data);
-     setIsEditing(false); 
-
+      const res = await Api.get(`educationlist/${userId}`);
+      setEditEducation(res.data);
+      setIsEditing(false); 
+    }
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    }
   };
   
 
@@ -52,42 +64,20 @@ const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
         </Form.Group>
 
         <div key={`inline-radio`} className="mb-3 mt-3">
-        <Form.Check
-          inline
-          label="재학중"
-          type="radio"
-          name="position"
-          value="재학중"
-          checked={position === "재학중"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="학사졸업"
-          type="radio"
-          name="position"
-          value="학사졸업"
-          checked={position === "학사졸업"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="석사졸업"
-          type="radio"
-          name="position"
-          value="석사졸업"
-          checked={position === "석사졸업"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="박사졸업"
-          type="radio"
-          name="position"
-          value="박사졸업"
-          checked={position === "박사졸업"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
+        <Form.Group key=" inline-radio" className="mb-3 m-2">
+        {positionArray.map((position, idx) => (
+          <Form.Check
+            inline
+            key={`inline-radio-${idx}`}
+            label={position}
+            name="position"
+            type="radio"
+            //id={`inline-radio-${idx}`}
+            defaultValue={position}
+            onChange={handleChange}
+          />
+        ))}
+      </Form.Group>
       </div>
 
         <Form.Group as={Row} className="mt-3 text-center">

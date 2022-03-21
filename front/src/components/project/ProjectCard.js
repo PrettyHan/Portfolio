@@ -3,8 +3,8 @@ import { Card, Row, Col, Button} from "react-bootstrap";
 
 const ProjectCard = ({project, isEditable, setIsEditing}) => {
 
-  const stringFromDate = ''+project.f_date;
-  const stringToDate= ''+project.t_date;
+  const stringFromDate = ''+project.fromDate;
+  const stringToDate= ''+project.toDate;
 
   const fromDate = stringFromDate.substring(0,10);
   const toDate = stringToDate.substring(0,10);
@@ -15,9 +15,7 @@ const ProjectCard = ({project, isEditable, setIsEditing}) => {
     <Row className="justify-content-between align-items-center mb-2">
       <Col>
         {project.title}
-        <br />
         <span className="text-muted">{project.content}</span>
-        <br />
         <span className="text-muted">
               {`${fromDate} ~ ${toDate}`}
         </span>

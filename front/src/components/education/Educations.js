@@ -12,9 +12,19 @@ const Educations = ({portfolioOwnerId, isEditable}) => {
   
   
    useEffect(() => { 
-    Api.get(`educationlist` ,portfolioOwnerId).then((res) =>
-    setEducations(res.data));
-    }, [portfolioOwnerId]);
+    try{
+      Api.get(`educationlist` ,portfolioOwnerId).then((res) =>
+      setEducations(res.data));
+    } 
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    }
+      }, [portfolioOwnerId]);
+  
 
    return (
     <Card>
