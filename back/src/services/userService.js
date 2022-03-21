@@ -76,15 +76,20 @@ class userAuthService {
 
   static async setUser({ user_id, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
+    let email = toUpdate.email
     let user = await User.findById({ user_id });
-
+    let chack = await User.findByEmail( {email} );
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
       const errorMessage =
         "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-
+    if(chack == chack.email && chack){
+      const errorMessage =
+      "이미 존재하는 이메일 입니다.";
+    return { errorMessage };
+    }
     // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행
     if (toUpdate.name) {
       const fieldToUpdate = "name";

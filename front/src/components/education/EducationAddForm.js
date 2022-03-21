@@ -18,11 +18,11 @@ const EducationAddForm = ({
      e.preventDefault();
 
      //사용자가 입력한 데이터, post 요청! 
-     await Api.post("education/register", {
-       userId : userId,
-       school : school,
-       major : major,
-       position : position,
+     await Api.post("education/create", {
+       userId,
+       school,
+       major,
+       position,
    });
 
        const res = await Api.get(`educationlist/${userId}`);
