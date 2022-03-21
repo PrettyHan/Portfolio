@@ -17,11 +17,12 @@ projectRouter.post("/project/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const title = req.body.title;
-    const content = req.body.content;
-    const fromDate = req.body.fromDate;
-    const toDate = req.body.toDate;
+    // const userId = req.body.userId;
+    // const title = req.body.title;
+    // const content = req.body.content;
+    // const fromDate = req.body.fromDate;
+    // const toDate = req.body.toDate;
+    const { userId, title, content, fromDate, toDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newProject = await ProjectService.addProject({

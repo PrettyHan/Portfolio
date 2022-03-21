@@ -16,9 +16,10 @@ awardRouter.post("/award/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const title = req.body.title;
-    const description = req.body.description;
+    // const userId = req.body.userId;
+    // const title = req.body.title;
+    // const description = req.body.description;
+    const {userId, title, description} = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newAward = await AwardService.addAward({
