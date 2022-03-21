@@ -25,7 +25,7 @@ const EducationAddForm = ({
 
      //사용자가 입력한 데이터, post 요청! 
      try{
-       await Api.post("education/register", {
+       await Api.post("education/create", {
         userId,
         school,
         major,

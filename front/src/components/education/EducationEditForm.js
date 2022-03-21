@@ -29,9 +29,9 @@ const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
         position,
       });
 
-      const res = await Api.get(`educationlist/${userId}`);
-      setEditEducation(res.data);
-      setIsEditing(false); 
+       const res = await Api.get(`educationlist/${userId}`);
+       setEditEducation(res.data);
+       setIsEditing(false); 
     }
     catch(error){
       console.log(error);
