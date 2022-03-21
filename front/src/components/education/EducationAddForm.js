@@ -74,7 +74,6 @@ const EducationAddForm = ({
             label={position}
             name="position"
             type="radio"
-            //id={`inline-radio-${idx}`}
             defaultValue={position}
             onChange={handleChange}
           />
