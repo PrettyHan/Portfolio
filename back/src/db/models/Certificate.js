@@ -25,11 +25,12 @@ class Certificate {
         const updateCertificate = await CertificateModel.findOneAndUpdate( filter, update, option);
         return updateCertificate;
     }
-    // 자격증 삭제
-    // static async delete({createdCertificate}){
-    //     const deletedCertificate = await CertificateModel.delete({createdCertificate});
-    //     return deletedCertificate;
-    // }
+
+    static async deleteById({ certificateId }) {
+        const deleteResult = await AwardModel.deleteOne({ id: certificateId });
+        const isDataDeleted = deleteResult.deletedCount === 1;
+        return isDataDeleted;
+      }
 
 }
 

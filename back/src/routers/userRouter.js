@@ -1,5 +1,10 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
+import { AwardModel } from "../db/schemas/award";
+import { CertificateModel } from "../db/schemas/certificate";
+import { EducationModel } from "../db/schemas/education";
+import { ProjectModel } from "../db/schemas/project";
+import { UserModel } from "../db/schemas/user";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from "../services/userService";
 
@@ -57,7 +62,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
 userAuthRouter.get(
   "/userlist",
-  login_required,
+  //login_required,
   async function (req, res, next) {
     try {
       // 전체 사용자 목록을 얻음
@@ -71,7 +76,7 @@ userAuthRouter.get(
 
 userAuthRouter.get(
   "/user/current",
-  login_required,
+  //login_required,
   async function (req, res, next) {
     try {
       // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
@@ -122,7 +127,7 @@ userAuthRouter.put(
 
 userAuthRouter.get(
   "/users/:id",
-  login_required,
+  //login_required,
   async function (req, res, next) {
     try {
       const user_id = req.params.id;
@@ -146,6 +151,26 @@ userAuthRouter.get("/afterlogin", login_required, function (req, res, next) {
     .send(
       `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
     );
+});
+
+userAuthRouter.delete(
+  "/users/:id", 
+  //login_required, 
+  async function (req, res, next) {
+    try{
+      const userId = req.params.id;
+      
+      await AwardModel.deleteMany({ userId });
+      await CertificateModel.deleteMany({ userId });
+      await EducationModel.deleteMany({ userId });
+      await ProjectModel.deleteMany({ userId });
+      //await UserModel.deleteMany({ userId });
+      await userAuthService.deleteUser({ userId })
+
+      res.send("status : success")
+    } catch(error){
+      next(error)
+    }
 });
 
 export { userAuthRouter };

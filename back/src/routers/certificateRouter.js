@@ -5,7 +5,7 @@ import { certificateAuthService } from "../services/certificateService";
 
 const certificateAuthRouter = Router();
 
-certificateAuthRouter.use(login_required);
+//certificateAuthRouter.use(login_required);
 
 // 자격증 추가 Post 요청
 certificateAuthRouter.post('/certificate/create', async function(req,res,next){
@@ -99,17 +99,22 @@ certificateAuthRouter.get('/certificatelist/:userId',
     }
 )
 
-// 보유한 자격증 삭제 delete 요청 자격증Id 기준으로 삭제
-// certificateAuthRouter.delete('certificatelist/:userId',
-//     async function (req, res, next){
-//         try {
-//             const userId = req.params.userId;
-//             const deletedCertificateList = await certificateAuthService.deleteCertificateList({userId});
-//             res.status(200).send(deletedCertificateList);
-//         }catch(error){
-//             next(error);
-//         }
-//     }
-// )
+certificateAuthRouter.delete("/certificates/:id", async function (req, res, next) {
+    try {
+      // req (request) 에서 id 가져오기
+      const certificateId = req.params.id;
+  
+      // 위 id를 이용하여 db에서 데이터 삭제하기
+      const result = await certificateAuthService.deleteCertificate({ certificateId });
+  
+      if (result.errorMessage) {
+        throw new Error(result.errorMessage);
+      }
+  
+      res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  });
 
 export {certificateAuthRouter};

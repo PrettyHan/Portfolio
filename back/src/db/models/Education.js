@@ -31,6 +31,12 @@ class Education {
     return updatedEducation;
   }
 
+  static async deleteById({ educationId }) {
+    const deleteResult = await AwardModel.deleteOne({ id: educationId });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
+  }
+
 }
 
 export { Education };

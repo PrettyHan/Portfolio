@@ -6,7 +6,7 @@ import { login_required } from "../middlewares/login_required";
 
 const projectRouter = Router();
 // 로그인 체크 여부 확인(postman 사용할 때는 있으면 로그인이 필요합니다 뜸)
-projectRouter.use(login_required);
+//projectRouter.use(login_required);
 
 projectRouter.post("/project/create", async function (req, res, next) {
   try {
@@ -86,6 +86,24 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
       } catch(error) {
           next(error);
       }
+  });
+
+  projectRouter.delete("/projects/:id", async function (req, res, next) {
+    try {
+      // req (request) 에서 id 가져오기
+      const projectId = req.params.id;
+  
+      // 위 id를 이용하여 db에서 데이터 삭제하기
+      const result = await ProjectService.deleteProject({ projectId });
+  
+      if (result.errorMessage) {
+        throw new Error(result.errorMessage);
+      }
+  
+      res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
   });
 
 

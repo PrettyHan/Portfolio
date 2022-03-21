@@ -125,6 +125,21 @@ class userAuthService {
 
     return user;
   }
+
+  // 회원탈퇴
+  static async deleteUser({ userId }) {
+    const isDataDeleted = await User.delete({ userId });
+
+    if (!isDataDeleted) {
+      const errorMessage =
+        "해당 id를 가진 사용자는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    return { status: "ok" };
+  }
+
+
 }
 
 export { userAuthService };
