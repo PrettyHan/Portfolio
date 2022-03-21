@@ -14,19 +14,28 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     // currentAward의 user_id를 userId 변수에 할당
     const userId = currentAward.userId;
 
-    // "awards/수상 id" 엔드포인트로 PUT 요청
-    await Api.put(`awards/${currentAward.id}`, {
-      userId,
-      title,
-      description,
-    });
+    try{
+      // "awards/수상 id" 엔드포인트로 PUT 요청
+      await Api.put(`awards/${currentAward.id}`, {
+         userId,
+         title,
+         description,
+       });
+      // "awardlist/유저id" 엔드포인트로 GET 요청
+       const res = await Api.get("awardlist", userId);
+      // awards를 response의 data로 세팅
+      setAwards(res.data);
+      // 편집 과정이 끝났으므로, isEditing을 false로 세팅
+      setIsEditing(false);
+    }
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    }
 
-    // "awardlist/유저id" 엔드포인트로 GET 요청
-    const res = await Api.get("awardlist", userId);
-    // awards를 response의 data로 세팅
-    setAwards(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅
-    setIsEditing(false);
   };
 
   return (

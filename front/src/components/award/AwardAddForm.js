@@ -13,9 +13,10 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
     // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
-
+    
+    try{
     // "award/create" 엔드포인트로 POST 요청
-    await Api.post("award/create", {
+      await Api.post("award/create", {
       userId: portfolioOwnerId,
       title,
       description,
@@ -27,6 +28,14 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     setAwards(res.data);
     // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅
     setIsAdding(false);
+    }
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    } 
   };
 
   return (
