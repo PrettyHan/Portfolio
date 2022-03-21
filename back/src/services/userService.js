@@ -85,9 +85,10 @@ class userAuthService {
         "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-    if(chack == chack.email && chack){
+    if(chack.email != email && chack){
       const errorMessage =
       "이미 존재하는 이메일 입니다.";
+      console.log(errorMessage)
     return { errorMessage };
     }
     // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행

@@ -10,6 +10,10 @@ class User {
     const user = await UserModel.findOne({ email });
     return user;
   }
+  static async findByEmails({ email }) {
+    const user = await UserModel.find({ email });
+    return user;
+  }
 
   static async findById({ user_id }) {
     const user = await UserModel.findOne({ id: user_id });
