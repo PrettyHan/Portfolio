@@ -1,11 +1,11 @@
 import is from "@sindresorhus/is";
 import {Router} from 'express';
-import {login_required} from '../middlewares/login_required';
+import {loginRequired} from '../middlewares/loginRequired';
 import { certificateAuthService } from "../services/certificateService";
 
 const certificateAuthRouter = Router();
 
-certificateAuthRouter.use(login_required);
+certificateAuthRouter.use(loginRequired);
 
 // 자격증 추가 Post 요청
 certificateAuthRouter.post('/certificate/create', async function(req,res,next){

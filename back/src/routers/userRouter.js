@@ -1,6 +1,6 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
+import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
 
 const userAuthRouter = Router();
@@ -14,14 +14,10 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-<<<<<<< HEAD
-    const {name,email,password} = req.body;
-=======
     // const name = req.body.name;
     // const email = req.body.email;
     // const password = req.body.password;
     const { name, email, password } = req.body;
->>>>>>> f4a39a929746c75d1124dfd1cce2b54eaddc8874
 
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userAuthService.addUser({
@@ -60,7 +56,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
 userAuthRouter.get(
   "/userlist",
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       // 전체 사용자 목록을 얻음
@@ -74,7 +70,7 @@ userAuthRouter.get(
 
 userAuthRouter.get(
   "/user/current",
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
@@ -96,7 +92,7 @@ userAuthRouter.get(
 
 userAuthRouter.put(
   "/users/:id",
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       // URI로부터 사용자 id를 추출함.
@@ -125,7 +121,7 @@ userAuthRouter.put(
 
 userAuthRouter.get(
   "/users/:id",
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       const userId = req.params;
@@ -143,7 +139,7 @@ userAuthRouter.get(
 );
 
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
-userAuthRouter.get("/afterlogin", login_required, function (req, res, next) {
+userAuthRouter.get("/afterlogin", loginRequired, function (req, res, next) {
   res
     .status(200)
     .send(
