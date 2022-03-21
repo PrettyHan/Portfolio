@@ -11,9 +11,18 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
   const [projects, setProjects] = useState([]);
   
    useEffect(() => {
-    Api.get(`projectlist/${portfolioOwnerId}`).then((res) =>
-    setProjects(res.data));
-    }, [portfolioOwnerId]);
+    try{
+      Api.get(`projectlist/${portfolioOwnerId}`).then((res) =>
+      setProjects(res.data));
+    } 
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    }
+      }, [portfolioOwnerId]);
 
    return (
     <Card>
