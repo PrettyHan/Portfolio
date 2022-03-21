@@ -77,6 +77,23 @@ educationRouter.put("/educations/:id", async function (req, res, next) {
     next(error);
   }
 });
+educationRouter.delete("/educations/:userId", async function (req, res, next) {
+  try {
+    // req (request) 에서 id 가져오기
+    const userId = req.params.userId;
+
+    // 위 id를 이용하여 db에서 데이터 삭제하기
+    const result = await EducationService.deleteEducation({ userId });
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+
+    res.status(200).send(result, "삭제가 완료 되었습니다.");
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 
