@@ -13,10 +13,6 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
       );
     }
 
-    // req (request) 에서 데이터 가져오기
-    // const name = req.body.name;
-    // const email = req.body.email;
-    // const password = req.body.password;
     const { name, email, password } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
@@ -56,7 +52,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
 userAuthRouter.get(
   "/userlist",
-  loginRequired,
+  //loginRequired,
   async function (req, res, next) {
     try {
       // 전체 사용자 목록을 얻음

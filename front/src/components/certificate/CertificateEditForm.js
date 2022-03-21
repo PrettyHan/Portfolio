@@ -73,10 +73,25 @@ function CertificateEditForm({
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <Button
+            mb="10"
+            style={{
+             border:"none",
+             backgroundColor:"#339AF0"
+           }}  
+          variant="primary" 
+          type="submit" 
+          className="me-3">
             확인
           </Button>
-          <Button variant="secondary" onClick={() => setIsEditing(false)}>
+          <Button 
+            mb="10"
+            style={{
+             border:"none",
+             backgroundColor:"#C4C4C4"
+           }} 
+          variant="secondary" 
+          onClick={() => setIsEditing(false)}>
             취소
           </Button>
         </Col>

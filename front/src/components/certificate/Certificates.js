@@ -39,11 +39,18 @@ function Certificates({ portfolioOwnerId, isEditable }) {
           />
         ))}
         {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
+        <Row className="mt-3 text-center mb-4">
+        <Col sm={{ span: 20 }}>
+        <Button
+         className='m-3'
+         style={{
+          border:"none",
+          backgroundColor:"#CFD3FF",
+          borderRadius:50
+        }} 
+        onClick={() => setIsAdding(true)}>+</Button>
+        </Col>
+        </Row>
         )}
         {isAdding && (
           <CertificateAddForm

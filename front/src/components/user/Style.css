@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+
+/* SectonMain */
+.sectionMain {
+  position: relative;
+}
+
+.sectionMain .MainImg {
+  margin: 33px 33px 33px 600px;
+  width: 50%;
+  height: 50%;
+  position: relative;
+}
+
+.sectionMain .mainText1 {
+  position: absolute;
+  top: 30%;
+  left: 1%;
+  color: black;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  margin-left: 300px;
+}
+
+/* LoginForm */
+.login {
+  position: absolute;
+  width: 500px;
+  height: 491px;
+  border-radius: 50px;
+}
+
+/* Network */
+.homeUsers {
+  display: flex;
+  width: '18rem';
+  margin-right: 26px;
+  margin-bottom: 19px;
+  border-radius: 25px;
+}
+
+/* Portfolio */
+.mypage .name {
+  margin-top: 14px;
+}
+
+.mypage .name p {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900 bold;
+}
+
+.mypage .line {
+  font-size: 45px;
+  text-align: center;
+  border-bottom: 1px solid gray;
+  margin: 0px;
+}
+
+.mypage .homeButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: #339af0;
+}
+
+.mypage div {
+  /* neutral/gray light */
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.mypage .user {
+  width: 300px;
+  padding: 0px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.mypage .user p {
+  padding-top: 10px;
+  padding-left: 12px;
+}
+
+.mypage .user .user_button {
+  display: flex;
+}
+
+.mypage .user .user_button button {
+  margin-left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: #339af0;
+}
+
+.mypage .email,
+.mypage .introduce,
+.mypage .projects,
+.mypage .educations,
+.mypage .awards,
+.mypage .certificates {
+  width: 1000px;
+  margin-bottom: 20px;
+  border: 1px #c7c8d2;
+}

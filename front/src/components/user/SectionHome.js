@@ -6,37 +6,33 @@ import * as Api from "../../api";
 import UserCard from "./UserCard";
 import { UserStateContext } from "../../App";
 
-import SectionMain from './SectionHome';
-import './Style.css';
+import SectionMain from "./SectionMain";
 
-function Network() {
-  const navigate = useNavigate();
+
+function SectionHome() {
   const userState = useContext(UserStateContext);
   // useState 훅을 통해 users 상태를 생성함.
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
-    if (!userState.user) {
-      navigate("/login");
-      return;
-    }
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
     Api.get("userlist").then((res) => setUsers(res.data));
-  }, [userState, navigate]);
+  }, [userState]);
 
   return (
-    <div>
+    <>
      <SectionMain/>
-     <Container className='my-4'> 
-      <Row xs="auto"className="jusify-content-center p-4">
+     <Container className='my-2 ms-9'> 
+      <div className='homeUsers'>
+      <Row xs="auto" className="jusify-content-center">
         {users.map((user) => (
           <UserCard key={user.id} user={user} isNetwork />
         ))}
       </Row>
+      </div>
     </Container>
-    </div>
+    </>
   );
 }
 
-export default Network;
+export default SectionHome;

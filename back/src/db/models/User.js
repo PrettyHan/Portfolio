@@ -10,6 +10,11 @@ class User {
     const user = await UserModel.findOne({ email });
     return user;
   }
+  // 이메일 중복확인!
+  static async findByEmails({ email }) {
+    const user = await UserModel.find({ email });
+    return user;
+  }
 
   static async findById({ userId }) {
     const user = await UserModel.findOne({ id: userId });
