@@ -1,8 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
+import { alignPropType } from "react-bootstrap/esm/types";
+import React, { useState } from "react";
+import * as Api from "../../api";
+
+
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
+  const [visited, setVisited] = useState(user.visited);
+  const visitedHandler = async ({ user, setUser, visited, setVisited }) => {
+    setVisited(visited + 1)
+    const res = await Api.put(`users/${user.id}`, {
+      visited: setVisited
+    });
+    // 유저 정보는 response의 data임.
+    const updatedUser = res.data;
+    // 해당 유저 정보로 user을 세팅함.
+    setUser(updatedUser);
+    navigate(`/users/${user.id}`)
+  }
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
@@ -22,15 +39,15 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Col>
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
-              <Button
-               mb="10"
-               style={{
-                border:"none",
-                backgroundColor:"#339AF0",
-                color: "#fffff"
-                }} 
-                size="sm"
-                onClick={() => setIsEditing(true)}
+                <Button
+                  mb="10"
+                  style={{
+                    border: "none",
+                    backgroundColor: "#339AF0",
+                    color: "#fffff"
+                  }}
+                  size="sm"
+                  onClick={() => setIsEditing(true)}
                 >
                   편집
                 </Button>
@@ -43,7 +60,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Link
             className="mt-3"
             href="#"
-            onClick={() => navigate(`/users/${user.id}`)}
+            onClick={visitedHandler}
           >
             포트폴리오
           </Card.Link>

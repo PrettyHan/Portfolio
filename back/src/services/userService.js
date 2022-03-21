@@ -109,6 +109,11 @@ class userAuthService {
       const newValue = toUpdate.description;
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
+    if (toUpdate.visited) {
+      const fieldToUpdate = "visited";
+      const newValue = toUpdate.visited;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
 
     return user;
   }
