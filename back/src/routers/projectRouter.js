@@ -20,16 +20,16 @@ projectRouter.post("/project/create", async function (req, res, next) {
     const userId = req.body.userId;
     const title = req.body.title;
     const content = req.body.content;
-    const f_date = req.body.f_date;
-    const t_date = req.body.t_date;
+    const fromDate = req.body.fromDate;
+    const toDate = req.body.toDate;
 
     // 위 데이터를 유저 db에 추가하기
     const newProject = await ProjectService.addProject({
       userId: userId,
       title: title,
       content: content,
-      f_date: f_date,
-      t_date: t_date,
+      fromDate: fromDate,
+      toDate: toDate,
     });
 
     res.status(201).json(newProject);
@@ -71,10 +71,10 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
           const projectId = req.params.id;
           const title = req.body.title ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
           const content = req.body.content ?? null;
-          const f_date = req.body.f_date ?? null;
-          const t_date = req.body.t_date ?? null;
+          const fromDate = req.body.fromDate ?? null;
+          const toDate = req.body.toDate ?? null;
 
-          const toUpdate = { title, content, f_date, t_date };
+          const toUpdate = { title, content, fromDate, toDate };
 
           const project = await ProjectService.setProject({ projectId, toUpdate });
 

@@ -21,14 +21,14 @@ certificateAuthRouter.post('/certificate/create', async function(req,res,next){
         const userId = req.body.userId;
         const title = req.body.title;
         const description = req.body.description;
-        const when_date = req.body.when_date;
+        const whenDate = req.body.whenDate;
 
         // 위 데이터를 자격증 db에 추가하기
         const newCertificate = await certificateAuthService.addCertificate({
             userId : userId,
             title : title,
             description : description,
-            when_date : when_date,
+            whenDate : whenDate,
         });
         
         if (newCertificate.errorMessage) {
@@ -68,9 +68,9 @@ certificateAuthRouter.put('/certificates/:id',
             // body data로부터 업데이트할 사용자 정보를 추출
             const title = req.body.title ?? null;
             const description = req.body.description ?? null;
-            const when_date = req.body.when_date ?? null;
+            const whenDate = req.body.whenDate ?? null;
 
-            const toUpdate = {title, description, when_date};
+            const toUpdate = {title, description, whenDate};
             // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트. 업데이트 내용 없을 시 생략
             const updateCertificate = await certificateAuthService.setCertificate({certificateId,toUpdate});
 

@@ -3,10 +3,10 @@ import {v4 as uuidv4} from 'uuid';
 
 class certificateAuthService {
     // 자격증 추가
-    static async addCertificate({userId, title, description,when_date}){
+    static async addCertificate({userId, title, description,whenDate}){
         // 자격증 id의 유니크 값
         const id = uuidv4();
-        const newCertificate = {id, userId, title, description, when_date};
+        const newCertificate = {id, userId, title, description, whenDate};
         
         const createdNewCertificate = await Certificate.create({newCertificate});
         createdNewCertificate.errorMessage=null;
@@ -40,9 +40,9 @@ class certificateAuthService {
             certificate = await Certificate.update({certificateId,fieldToUpdate,newValue});
         }
         // 자격증 날짜 수정
-        if (toUpdate.when_date) {
-            const fieldToUpdate = "when_date";
-            const newValue = toUpdate.when_date;
+        if (toUpdate.whenDate) {
+            const fieldToUpdate = "whenDate";
+            const newValue = toUpdate.whenDate;
             certificate = await Certificate.update({certificateId,fieldToUpdate,newValue});
         }
         return certificate;

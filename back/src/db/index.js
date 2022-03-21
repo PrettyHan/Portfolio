@@ -17,8 +17,4 @@ db.on("connected", () =>
 db.on("error", (error) =>
   console.error("MongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error)
 );
-export {Certificate};
-export { User };
-export {Education}
-export { Project };
-export { Award };
+export { Certificate, User, Education, Project, Award };
