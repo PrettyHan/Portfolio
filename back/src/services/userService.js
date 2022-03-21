@@ -85,7 +85,7 @@ class userAuthService {
         "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-    if(chack.email != email && chack){
+    if(user.email != email && chack){
       const errorMessage =
       "이미 존재하는 이메일 입니다.";
       console.log(errorMessage)
