@@ -4,30 +4,37 @@ import * as Api from "../../api";
 
 const ProjectEdictForm = ({ editProject, setEditProject, setIsEditing,}) => {
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [fromDate, setFromDate] = useState(new Date());
-  const [toDate, setToDate] = useState(new Date());
+  const [title, setTitle] = useState(editProject.title);
+  const [content, setContent] = useState(editProject.content);
+  const [fromDate, setFromDate] = useState(new Date(editProject.f_date));
+  const [toDate, setToDate] = useState(new Date(editProject.t_date));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userId = editProject.user_id;
+    const userId = editProject.userId;
 
-    console.log(userId);
- 
-    await Api.put(`projects/${editProject.id}`, {
-      userId,
-      title,
-      content,
-      fromDate,
-      toDate
-    });
-
-    const res = await Api.get(`projectlist/${userId}`);
-    setEditProject(res.data);
-    setIsEditing(false);
+    try{
+      await Api.put(`projects/${editProject.id}`, {
+        userId,
+        title,
+        content,
+        fromDate,
+        toDate
+      });
+  
+      const res = await Api.get(`projectlist/${userId}`);
+      setEditProject(res.data);
+      setIsEditing(false);
+    }
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
   };
+}
 
   
   return (

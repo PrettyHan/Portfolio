@@ -6,14 +6,23 @@ import * as Api from "../../api";
 
 // 제일 상위 컴포넌트! 
 const Projects = ({portfolioOwnerId, isEditable}) => {
-  
+  console.log(portfolioOwnerId)
   const [open, setOpen] = useState(false); // Add 버튼 누르면 open!
   const [projects, setProjects] = useState([]);
   
    useEffect(() => {
-    Api.get(`projectlist/${portfolioOwnerId}`).then((res) =>
-    setProjects(res.data));
-    }, [portfolioOwnerId]);
+    try{
+      Api.get(`projectlist/${portfolioOwnerId}`).then((res) =>
+      setProjects(res.data));
+    } 
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    }
+      }, [portfolioOwnerId]);
 
    return (
     <Card>

@@ -18,21 +18,29 @@ const ProjectAddForm = ({
 
     const userId = portfolioOwnerId;
 
-    console.log(userId);
-
+         //사용자가 입력한 데이터, post 요청! 
+   try{
     // "project/create" 엔드포인트로 post요청함.
-    await Api.post("project/create", {
-      userId,
-      title,
-      content,
-      fromDate,
-      toDate
-    });
+      await Api.post("project/create", {
+        userId,
+        title,
+        content,
+        fromDate,
+        toDate
+      });
 
-    // "projectlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get(`projectlist/${userId}`);
-    setProjects(res.data);
-    setOpen(false);
+      // "projectlist/유저id" 엔드포인트로 get요청함.
+      const res = await Api.get(`projectlist/${userId}`);
+      setProjects(res.data);
+      setOpen(false);
+    }
+   catch(error){
+      console.log(error);
+      if (error.response) {
+        const { data } = error.response;
+        console.error("data : ", data);
+        }
+      }
   };
 
   

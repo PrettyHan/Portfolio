@@ -6,7 +6,6 @@ function AwardCard({ award, isEditable, setIsEditing }) {
       <Row className="align-items-center">
         <Col>
           <span>{award.title}</span>
-          <br />
           <span className="text-muted">{award.description}</span>
         </Col>
         {isEditable && (

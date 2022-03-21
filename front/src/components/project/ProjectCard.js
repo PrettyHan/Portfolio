@@ -1,20 +1,23 @@
 import React from 'react'
 import { Card, Row, Col, Button} from "react-bootstrap";
 
-/**
- * item : ProjectForm 에서 전달받음.
- */
-const ProjectCard = ({project, isEditable,setIsEditing}) => {
+const ProjectCard = ({project, isEditable, setIsEditing}) => {
+
+  const stringFromDate = ''+project.fromDate;
+  const stringToDate= ''+project.toDate;
+
+  const fromDate = stringFromDate.substring(0,10);
+  const toDate = stringToDate.substring(0,10);
+
+
   return (
     <Card.Text>
     <Row className="justify-content-between align-items-center mb-2">
       <Col>
         {project.title}
-        <br />
         <span className="text-muted">{project.content}</span>
-        <br />
         <span className="text-muted">
-          {`${project.from_date} ~ ${project.to_date}`}
+              {`${fromDate} ~ ${toDate}`}
         </span>
       </Col>
       {isEditable && (
