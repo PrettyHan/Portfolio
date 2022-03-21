@@ -6,6 +6,9 @@ import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { projectRouter } from "./routers/projectRouter";
 import { awardRouter } from "./routers/awardRouter";
 import { certificateAuthRouter} from './routers/certificateRouter';
+import fileUpload from "express-fileupload";
+import morgan from "morgan";
+import lodash from "lodash";
 const app = express();
 
 // CORS 에러 방지
@@ -22,7 +25,10 @@ app.get("/", (req, res) => {
   res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
 });
 
-
+// 파일 업로드 허용
+app.use(fileUpload({
+  createParentPath: true
+}));
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 app.use(userAuthRouter);
 app.use(educationRouter);
