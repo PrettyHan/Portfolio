@@ -6,6 +6,7 @@ import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { projectRouter } from "./routers/projectRouter";
 import { awardRouter } from "./routers/awardRouter";
 import { certificateAuthRouter} from './routers/certificateRouter';
+import {photoRouter} from './routers/photoRouter';
 import bodyParser from "body-parser";
 import fileUpload from "express-fileupload";
 import morgan from "morgan";
@@ -32,36 +33,14 @@ app.get("/", (req, res) => {
   res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
 });
 
-app.post('/upload',async(req,res)=>{
-  try{
-    if(!req.files){
-      res.send({
-        status: false,
-        message:"파일 업로드 실패"
-      });
-    } else {
-      let f = req.files.uploadFile;
-      f.mv('./uploads/'+f.name);
-      res.send({
-        status: true,
-        message: "파일 업로드 성공",
-        data :{
-          name: f.name,
-          mimetype : f.mimetype,
-          size: f.size
-        }
-      });
-    }
-  } catch (err) {
-    res.status(500).send(err);
-  }
-})
+
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 app.use(userAuthRouter);
 app.use(educationRouter);
 app.use(projectRouter);
 app.use(awardRouter);
 app.use(certificateAuthRouter);
+app.use(photoRouter);
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);
 
