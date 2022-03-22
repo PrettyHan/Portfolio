@@ -12,11 +12,11 @@ const SkillSchema = new Schema(
         },
         career: {
             type: String,
-            required: true,
+            required: false,
         },
         language: {
             type: String,
-            required: true,
+            required: false,
         },
     },
     {

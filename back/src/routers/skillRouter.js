@@ -16,8 +16,8 @@ skillRouter.post("/skill/create", async (req, res, next) => {
       )
     }
     const { userId} = req.body;
-    const career = req.body.career ?? "없음";
-    const language = req.body.language ?? "없음";
+    const career = req.body.career ?? null;
+    const language = req.body.language ?? null;
     const newSkill = await SkillService.addSkill({
       userId,
       career,
