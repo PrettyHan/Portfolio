@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {Nav, Navbar, Container} from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
@@ -9,6 +9,8 @@ function Header() {
 
   const userState = useContext(UserStateContext);
   const dispatch = useContext(DispatchContext);
+
+  const [isClick, setIsClick] = useState(false);
 
   // 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
   const isLogin = !!userState.user;
@@ -23,8 +25,8 @@ function Header() {
   // Navbar fixed = "top"
   return (
     <div>
-      <Navbar expand="lg" bg="white" variant="black"> 
-            <Container>
+      <Navbar expand="lg" style={{backgroundColor:"#228be6"}}> 
+        <Container>
            <Nav.Item>
            <Nav.Link style={{
              color: "black",
@@ -39,7 +41,11 @@ function Header() {
                 <Nav.Link style={{color:"black"}} onClick={logout}>로그아웃</Nav.Link>
                </Nav.Item>
                <Nav.Item> 
-                <Nav.Link  style={{color:"blue"}} onClick={() => navigate("/mypage")}>마이 페이지</Nav.Link>
+                <Nav.Link  
+                style={{color:"white"}} 
+                onClick={(prev) => {navigate("/mypage") && setIsClick(!prev)}}
+                isClick = {isClick}
+                >마이 페이지</Nav.Link>
                </Nav.Item>
              </>
            ) 
@@ -50,7 +56,7 @@ function Header() {
             <Nav.Link  style={{color:"black"}} onClick={() => navigate("/login")}>로그인</Nav.Link>
              </Nav.Item>
              <Nav.Item> 
-             <Nav.Link style={{color:"blue"}}  onClick={() => navigate("/register")}>회원가입</Nav.Link>
+             <Nav.Link style={{color:"white"}}  onClick={() => navigate("/register")}>회원가입</Nav.Link>
              </Nav.Item>
            </>
           )}

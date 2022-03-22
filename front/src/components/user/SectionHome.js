@@ -7,9 +7,10 @@ import UserCard from "./UserCard";
 import { UserStateContext } from "../../App";
 
 import SectionMain from "./SectionMain";
-
+import './Style.css';
 
 function SectionHome() {
+  const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   // useState 훅을 통해 users 상태를 생성함.
   const [users, setUsers] = useState([]);
@@ -24,11 +25,9 @@ function SectionHome() {
      <SectionMain/>
      <Container className='my-2 ms-9'> 
       <div className='homeUsers'>
-      <Row xs="auto" className="jusify-content-center">
         {users.map((user) => (
           <UserCard key={user.id} user={user} isNetwork />
         ))}
-      </Row>
       </div>
     </Container>
     </>

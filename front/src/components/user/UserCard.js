@@ -1,17 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col, Container } from "react-bootstrap";
 
+import './Style.css';
+
+
 // homeUser
-function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
+function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
 
   return (
-     <Card style={{
-       marginRight: "26px",
-       marginBottom: "19px",
-       width: "18rem",
-       borderRadius: "24px" 
-     }}>
+     <Card className={isClick ? "myPageCard" : "homeUserCard"} >
       <Card.Body>
         <Col className="justify-content-md-center">
           <Card.Img

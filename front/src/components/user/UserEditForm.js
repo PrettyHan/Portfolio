@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
+import './Style.css';
+
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
@@ -48,7 +50,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   return (
-    <Card>
+    <Card className="userCardEdit">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">

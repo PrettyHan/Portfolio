@@ -12,7 +12,7 @@ import Awards from "./award/Awards";
 import Certificates from "./certificate/Certificates";
 import Projects from './project/Projects';
 
-function Portfolio() {
+function Portfolio(isClick) {
   const navigate = useNavigate();
   const params = useParams();
   // useState 훅을 통해 portfolioOwner 상태를 생성함.
@@ -76,8 +76,9 @@ function Portfolio() {
            <h1>{portfolioOwner.name} 포트폴리오</h1>
         </div>
          <h1 className='line'></h1>
-        <div className='user'>
+        <div>
         <User
+            isClick = {isClick}
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
