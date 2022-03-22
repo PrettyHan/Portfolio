@@ -16,7 +16,7 @@ function CertificateEditForm({
   );
   //useState로 whenDate 상태를 생성
   const [whenDate, setWhenDate] = useState(
-    new Date(currentCertificate.when_date)
+    new Date(currentCertificate.whenDate)
   );
 
   const handleSubmit = async (e) => {
