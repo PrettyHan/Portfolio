@@ -2,6 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { EducationService } from "../services/EducationService";
 import { login_required } from "../middlewares/login_required";
+import { EducationModel } from "../db/schemas/education";
 const educationRouter = Router();
 // register
 
@@ -95,6 +96,26 @@ educationRouter.delete("/educations/:id", async function (req, res, next) {
     next(error);
   }
 });
+
+educationRouter.post('/comment/create', async function (req, res, next) {
+  try{
+    const author = req.body.author;
+    const content = req.body.content;
+    const date = req.body.date;
+    const userId = req.body.userId;
+    const comment = await EducationModel.findOne({ userId });
+
+    comment.comment.push({
+      author : author,
+      content : content,
+      date: date,
+    })
+    await comment.save()
+    res.send("status : success")
+  } catch (error){
+    next(error)
+  }
+})
 
 
 
