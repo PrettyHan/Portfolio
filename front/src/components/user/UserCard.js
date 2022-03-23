@@ -12,7 +12,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   // const visitedHandler = async ({ user, setUser, visited, setVisited }) => {
   //   setVisited(visited + 1)
   //   const res = await Api.put(`users/${user.id}`, {
-  //     visited: setVisited
+  //     visited: ~~
   //   });
   //   // 유저 정보는 response의 data임.
   //   const updatedUser = res.data;
@@ -20,6 +20,15 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   //   setUser(updatedUser);
   //   navigate(`/users/${user.id}`)
   // }
+  
+  const navigateTo = () => {
+    navigate(`/users/${user.id}`)
+  }
+  
+
+
+
+
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
@@ -57,13 +66,13 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         )}
 
         {isNetwork && (
-          <Card.Link
+          <Button
             className="mt-3"
             href="#"
-            onClick={navigate(`/users/${user.id}`)}
+            onClick={navigateTo}
           >
             포트폴리오
-          </Card.Link>
+          </Button>
         )}
       </Card.Body>
     </Card>
