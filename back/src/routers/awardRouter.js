@@ -37,7 +37,7 @@ awardRouter.post("/award/create", async function (req, res, next) {
   }
 });
 
-awardRouter.get("/awards/:id", async function (req, res, next) {
+awardRouter.get("/award/:id", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
       const awardId = req.params.id;
@@ -65,7 +65,7 @@ awardRouter.get("/awards/:id", async function (req, res, next) {
       }
   });
 
-  awardRouter.put("/awards/:id", async function (req, res, next) {
+  awardRouter.put("/award/:id", async function (req, res, next) {
       try{
           const awardId = req.params.id;
 
@@ -85,7 +85,7 @@ awardRouter.get("/awards/:id", async function (req, res, next) {
       }
   });
 
-  awardRouter.delete("/awards/:id", async function (req, res, next) {
+  awardRouter.delete("/award/:id", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
       const awardId = req.params.id;

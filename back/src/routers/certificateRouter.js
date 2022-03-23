@@ -44,7 +44,7 @@ certificateAuthRouter.post('/certificate/create', async function(req,res,next){
 });
 
 // 사용자가 가지고 있는 자격증 내용 get 요청 
-certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
+certificateAuthRouter.get('/certificate/:id',async function(req, res, next){
     try{
         // 자격증 Id 기준 불러오기
         const certificateId = req.params.id;
@@ -61,7 +61,7 @@ certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
 })
 
 // 사용자의 자격증 수정 put 요청
-certificateAuthRouter.put('/certificates/:id',
+certificateAuthRouter.put('/certificate/:id',
     async function (req,res,next){
         try {
             //URI로부터 사용자 id 추출
@@ -99,7 +99,7 @@ certificateAuthRouter.get('/certificatelist/:userId',
     }
 )
 
-certificateAuthRouter.delete("/certificates/:id", async function (req, res, next) {
+certificateAuthRouter.delete("/certificate/:id", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
       const certificateId = req.params.id;

@@ -1,8 +1,9 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 
 function CertificateCard({ certificate, isEditable, setIsEditing }) {
-  const toStringwhenDate = ''+ certificate.whenDate;
-  const whenDate = toStringwhenDate.substring(0,10);
+  const stringwhenDate = ''+ certificate.whenDate;
+  const whenDate = stringwhenDate.substring(0,10);
+
 
   return (
     <Card.Text>

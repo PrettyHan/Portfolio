@@ -59,7 +59,7 @@ educationRouter.get("/educationlist/:userId", async function (req, res, next) {
     next(error);
   }
 });
-educationRouter.put("/educations/:id", async function (req, res, next) {
+educationRouter.put("/education/:id", async function (req, res, next) {
   try {
     const educationId = req.params.id;
     const school = req.body.school ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
@@ -79,7 +79,7 @@ educationRouter.put("/educations/:id", async function (req, res, next) {
   }
 });
 
-educationRouter.delete("/educations/:id", async function (req, res, next) {
+educationRouter.delete("/education/:id", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const educationId = req.params.id;

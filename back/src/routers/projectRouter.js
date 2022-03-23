@@ -39,7 +39,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projects/:id", async function (req, res, next) {
+projectRouter.get("/project/:id", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
       const projectId = req.params.id;
@@ -67,7 +67,7 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
       }
   });
 
-  projectRouter.put("/projects/:id", async function (req, res, next) {
+  projectRouter.put("/project/:id", async function (req, res, next) {
       try{
           const projectId = req.params.id;
           const title = req.body.title ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
@@ -88,7 +88,7 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
       }
   });
 
-  projectRouter.delete("/projects/:id", async function (req, res, next) {
+  projectRouter.delete("/project/:id", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
       const projectId = req.params.id;

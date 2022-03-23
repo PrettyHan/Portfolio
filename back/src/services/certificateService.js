@@ -15,9 +15,14 @@ class certificateAuthService {
 
     // 자격증 내용 불러오기
     static async getCertificates({certificateId}){
-        const  certificates = await Certificate.findById({certificateId})
-        return certificates;
-    }
+        const certificates = await Certificate.findById({certificateId})
+        if (!certificates){
+            const errorMessage = "해당 id를 가진 자격증은 없습니다. 다시 한 번 확인해주세요.";
+            return { errorMessage }
+        }
+        return certificates
+      }
+    
 
     // 자격증 내용 수정
     static async setCertificate({certificateId,toUpdate}){

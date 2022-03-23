@@ -22,7 +22,7 @@ const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
      const userId = editEducation.userId;
 
      try{
-      await Api.put(`educations/${editEducation.id}`, {
+      await Api.put(`education/${editEducation.id}`, {
         userId,
         school,
         major,

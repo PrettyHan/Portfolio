@@ -16,7 +16,7 @@ function CertificateEditForm({
   );
   //useState로 whenDate 상태를 생성
   const [whenDate, setWhenDate] = useState(
-    new Date(currentCertificate.when_date)
+    new Date(currentCertificate.whenDate)
   );
 
   const handleSubmit = async (e) => {
@@ -24,14 +24,13 @@ function CertificateEditForm({
 
     // currentCertificate의 userId를 userId 변수에 할당
     const userId = currentCertificate.userId;
-    const when_date = whenDate.toISOString().split("T")[0];
 
     // "certificates/자격증id" 엔드포인트로 PUT 요청
-    await Api.put(`certificates/${currentCertificate.id}`, {
+    await Api.put(`certificate/${currentCertificate.id}`, {
       userId,
       title,
       description,
-      when_date,
+      whenDate,
     });
 
     // "certificatelist/유저id" 엔드포인트로 GET 요청

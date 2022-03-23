@@ -32,7 +32,7 @@ class Education {
   }
 
   static async deleteById({ educationId }) {
-    const deleteResult = await AwardModel.deleteOne({ id: educationId });
+    const deleteResult = await EducationModel.deleteOne({ id: educationId });
     const isDataDeleted = deleteResult.deletedCount === 1;
     return isDataDeleted;
   }

@@ -39,11 +39,11 @@ class Award {
       return isDataDeleted;
     }
 
-    static async deleteAll({ userId }) {
-      const deleteAllResult = await AwardModel.deleteMany({ userId });
-      const isAllDataDeleted = deleteAllResult.deletedCount === 1; 
-      return isAllDataDeleted;
-    }
+    // static async deleteAll({ userId }) {
+    //   const deleteAllResult = await AwardModel.deleteMany({ userId });
+    //   const isAllDataDeleted = deleteAllResult.deletedCount === 1; 
+    //   return isAllDataDeleted;
+    // }
   }
   
   export { Award };
