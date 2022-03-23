@@ -23,6 +23,11 @@ const UserSchema = new Schema(
       required: false,
       default: "설명이 아직 없습니다. 추가해 주세요.",
     },
+    photo: {
+      type:String,
+      required: false,
+      default: "프로필 사진이 아직 없습니다. 추가해 주세요.",
+    }
   },
   {
     timestamps: true,

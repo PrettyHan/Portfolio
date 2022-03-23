@@ -7,21 +7,13 @@ import { projectRouter } from "./routers/projectRouter";
 import { awardRouter } from "./routers/awardRouter";
 import { certificateAuthRouter} from './routers/certificateRouter';
 import {photoRouter} from './routers/photoRouter';
-import bodyParser from "body-parser";
-import fileUpload from "express-fileupload";
-import morgan from "morgan";
-import _ from "lodash";
+import multer from "multer";
 
 const app = express();
-
-app.use(fileUpload({
-  createParentPath: true
-}));
+//상대 경로를 이용하여 접근
+app.use('/upload',express.static('public'));
 // CORS 에러 방지
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan('dev'));
 // express 기본 제공 middleware
 // express.json(): POST 등의 요청과 함께 오는 json형태의 데이터를 인식하고 핸들링할 수 있게 함.
 // express.urlencoded: 주로 Form submit 에 의해 만들어지는 URL-Encoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.

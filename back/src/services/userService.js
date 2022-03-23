@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 
 class userAuthService {
-  static async addUser({ name, email, password }) {
+  static async addUser({ name, email, password, photo }) {
     // 이메일 중복 확인
     const user = await User.findByEmail({ email });
     if (user) {
@@ -18,7 +18,7 @@ class userAuthService {
 
     // id 는 유니크 값 부여
     const id = uuidv4();
-    const newUser = { id, name, email, password: hashedPassword };
+    const newUser = { id, name, email, password: hashedPassword,photo};
 
     // db에 저장
     const createdNewUser = await User.create({ newUser });
@@ -56,6 +56,7 @@ class userAuthService {
     const id = user.id;
     const name = user.name;
     const description = user.description;
+    const photo = user.photo;
 
     const loginUser = {
       token,
@@ -63,6 +64,7 @@ class userAuthService {
       email,
       name,
       description,
+      photo,
       errorMessage: null,
     };
 
@@ -108,6 +110,12 @@ class userAuthService {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
       user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if(toUpdate.photo){
+      const fieldToUpdate = "photo";
+      const newValue = toUpdate.photo;
+      user = await User.update({userId, fieldToUpdate, newValue});
     }
 
     return user;

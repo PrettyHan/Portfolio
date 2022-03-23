@@ -7,7 +7,8 @@ const photoRouter = Router();
 // 로그인 체크 여부 확인(postman 사용할 때는 있으면 로그인이 필요합니다 뜸)
 photoRouter.use(loginRequired);
 
-photoRouter.post('/upload',async(req,res)=>{
+photoRouter.get('/users/:id')
+photoRouter.put('/users/:id',async(req,res)=>{
     try{
       if(!req.files){
         res.send({
@@ -16,7 +17,7 @@ photoRouter.post('/upload',async(req,res)=>{
         });
       } else {
         const file = req.files.uploadFile;
-        file.mv('./uploads/'+f.name);
+        file.mv('./uploads/'+file.name);
         res.send({
           status: true,
           message: "파일 업로드 성공",
