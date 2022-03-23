@@ -15,15 +15,15 @@ photoRouter.post('/upload',async(req,res)=>{
           message:"파일 업로드 실패"
         });
       } else {
-        let f = req.files.uploadFile;
-        f.mv('./uploads/'+f.name);
+        const file = req.files.uploadFile;
+        file.mv('./uploads/'+f.name);
         res.send({
           status: true,
           message: "파일 업로드 성공",
           data :{
-            name: f.name,
-            mimetype : f.mimetype,
-            size: f.size
+            name: file.name,
+            mimetype : file.mimetype,
+            size: file.size
           }
         });
       }
