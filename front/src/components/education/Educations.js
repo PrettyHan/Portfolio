@@ -29,7 +29,7 @@ const Educations = ({portfolioOwnerId, isEditable}) => {
       return (
         <Card>
         <Card.Body>
-            <Card.Title className='text-start'>학력</Card.Title>
+            <Card.Title className='text-start'>🎓 학력</Card.Title>
             { educations.map((education) => (
               <Education
                   key = {education.id} 

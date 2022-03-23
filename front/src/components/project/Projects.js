@@ -27,7 +27,7 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
    return (
     <Card>
     <Card.Body>
-        <Card.Title className='text-start'>프로젝트</Card.Title>
+        <Card.Title className='text-start'>🗂 프로젝트</Card.Title>
         { projects.map((project) => (
           <Project 
               key={project.id}

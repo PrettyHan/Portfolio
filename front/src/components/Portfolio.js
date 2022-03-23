@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row, Button, Card } from "react-bootstrap";
+import { Container, Col, Row, Button, Card, CardGroup } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 
@@ -11,6 +11,7 @@ import Educations from './education/Educations';
 import Awards from "./award/Awards";
 import Certificates from "./certificate/Certificates";
 import Projects from './project/Projects';
+import CareerSkills from './skill/CareerSkills'
 
 function Portfolio(isClick) {
   const navigate = useNavigate();
@@ -72,17 +73,40 @@ function Portfolio(isClick) {
           }} 
           onClick={() => navigate("/")}
         >←</Button>
+        <div>
         <div className='name'>
            <h1>{portfolioOwner.name} 포트폴리오</h1>
         </div>
-         <h1 className='line'></h1>
-        <div>
-        <User
-            isClick = {isClick}
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
         </div>
+         <h1 className='line'></h1>
+         {portfolioOwner.id === userState.user?.id ?
+          (
+            <>
+            <User
+                isClick = {isClick}
+                portfolioOwnerId={portfolioOwner.id}
+                isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            </>
+          )
+          :
+          (
+            <>
+             <Card className='email'>
+            <Card.Body>
+            <Card.Title>이메일</Card.Title>
+            <Card.Text>{portfolioOwner.email}</Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className='introduce'>
+            <Card.Body>
+              <Card.Title>간단한 소개</Card.Title>
+              <Card.Text>{portfolioOwner.description}</Card.Text>
+            </Card.Body>
+          </Card>
+            </>
+          )
+        }
         <div className='projects'>
         <Projects
              portfolioOwnerId={portfolioOwner.id} // 사용자 아이디 느낌...?
@@ -103,6 +127,12 @@ function Portfolio(isClick) {
         </div>
         <div className='certificates'>
         <Certificates
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+        </div>
+        <div className='CareerSkill'>
+        <CareerSkills
               portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />

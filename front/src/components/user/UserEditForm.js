@@ -18,7 +18,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     if(e.target.files){
       const uploadFile = e.target.files[0]
       console.log(uploadFile)
-    } }
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         name,
         email,
         description,
+        //photo, // 백엔드!!! 
       });
       // 유저 정보는 response의 data임.
       const updatedUser = res.data;

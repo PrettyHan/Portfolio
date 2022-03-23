@@ -3,7 +3,6 @@ import { Card, Row, Button, Col, Container } from "react-bootstrap";
 
 import './Style.css';
 
-
 // homeUser
 function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
@@ -22,6 +21,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle>{user?.email}</Card.Subtitle>
         <Card.Text>{user?.description}</Card.Text>
+        {/* <Card.Text>{user.visited}</Card.Text> */}
         {isEditable && (
           <Col>
             <Row className="mt-3 text-center text-info">

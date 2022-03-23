@@ -1,13 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Image } from 'react-bootstrap';
-import Header from '../Header';
+import LoginForm from './LoginForm';
 import './Style.css';
 
 const SectionMain = () => {
-
+   
     return (
         <>
-          <Header />
             <div className="text-wrap sectionMain">
                 <Image className="MainImg" src={('./imgs/main.png')}/>
                 <div className="TextBox">
