@@ -94,13 +94,13 @@ function Portfolio(isClick) {
             <>
              <Card className='email'>
             <Card.Body>
-            <Card.Title>이메일</Card.Title>
+            <Card.Title>📧 이메일</Card.Title>
             <Card.Text>{portfolioOwner.email}</Card.Text>
             </Card.Body>
           </Card>
           <Card className='introduce'>
             <Card.Body>
-              <Card.Title>간단한 소개</Card.Title>
+              <Card.Title>👋 간단한 소개</Card.Title>
               <Card.Text>{portfolioOwner.description}</Card.Text>
             </Card.Body>
           </Card>

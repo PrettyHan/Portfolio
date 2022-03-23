@@ -11,33 +11,31 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
+  const [photo, setPhoto] = useState(undefined);
 
   const onChangeImg = (e) => {
     e.preventDefault();
     
     if(e.target.files){
+      
       const uploadFile = e.target.files[0]
       console.log(uploadFile)
+      setPhoto(uploadFile);
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // "users/유저id" 엔드포인트로 PUT 요청함.
     try{
       const res = await Api.put(`users/${user.id}`, {
         name,
         email,
         description,
-        //photo, // 백엔드!!! 
+        photo,
       });
-      // 유저 정보는 response의 data임.
+     
       const updatedUser = res.data;
-      // 해당 유저 정보로 user을 세팅함.
       setUser(updatedUser);
-  
-      // isEditing을 false로 세팅함.
       setIsEditing(false);
     }
     catch(error){
@@ -59,7 +57,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="file"
               placeholder="파일"
               onChange={onChangeImg}
-              //name={attachment}
             />
           </Form.Group>
 

@@ -5,7 +5,6 @@ import * as Api from "./api";
 import { loginReducer } from "./reducer";
 
 import LoginForm from "./components/user/LoginForm";
-import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
 import Main from "./components/user/Main"
@@ -58,7 +57,6 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" exact element={<Main />} />
-            <Route path="/network" element={<Network />} />
             {/* <Route path="/register" element={<RegisterForm />} /> */}
             <Route path="/mypage" exact element={<Portfolio />} />
             <Route path="/users/:userId" element={<Portfolio />} />

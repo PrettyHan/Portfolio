@@ -20,14 +20,14 @@ function CertificateAddForm({
 
     // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
-    const when_date = whenDate.toISOString().split("T")[0];
+
 
     // "certificate/create" 엔드포인트로 POST 요청
     await Api.post("certificate/create", {
       userId,
       title,
       description,
-      when_date,
+      whenDate,
     });
 
     // "educationlist/유저id" 엔드포인트로 GET 요청

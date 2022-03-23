@@ -5,8 +5,16 @@ function AwardCard({ award, isEditable, setIsEditing }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{award.title}</span>
-          <span className="text-muted">{award.description}</span>
+        <div style={{
+          display: "flex" ,
+          marginTop: "10px"}}>
+        <div className='mvpCardItem'>
+           {award.title}
+            </div>
+        <div className='mvpCardItem2'>
+             {award.description}
+        </div>
+        </div>
         </Col>
         {isEditable && (
           <Col xs lg="1">

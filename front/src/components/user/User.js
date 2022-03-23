@@ -8,11 +8,16 @@ function User({ portfolioOwnerId, isEditable, isClick}) {
   const [isEditing, setIsEditing] = useState(false);
   // useState 훅을 통해 user 상태를 생성함.
   const [user, setUser] = useState(null);
+  const [skill, setSkill] = useState([]);
+  const [photo, setPhoto] = useState(); 
 
   useEffect(() => {
     // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
     Api.get("users", portfolioOwnerId).then((res) => setUser(res.data));
+    Api.get(`skillList` ,portfolioOwnerId).then((res) => setSkill(res.data));
+    
   }, [portfolioOwnerId]);
+
 
   return (
     <>
@@ -28,6 +33,7 @@ function User({ portfolioOwnerId, isEditable, isClick}) {
           user={user}
           setIsEditing={setIsEditing}
           isEditable={isEditable}
+          skill = {skill}
         />
       )}
     </>

@@ -1,18 +1,29 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 
 function CertificateCard({ certificate, isEditable, setIsEditing }) {
-  const toStringwhen_date = ''+ certificate.when_date;
-  const when_date = toStringwhen_date.substring(0,10);
+    // const whenDate = ''+ certificate.whenDate;
+    const stringwhenDate = ''+ certificate.whenDate;
+    const whenDate = stringwhenDate.substring(0,10);
+  
 
   return (
     <Card.Text>
       <Row className="align-items-center">
-        <Col>
-          {certificate.title}
-          <br />
-          <span className="text-muted">{certificate.description}</span>
-          <br />
-          <span className="text-muted">{when_date}</span>
+      <Col>
+      <div style={{
+          display: "flex" ,
+          marginTop: "10px"
+          }}>
+        <div className='mvpCardItem'>
+        {certificate.title}
+            </div>
+        <div className='mvpCardItem1'>
+        {certificate.description}
+        </div>
+        <div className='mvpCardItem2'>
+        {whenDate}
+        </div>
+        </div>
         </Col>
         {isEditable && (
           <Col xs lg="1">

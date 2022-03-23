@@ -9,7 +9,6 @@ const CareerSkillCard = ({skill}) => {
     <Row className="align-items-center">
       <div style={{
         marginTop: "10px",
-        marginBottom: "10px",
         display: "flex"
       }}>
        <div className='cardItem'> {skill.career} </div>

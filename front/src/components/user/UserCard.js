@@ -4,8 +4,12 @@ import { Card, Row, Button, Col, Container } from "react-bootstrap";
 import './Style.css';
 
 // homeUser
-function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
+function UserCard({ user, skill,setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
+
+  const onClick = () => {
+   navigate(`/users/${user.id}`);
+  }
 
   return (
      <Card className={isClick ? "myPageCard" : "homeUserCard"} >
@@ -15,15 +19,14 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
             style={{ width: "12rem", height: "8rem" }}
             className="mb-3"
             src={('./imgs/example.png')}
-            alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+            // alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"          
           />
         </Col>
-        <Card.Title>{user?.name}</Card.Title>
-        <Card.Subtitle>{user?.email}</Card.Subtitle>
-        <Card.Text>{user?.description}</Card.Text>
-        {/* <Card.Text>{user.visited}</Card.Text> */}
+        <div className='userName'>{user?.name}</div>
+        <div className='userEmail'>{user?.email}</div>
         {isEditable && (
           <Col>
+           <div>{user?.description}</div>
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
               <Button
@@ -44,13 +47,14 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
         )}
 
         {isNetwork && (
-          <Card.Link
-            className="mt-3"
-            href="#"
-            onClick={() => navigate(`/users/${user.id}`)}
-          >
-            포트폴리오
-          </Card.Link>
+          <div style={{display: "flex", marginTop: "30px"}}>
+          <button
+            className='networkBtn'
+            onClick={onClick}>
+              포트폴리오
+           </button>
+           <div className='clickCount'>{user.visited}</div> 
+          </div>
         )}
       </Card.Body>
       </Card>

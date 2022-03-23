@@ -11,10 +11,19 @@ const EducationCard = ({education, isEditable,setIsEditing}) => {
     <Card.Text className='text-start'>
       <Row className="align-items-start">
         <Col>
-          <span >{education.school}</span>
-          <span className="text-muted">{`${education.major} (${
+         <div style={{
+          display: "flex" ,
+          marginTop: "10px"
+          }}>
+        <div className='mvpCardItem'>
+           {education.school}
+            </div>
+        <div className='mvpCardItem2'>
+         {`${education.major} (${
             education.position || ""
-          })`}</span>
+          })`}
+        </div>
+        </div>
         </Col>
         {isEditable && (
           <Col xs lg="1">

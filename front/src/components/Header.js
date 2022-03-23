@@ -27,7 +27,7 @@ function Header({showLogin, showRegister}) {
   // Navbar fixed = "top"
   return (
     <div>
-      <Navbar expand="lg" style={{backgroundColor:"#228be6"}}> 
+      <Navbar fixed = "top" expand="lg" style={{backgroundColor:"#228be6"}}> 
         <Container>
            <Nav.Item>
            <Nav.Link style={{
