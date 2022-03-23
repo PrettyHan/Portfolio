@@ -48,7 +48,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
           <Button
             className="mt-3"
             href="#"
-            onClick={navigate(`users/${user_id}`)}
+            onClick={navigate(`/users/${user.id}`)}
           >
             포트폴리오
           </Button>
