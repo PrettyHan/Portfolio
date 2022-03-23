@@ -1,11 +1,11 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
+import { loginRequired } from "../middlewares/loginRequired";
 import { AwardService } from "../services/awardService";
 
 const awardRouter = Router();
 // 로그인 체크 여부 확인(postman 사용할 때는 있으면 로그인이 필요합니다 뜸)
-// awardRouter.use(login_required);
+awardRouter.use(loginRequired);
 
 awardRouter.post("/award/create", async function (req, res, next) {
   try {

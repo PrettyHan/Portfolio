@@ -1,12 +1,12 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { EducationService } from "../services/EducationService";
-import { login_required } from "../middlewares/login_required";
+import { loginRequired } from "../middlewares/loginRequired";
 import { EducationModel } from "../db/schemas/education";
 const educationRouter = Router();
 // register
 
-//educationRouter.use(login_required);
+educationRouter.use(loginRequired);
 
 educationRouter.post("/education/create", async (req, res, next) => {
   try {
