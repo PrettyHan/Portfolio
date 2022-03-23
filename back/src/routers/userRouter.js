@@ -1,10 +1,5 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
-import { AwardModel } from "../db/schemas/award";
-import { CertificateModel } from "../db/schemas/certificate";
-import { EducationModel } from "../db/schemas/education";
-import { ProjectModel } from "../db/schemas/project";
-import { UserModel } from "../db/schemas/user";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
 
@@ -160,11 +155,6 @@ userAuthRouter.delete(
     try{
       const userId = req.params.id;
       
-      await AwardModel.deleteMany({ userId });
-      await CertificateModel.deleteMany({ userId });
-      await EducationModel.deleteMany({ userId });
-      await ProjectModel.deleteMany({ userId });
-      //await UserModel.deleteMany({ userId });
       await userAuthService.deleteUser({ userId })
 
       res.send("status : success")
