@@ -13,14 +13,14 @@ function CertificateAddForm({
   //useState로 description 상태를 생성
   const [description, setDescription] = useState("");
   //useState로 whenDate 상태를 생성
-  const [putWhenDate, setWhenDate] = useState(new Date());
+  const [whenDate, setWhenDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
-    const whenDate = putWhenDate.toISOString().split("T")[0];
+
     
     try{
     // "certificate/create" 엔드포인트로 POST 요청
@@ -70,7 +70,7 @@ function CertificateAddForm({
       <Form.Group as={Row} className="mt-3">
         <Col xs="auto">
           <DatePicker
-            selected={putWhenDate}
+            selected={whenDate}
             onChange={(date) => setWhenDate(date)}
           />
         </Col>

@@ -1,5 +1,10 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
+import { AwardModel } from "../db/schemas/award";
+import { CertificateModel } from "../db/schemas/certificate";
+import { EducationModel } from "../db/schemas/education";
+import { ProjectModel } from "../db/schemas/project";
+import { UserModel } from "../db/schemas/user";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
 
@@ -39,7 +44,8 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
 userAuthRouter.post("/user/login", async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
-    const {email,password} = req.body;
+    const email = req.body.email;
+    const password = req.body.password;
 
     // 위 데이터를 이용하여 유저 db에서 유저 찾기
     const user = await userAuthService.getUser({ email, password });
@@ -145,6 +151,26 @@ userAuthRouter.get("/afterlogin", loginRequired, function (req, res, next) {
     .send(
       `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
     );
+});
+
+userAuthRouter.delete(
+  "/users/:id", 
+  loginRequired, 
+  async function (req, res, next) {
+    try{
+      const userId = req.params.id;
+      
+      await AwardModel.deleteMany({ userId });
+      await CertificateModel.deleteMany({ userId });
+      await EducationModel.deleteMany({ userId });
+      await ProjectModel.deleteMany({ userId });
+      //await UserModel.deleteMany({ userId });
+      await userAuthService.deleteUser({ userId })
+
+      res.send("status : success")
+    } catch(error){
+      next(error)
+    }
 });
 
 export { userAuthRouter };
