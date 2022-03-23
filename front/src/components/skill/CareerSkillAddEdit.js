@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import { Form, Button, Col, Row, Card} from 'react-bootstrap';
 import * as Api from "../../api";
 
-const CareerSkillCard = ({
+const CareerSkillAddEdit = ({
   portfolioOwnerId,
   isEditable, 
   etIsEditing, 
-  skill,
+  skills,
   setSkill,
   setOpen, 
   checkData}) => {
@@ -64,18 +64,18 @@ const CareerSkillCard = ({
     setOpen(false);  
   };
 
-  console.log("get",skill);
+  console.log("get",skills);
   
   // 편집 (career, language data 가 존재하면 편집!)
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const userId = skill[0].userId;
+    const userId = skills[0].userId;
     console.log(userId);
 
     console.log("dfd", userId);
     //사용자가 입력한 데이터, post 요청! 
    try{
-      await Api.put(`skills/${skill[0].id}`, {
+      await Api.put(`skills/${skills[0].id}`, {
         userId,
         career,
         language
@@ -84,7 +84,7 @@ const CareerSkillCard = ({
       // "projectlist/유저id" 엔드포인트로 get요청함.
       const res = await Api.get(`skilllist/${userId}`);
       setSkill(res.data);
-      console.log(skill);
+      console.log(skills);
     }
    catch(error){
       console.log(error);
@@ -96,11 +96,14 @@ const CareerSkillCard = ({
     setOpen(false);  
   };
 
+  const putSkill = skills[0];
+  console.log(putSkill);
+
    return (
       <Card className="skillCard">
         <Card.Body>
         <Form.Group>
-     <Card.Title className='text-start'>{skill.career}</Card.Title>
+     <Card.Title className='text-start'>경력</Card.Title>
      <Form.Select aria-label="Default select example" 
      disabled={ isEditable === false ? true : false}
      key={career}
@@ -216,4 +219,4 @@ const CareerSkillCard = ({
    )
 }
 
-export default CareerSkillCard;
+export default CareerSkillAddEdit;

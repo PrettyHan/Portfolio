@@ -1,0 +1,19 @@
+.card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.cardItem {
+  background-color: #d0ebff;
+  padding: 0px 5px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.cardItem2 {
+  background-color: #e9ecef;
+  /* width: 60px; */
+  padding: 0px 5px;
+  height: 30px;
+  margin-right: 10px;
+}
