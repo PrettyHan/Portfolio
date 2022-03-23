@@ -1,11 +1,11 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { SkillService } from "../services/skillService";
-import { login_required } from "../middlewares/login_required";
+import { loginRequired } from "../middlewares/loginRequired";
 const skillRouter = Router();
 // register
 
-skillRouter.use(login_required);
+skillRouter.use(loginRequired);
 
 skillRouter.post("/skill/create", async (req, res, next) => {
   try {

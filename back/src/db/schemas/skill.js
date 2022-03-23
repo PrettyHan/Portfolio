@@ -15,7 +15,7 @@ const SkillSchema = new Schema(
             required: false,
         },
         language: {
-            type: String,
+            type: Object,
             required: false,
         },
     },
@@ -24,6 +24,6 @@ const SkillSchema = new Schema(
     }
 );
 
-const SkillModel = model("Career", SkillSchema);
+const SkillModel = model("skill", SkillSchema);
 
 export { SkillModel };
