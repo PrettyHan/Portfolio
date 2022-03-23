@@ -29,15 +29,13 @@ const CareerSkills = ({portfolioOwnerId, isEditable}) => {
     setOpen((prev)=> !prev);
     if(skill.length > 0){
       setCheckData(true);
-    }
-    
-  }
+    } 
 
-  console.log(skill[0].career);
+  }
 
    return (
      <>
-      <div>{skill[0].career}</div>
+      {/* <div>{skill[0].career}</div> */}
       { isEditable && (
        <Button onClick={onClick}>open</Button> )}
        {open && (
