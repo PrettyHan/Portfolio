@@ -9,11 +9,9 @@ const EducationCard = ({education, isEditable,setIsEditing}) => {
 
   return (
     <Card.Text className='text-start'>
-      <div class="alert alert-primary" role="alert">
       <Row className="align-items-start">
         <Col>
-          <span>{education.school}</span>
-          <br />
+          <span >{education.school}</span>
           <span className="text-muted">{`${education.major} (${
             education.position || ""
           })`}</span>
@@ -31,7 +29,6 @@ const EducationCard = ({education, isEditable,setIsEditing}) => {
           </Col>
         )}
       </Row>
-       </div>
     </Card.Text>
   );
 

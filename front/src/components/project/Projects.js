@@ -11,9 +11,18 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
   const [projects, setProjects] = useState([]);
   
    useEffect(() => {
-    Api.get(`projectlist/${portfolioOwnerId}`).then((res) =>
-    setProjects(res.data));
-    }, [portfolioOwnerId]);
+    try{
+      Api.get(`projectlist/${portfolioOwnerId}`).then((res) =>
+      setProjects(res.data));
+    } 
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    }
+      }, [portfolioOwnerId]);
 
    return (
     <Card>
@@ -28,6 +37,8 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
           />         
         ))}
         {isEditable && (
+        <Row className="mt-3 text-center mb-4">
+        <Col sm={{ span: 20 }}>
         <Button
          className='m-3'
          style={{
@@ -36,6 +47,8 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
           borderRadius:50
         }} 
         onClick={() => setOpen(true)}>+</Button>
+        </Col>
+        </Row>
         )}
           {open && (
           <ProjectAddForm  

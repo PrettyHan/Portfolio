@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 
 import * as Api from "../../api";
 
-function RegisterForm() {
+function RegisterForm({show, handleClose}) {
   const navigate = useNavigate();
 
   //useState로 email 상태를 생성함.
@@ -57,7 +57,16 @@ function RegisterForm() {
   };
 
   return (
-    <Container>
+    <Modal
+         size='lg'
+         style={{
+           borderRadius:"50px"         
+         }}
+         dialogClassName={"primaryModal"}
+         aria-labelledby="contained-modal-title-vcenter"
+         centered
+        show={show} className="loginModal" >
+      <Modal.Header closeButton onClick={handleClose} />
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
           <Form onSubmit={handleSubmit}>
@@ -128,18 +137,10 @@ function RegisterForm() {
                 </Button>
               </Col>
             </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/login")}>
-                  로그인하기
-                </Button>
-              </Col>
-            </Form.Group>
           </Form>
         </Col>
       </Row>
-    </Container>
+      </Modal>
   );
 }
 

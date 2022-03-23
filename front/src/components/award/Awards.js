@@ -12,8 +12,17 @@ function Awards({ portfolioOwnerId, isEditable }) {
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
-    // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅
-    Api.get("awardlist", portfolioOwnerId).then((res) => setAwards(res.data));
+    try{
+  // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅
+  Api.get("awardlist", portfolioOwnerId).then((res) => setAwards(res.data));
+    } 
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    }
   }, [portfolioOwnerId]);
 
   return (
@@ -28,12 +37,19 @@ function Awards({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
+         {isEditable && (
+        <Row className="mt-3 text-center mb-4">
+        <Col sm={{ span: 20 }}>
+        <Button
+         className='m-3'
+         style={{
+          border:"none",
+          backgroundColor:"#CFD3FF",
+          borderRadius:50
+        }} 
+        onClick={() => setIsAdding(true)}>+</Button>
+        </Col>
+        </Row>
         )}
         {isAdding && (
           <AwardAddForm

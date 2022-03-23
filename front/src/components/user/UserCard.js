@@ -1,42 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { Card, Row, Button, Col } from "react-bootstrap";
-import { alignPropType } from "react-bootstrap/esm/types";
-import React, { useState } from "react";
-import * as Api from "../../api";
+import { Card, Row, Button, Col, Container } from "react-bootstrap";
+
+import './Style.css';
 
 
-
-function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
+// homeUser
+function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
-  // const [visited, setVisited] = useState(user.visited);
-  // const visitedHandler = async ({ user, setUser, visited, setVisited }) => {
-  //   setVisited(visited + 1)
-  //   const res = await Api.put(`users/${user.id}`, {
-  //     visited: ~~
-  //   });
-  //   // 유저 정보는 response의 data임.
-  //   const updatedUser = res.data;
-  //   // 해당 유저 정보로 user을 세팅함.
-  //   setUser(updatedUser);
-  //   navigate(`/users/${user.id}`)
-  // }
-  
-  const navigateTo = () => {
-    navigate(`/users/${user.id}`)
-  }
-  
-
-
-
 
   return (
-    <Card style={{ width: "18rem" }}>
+     <Card className={isClick ? "myPageCard" : "homeUserCard"} >
       <Card.Body>
         <Col className="justify-content-md-center">
           <Card.Img
-            style={{ width: "10rem", height: "8rem" }}
+            style={{ width: "12rem", height: "8rem" }}
             className="mb-3"
-            src="http://placekitten.com/200/200"
+            src={('./imgs/example.png')}
             alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
           />
         </Col>
@@ -75,7 +54,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           </Button>
         )}
       </Card.Body>
-    </Card>
+      </Card>
   );
 }
 
