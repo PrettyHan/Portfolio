@@ -11,19 +11,10 @@ function Certificates({ portfolioOwnerId, isEditable }) {
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
-    try{
     // "certificatelist/유저id"로 GET 요청하고, response의 data로 certificates를 세팅
     Api.get("certificatelist", portfolioOwnerId).then((res) =>
       setCertificates(res.data)
     );
-    } 
-    catch(error){
-      console.log(error);
-      if (error.response) {
-       const { data } = error.response;
-       console.error("data : ", data);
-     }
-    }
   }, [portfolioOwnerId]);
 
   return (

@@ -37,7 +37,7 @@ awardRouter.post("/award/create", async function (req, res, next) {
   }
 });
 
-awardRouter.get("/award/:id", async function (req, res, next) {
+awardRouter.get("/awards/:id", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
       const awardId = req.params.id;
@@ -65,7 +65,7 @@ awardRouter.get("/award/:id", async function (req, res, next) {
       }
   });
 
-  awardRouter.put("/award/:id", async function (req, res, next) {
+  awardRouter.put("/awards/:id", async function (req, res, next) {
       try{
           const awardId = req.params.id;
 
@@ -84,42 +84,6 @@ awardRouter.get("/award/:id", async function (req, res, next) {
           next(error);
       }
   });
-
-  awardRouter.delete("/award/:id", async function (req, res, next) {
-    try {
-      // req (request) 에서 id 가져오기
-      const awardId = req.params.id;
-  
-      // 위 id를 이용하여 db에서 데이터 삭제하기
-      const result = await AwardService.deleteAward({ awardId });
-  
-      if (result.errorMessage) {
-        throw new Error(result.errorMessage);
-      }
-  
-      res.status(200).send(result);
-    } catch (error) {
-      next(error);
-    }
-  });
-
-  // awardRouter.delete("/awards/:userId", async function (req, res, next) {
-  //   try {
-  //     // req (request) 에서 id 가져오기
-  //     const userId = req.params.userId;
-  
-  //     // 위 id를 이용하여 db에서 데이터 삭제하기
-  //     const result = await AwardService.deleteAllAward({ userId });
-  
-  //     if (result.errorMessage) {
-  //       throw new Error(result.errorMessage);
-  //     }
-  
-  //     res.status(200).send(result);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // });
 
 
 export { awardRouter }

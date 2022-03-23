@@ -37,6 +37,8 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
           />         
         ))}
         {isEditable && (
+        <Row className="mt-3 text-center mb-4">
+        <Col sm={{ span: 20 }}>
         <Button
          className='m-3'
          style={{
@@ -45,6 +47,8 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
           borderRadius:50
         }} 
         onClick={() => setOpen(true)}>+</Button>
+        </Col>
+        </Row>
         )}
           {open && (
           <ProjectAddForm  

@@ -20,15 +20,14 @@ function CertificateAddForm({
 
     // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
+    const when_date = whenDate.toISOString().split("T")[0];
 
-    
-    try{
     // "certificate/create" 엔드포인트로 POST 요청
     await Api.post("certificate/create", {
       userId,
       title,
       description,
-      whenDate,
+      when_date,
     });
 
     // "educationlist/유저id" 엔드포인트로 GET 요청
@@ -37,14 +36,6 @@ function CertificateAddForm({
     setCertificates(res.data);
     // certificate를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅
     setIsAdding(false);
-    }
-     catch(error){
-        console.log(error);
-        if (error.response) {
-          const { data } = error.response;
-          console.error("data : ", data);
-          }
-        }
   };
 
   return (

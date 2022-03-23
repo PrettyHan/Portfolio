@@ -39,7 +39,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/project/:id", async function (req, res, next) {
+projectRouter.get("/projects/:id", async function (req, res, next) {
     try {
       // req (request) 에서 id 가져오기
       const projectId = req.params.id;
@@ -67,7 +67,7 @@ projectRouter.get("/project/:id", async function (req, res, next) {
       }
   });
 
-  projectRouter.put("/project/:id", async function (req, res, next) {
+  projectRouter.put("/projects/:id", async function (req, res, next) {
       try{
           const projectId = req.params.id;
           const title = req.body.title ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
@@ -86,24 +86,6 @@ projectRouter.get("/project/:id", async function (req, res, next) {
       } catch(error) {
           next(error);
       }
-  });
-
-  projectRouter.delete("/project/:id", async function (req, res, next) {
-    try {
-      // req (request) 에서 id 가져오기
-      const projectId = req.params.id;
-  
-      // 위 id를 이용하여 db에서 데이터 삭제하기
-      const result = await ProjectService.deleteProject({ projectId });
-  
-      if (result.errorMessage) {
-        throw new Error(result.errorMessage);
-      }
-  
-      res.status(200).send(result);
-    } catch (error) {
-      next(error);
-    }
   });
 
 

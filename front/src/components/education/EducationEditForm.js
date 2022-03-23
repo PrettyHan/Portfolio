@@ -22,7 +22,7 @@ const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
      const userId = editEducation.userId;
 
      try{
-      await Api.put(`education/${editEducation.id}`, {
+      await Api.put(`educations/${editEducation.id}`, {
         userId,
         school,
         major,
@@ -82,12 +82,22 @@ const EducationEditForm = ({editEducation, setEditEducation, setIsEditing}) => {
         <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
         <Button 
+          mb="10"
+          style={{
+           border:"none",
+           backgroundColor:"#339AF0"
+         }} 
         variant="primary" 
         type="submit" 
         className="me-3">
          확인
         </Button>
         <Button
+          mb="10"
+          style={{
+           border:"none",
+           backgroundColor:"#C4C4C4"
+         }} 
          variant="secondary"
          onClick={() => setIsEditing(false)}
           >

@@ -16,7 +16,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
     try{
       // "awards/수상 id" 엔드포인트로 PUT 요청
-      await Api.put(`award/${currentAward.id}`, {
+      await Api.put(`awards/${currentAward.id}`, {
          userId,
          title,
          description,
@@ -60,10 +60,25 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <Button 
+            mb="10"
+            style={{
+             border:"none",
+             backgroundColor:"#339AF0"
+           }} 
+          variant="primary"
+           type="submit" 
+           className="me-3">
             확인
           </Button>
-          <Button variant="secondary" onClick={() => setIsEditing(false)}>
+          <Button 
+           mb="10"
+           style={{
+            border:"none",
+            backgroundColor:"#C4C4C4"
+          }} 
+          variant="secondary"
+           onClick={() => setIsEditing(false)}>
             취소
           </Button>
         </Col>

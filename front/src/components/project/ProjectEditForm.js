@@ -15,7 +15,7 @@ const ProjectEdictForm = ({ editProject, setEditProject, setIsEditing,}) => {
     const userId = editProject.userId;
 
     try{
-      await Api.put(`project/${editProject.id}`, {
+      await Api.put(`projects/${editProject.id}`, {
         userId,
         title,
         content,

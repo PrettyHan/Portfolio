@@ -44,7 +44,7 @@ certificateAuthRouter.post('/certificate/create', async function(req,res,next){
 });
 
 // 사용자가 가지고 있는 자격증 내용 get 요청 
-certificateAuthRouter.get('/certificate/:id',async function(req, res, next){
+certificateAuthRouter.get('/certificates/:id',async function(req, res, next){
     try{
         // 자격증 Id 기준 불러오기
         const certificateId = req.params.id;
@@ -61,7 +61,7 @@ certificateAuthRouter.get('/certificate/:id',async function(req, res, next){
 })
 
 // 사용자의 자격증 수정 put 요청
-certificateAuthRouter.put('/certificate/:id',
+certificateAuthRouter.put('/certificates/:id',
     async function (req,res,next){
         try {
             //URI로부터 사용자 id 추출
@@ -99,22 +99,17 @@ certificateAuthRouter.get('/certificatelist/:userId',
     }
 )
 
-certificateAuthRouter.delete("/certificate/:id", async function (req, res, next) {
-    try {
-      // req (request) 에서 id 가져오기
-      const certificateId = req.params.id;
-  
-      // 위 id를 이용하여 db에서 데이터 삭제하기
-      const result = await certificateAuthService.deleteCertificate({ certificateId });
-  
-      if (result.errorMessage) {
-        throw new Error(result.errorMessage);
-      }
-  
-      res.status(200).send(result);
-    } catch (error) {
-      next(error);
-    }
-  });
+// 보유한 자격증 삭제 delete 요청 자격증Id 기준으로 삭제
+// certificateAuthRouter.delete('certificatelist/:userId',
+//     async function (req, res, next){
+//         try {
+//             const userId = req.params.userId;
+//             const deletedCertificateList = await certificateAuthService.deleteCertificateList({userId});
+//             res.status(200).send(deletedCertificateList);
+//         }catch(error){
+//             next(error);
+//         }
+//     }
+// )
 
 export {certificateAuthRouter};
