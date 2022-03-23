@@ -60,7 +60,7 @@
   font-size: 45px;
   text-align: center;
   border-bottom: 1px solid gray;
-  margin: 0px;
+  margin-bottom: 50px;
 }
 
 .mypage .homeButton {
@@ -81,7 +81,6 @@
   padding: 0px;
   margin-top: 40px;
   margin-bottom: 20px;
-  background-color: pink;
 }
 
 .mypage .myPageCard p {
@@ -102,7 +101,11 @@
 }
 
 .mypage .email,
-.mypage .introduce,
+.mypage .introduce {
+  width: 1000px;
+  margin-bottom: 20px;
+}
+
 .mypage .projects,
 .mypage .educations,
 .mypage .awards,
@@ -119,4 +122,16 @@
   padding: 0px;
   margin-top: 40px;
   margin-bottom: 20px;
+}
+
+/* modal */
+.loginModal {
+  width: 200px;
+}
+
+.modalTitle {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 100px;
+  font-weight: 900 bold;
+  padding-bottom: 20px;
 }

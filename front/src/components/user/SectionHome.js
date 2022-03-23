@@ -6,7 +6,6 @@ import * as Api from "../../api";
 import UserCard from "./UserCard";
 import { UserStateContext } from "../../App";
 
-import SectionMain from "./SectionMain";
 import './Style.css';
 
 function SectionHome() {
@@ -22,7 +21,6 @@ function SectionHome() {
 
   return (
     <>
-     <SectionMain/>
      <Container className='my-2 ms-9'> 
       <div className='homeUsers'>
         {users.map((user) => (

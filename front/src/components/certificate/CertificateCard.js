@@ -1,9 +1,8 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 
 function CertificateCard({ certificate, isEditable, setIsEditing }) {
-  // const whenDate = ''+ certificate.whenDate;
-  const stringwhenDate = ''+ certificate.whenDate;
-  const whenDate = stringwhenDate.substring(0,10);
+  const toStringwhen_date = ''+ certificate.when_date;
+  const when_date = toStringwhen_date.substring(0,10);
 
   return (
     <Card.Text>
@@ -13,7 +12,7 @@ function CertificateCard({ certificate, isEditable, setIsEditing }) {
           <br />
           <span className="text-muted">{certificate.description}</span>
           <br />
-          <span className="text-muted">{whenDate}</span>
+          <span className="text-muted">{when_date}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">
