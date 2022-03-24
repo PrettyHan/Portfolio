@@ -2,6 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { SkillService } from "../services/skillService";
 import { loginRequired } from "../middlewares/loginRequired";
+var mongoose = require('mongoose')
 const skillRouter = Router();
 // register
 
@@ -16,12 +17,13 @@ skillRouter.post("/skill/create", async (req, res, next) => {
       )
     }
     const { userId} = req.body;
+    // let userinfo = new mongoose.Types.ObjectId();
     const career = req.body.career ?? null;
     const language = req.body.language ?? null;
     const newSkill = await SkillService.addSkill({
       userId,
       career,
-      language
+      language,
     });
     if (newSkill.errorMessage) {
       throw new Error(newSkill.errorMessage)

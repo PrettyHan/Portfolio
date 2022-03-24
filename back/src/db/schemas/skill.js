@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Mongoose } from "mongoose";
 
 const SkillSchema = new Schema(
     {
@@ -18,6 +18,10 @@ const SkillSchema = new Schema(
             type: Array, // Array 로 가공 // 조회수 user 에서 +1 로직 백엔드에서 짜보기 
             required: false,
         },
+        userinfo: {
+            type: Schema.Types.userId,
+            ref: "User",
+        }
     },
     {
         timestamps: true,

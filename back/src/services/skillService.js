@@ -31,7 +31,7 @@ class SkillService {
   }
 
   static async getSkillListByCareer({career}) {
-    const skills = await Skill.findByCareer({career});
+    const skills = await Skill.findByCareer({career})
     return skills;
   }
 
