@@ -5,7 +5,8 @@ class SkillService {
   // Post("/skill/create") / 함수 
   static async addSkill({ userId, career, language }) {
     const id = uuidv4();
-    const newSkill = { id, userId, career, language };
+    const languageList = Object.values(language)
+    const newSkill = { id, userId, career, languageList };
 
     // db에 저장
     const createdNewSkill = await Skill.create({ newSkill });
