@@ -22,6 +22,12 @@ class Skill {
     return skills;
 
   }
+  static async findByLanguage({language}) {
+    // 입력 받은 carrer를 기준으로 db에서 검색하여 추출
+    const skills = await SkillModel.find({ languageList: language });
+    return skills;
+
+  }
 
   // 입력 받은 userId를 기준으로 데이터를 찾고 업데이트
   static async update({ skillId, fieldToUpdate, newValue }) {

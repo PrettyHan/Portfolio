@@ -70,6 +70,15 @@ skillRouter.get("/skillListByCareer/:career", async function (req, res, next) {
   }
 });
 
+skillRouter.get("/skillListByLanguage/:language", async function (req, res, next) {
+  try {
+    const language = req.params.language
+    const skillListByLanguage = await SkillService.getSkillListByLanguage({ language });
+    res.status(200).send(skillListByLanguage);
+  } catch (error) {
+    next(error);
+  }
+});
 skillRouter.put("/skill/:id", async function (req, res, next) {
   try {
     const skillId = req.params.id;

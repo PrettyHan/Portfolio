@@ -35,6 +35,11 @@ class SkillService {
     return skills;
   }
 
+  static async getSkillListByLanguage({language}) {
+    const skills = await Skill.findByLanguage({language});
+    return skills;
+  }
+
   // Put ("/skills/:skillId") / 함수
   static async setSkill({ skillId, toUpdate }) {
     let skill = await Skill.findById({ skillId })
