@@ -4,6 +4,8 @@ import * as Api from "../../api";
 
 import './Style.css';
 
+
+
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
@@ -27,15 +29,17 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const res = await Api.put(`user/${user.id}`, {
-        name,
-        email,
-        description,
-        photo,
-      });
-     
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('description', description);
+      formData.append('image', photo);
+
+      const res = await Api.userCardSubmit(`user/${user.id}`, formData);
       const updatedUser = res.data;
+      // 해당 유저 정보로 user을 세팅함.
       setUser(updatedUser);
+      // isEditing을 false로 세팅함.
       setIsEditing(false);
     }
     catch(error){
