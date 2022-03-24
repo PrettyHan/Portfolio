@@ -27,7 +27,7 @@ function Header({showLogin, showRegister}) {
   // Navbar fixed = "top"
   return (
     <div>
-      <Navbar fixed = "top" expand="lg" style={{backgroundColor:"#228be6"}}> 
+      <Navbar fixed = "top" expand="lg" style={{backgroundColor:"#D0EBFF"}}> 
         <Container>
            <Nav.Item>
            <Nav.Link style={{
@@ -40,26 +40,30 @@ function Header({showLogin, showRegister}) {
            {isLogin ? (
              <>
               <Nav.Item>
-                <Nav.Link style={{color:"black"}} onClick={logout}>로그아웃</Nav.Link>
+                <button class="navBtn1" 
+                style={{color:"black"}} onClick={logout}>로그아웃</button>
                </Nav.Item>
                <Nav.Item> 
-                <Nav.Link  
+                <button  
+                class="navBtn2"
                 style={{color:"white"}} 
                 onClick={(prev) => {navigate("/mypage") && setIsClick(!prev)}}
                 isClick = {isClick}
-                >마이 페이지</Nav.Link>
+                >마이 페이지</button>
                </Nav.Item>
              </>
            ) 
            : (
             <> 
             <Nav.Item>
-            <Nav.Link  
+            <button class="navBtn1" 
              style={{color:"black"}}
-             onClick={showLogin} >로그인</Nav.Link>
+             onClick={showLogin} >로그인</button>
              </Nav.Item>
              <Nav.Item> 
-             <Nav.Link onClick={showRegister}>회원가입</Nav.Link>
+             <button  
+            class="navBtn2"
+             onClick={showRegister}>회원가입</button>
              </Nav.Item>
            </> )}
            </Nav>

@@ -55,7 +55,11 @@ const LoginForm = ({show, handleClose, handleShow, showRegister}) => {
       setEmail("");
       setPassword("");
     } catch (err) {
+      setEmail("");
+      setPassword("");
+      e.target.reset();
       console.log("로그인에 실패하였습니다.\n", err);
+      alert(`${err}🥲`);
     }
 
   };

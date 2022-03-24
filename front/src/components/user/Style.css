@@ -1,31 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap');
 
 /* SectonMain */
 .sectionMain {
   position: relative;
+  display: flex;
+  text-align: center;
 }
 
 .sectionMain .MainImg {
-  margin: 33px 33px 33px 600px;
+  margin: 80px 33px 33px 600px;
   width: 50%;
   height: 50%;
   position: relative;
 }
 
-.sectionMain .mainText1 {
+.sectionMain .textBox {
   position: absolute;
-  top: 30%;
-  left: 1%;
+  left: 140px;
+  top: 250px;
+}
+
+.sectionMain .title1 {
   color: black;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 48px;
+  font-weight: 800;
+  margin-left: 100px;
+  margin-bottom: 0px;
+}
+
+.sectionMain .title2 {
+  color: #868e96;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 20px;
   font-weight: 900;
-  margin-left: 300px;
+  margin-left: 30px;
+  margin-bottom: 90px;
 }
 
 /* LoginForm */
 .login {
-  position: absolute;
+  /* position: absolute; */
   width: 500px;
   height: 491px;
   border-radius: 50px;
@@ -186,4 +203,24 @@
   display: flex;
   padding-left: 100px;
   cursor: pointer;
+}
+
+/* Nav */
+.navBtn1 {
+  outline: none;
+  box-shadow: none;
+  margin-right: 20px;
+  border: none;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+}
+
+.navBtn2 {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: #4dabf7;
+  padding: 5px 10px;
+  border-radius: 25px;
 }
