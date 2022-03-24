@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Form, Card, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 import UserCard from "./UserCard";
@@ -11,16 +11,90 @@ import './Style.css';
 function SectionHome() {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
-  // useState 훅을 통해 users 상태를 생성함.
+  const [career, setCareer] = useState("");
+  const [language, setLanguage] = useState("");
   const [users, setUsers] = useState([]);
 
+  const skiils =[{value: '기술'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
+  {value: 'Python'},{value: 'Html5'},{value: 'Css3'},{value: 'node.js'},
+  {value: 'react'},{value: 'mongodb'},{value: 'mongoose'}, {value: 'django'},
+  {value: 'mysql'}, {value: 'aws'}, {value: 'linux'}, {value: 'spring framework'}];
+
   useEffect(() => {
-    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
     Api.get("userlist").then((res) => setUsers(res.data));
   }, [userState]);
 
+  const onClick = async(e) => {
+    e.preventDefault();
+   try{
+      await Api.post("userList/create", {
+        career,
+        language
+      });
+
+      const res = await Api.get(`userList/`);
+      setUsers(res.data);
+    }
+   catch(error){
+      console.log(error);
+      if (error.response) {
+        const { data } = error.response;
+        console.error("data : ", data);
+        }
+      }
+  }
+
+
   return (
     <>
+    <div className='sectionHomeSelect'>
+    <Form.Select aria-label="Default select example" 
+      key={career}
+      defaultValue={career}
+      value={career}
+      onChange={(e) => setCareer(e.target.value)}
+      name="career"
+    style={{
+      width: "200px",
+      marginBottom: "20px"
+    }}>
+      <option>경력</option>
+      <option value="신입">신입</option>
+      <option value="1~2년">1~2년</option>
+      <option value="3~4년">3~4년</option>
+      <option value="5~6">5~6년</option>
+      <option value="7~8">7~8년</option>
+     </Form.Select>
+     <Form.Select 
+     aria-label="Default select example"
+     name="language"
+     onChange={(e) => setLanguage(e.target.value)}
+     value={language}
+    style={{
+      width: "200px",
+      marginBottom: "20px",
+      marginLeft: "13px"
+    }}>
+    {  skiils.map((skill, index) => {
+        return (<option key={index} value={skill.value}>{skill.value}</option>)
+       })
+        }
+      </Form.Select>
+      <Button 
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#339AF0",
+          marginLeft: "20px",
+          height: "40px"
+        }}  
+       variant="primary" 
+       type="submit" 
+       className="me-3">
+        검색
+      </Button>
+    </div>
+    {/*  */}
      <Container className='my-2 ms-9'> 
       <div className='homeUsers'>
         {users.map((user) => (
