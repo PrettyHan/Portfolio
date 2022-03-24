@@ -2,9 +2,9 @@ import { User } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
-
+import { startSession } from "mongoose";
 class userAuthService {
-  static async addUser({ name, email, password, photo }) {
+  static async addUser({ name, email, password}) {
     // 이메일 중복 확인
     const user = await User.findByEmail({ email });
     if (user) {
@@ -64,7 +64,6 @@ class userAuthService {
       email,
       name,
       description,
-      photo,
       errorMessage: null,
     };
 
@@ -133,6 +132,37 @@ class userAuthService {
 
     return user;
   }
+  static user (){
+    const util = {
+      success: (status, message, data)=>{
+        return {
+          status: status,
+          success : true,
+          message: message,
+          data: data,
+        }
+      },
+      fail :(status, message) =>{
+        return { 
+          status: status,
+          success : false,
+          message : message
+        }
+      }
+    }
+    const user = {
+      uploadProfile: async (req, res)=>{
+        const uploadFile = req.file.path;
+        consloe.log(req.file);
+        if ( uploadFile === undefined){
+          return res.status(400).send(util.fail(400, "이미지가 존재하지 않습니다."));
+        }
+        res.status(200).send(util.success(200, "파일 업로드 성공", uploadFile));
+      }
+    }
+    return 
+  }
 }
+
 
 export { userAuthService };

@@ -2,8 +2,13 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
+import multer from "multer";
 
 const userAuthRouter = Router();
+const upload = multer({
+  dest: 'uploads/'
+});
+// userAuthRouter.post('/upload', upload.single('uploadFile'), userAuthService.uploadProfile);
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -17,15 +22,13 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
     // const name = req.body.name;
     // const email = req.body.email;
     // const password = req.body.password;
-    // const photo = req.body.photo;
-    const { name, email, password, photo } = req.body;
+    const { name, email, password } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userAuthService.addUser({
       name,
       email,
       password,
-      photo,
     });
 
     if (newUser.errorMessage) {
