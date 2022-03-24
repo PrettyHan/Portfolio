@@ -73,9 +73,12 @@ function Portfolio(isClick) {
           }} 
           onClick={() => navigate("/")}
         >←</Button>
-        <div>
+        <div className='portfolioTitle'>
         <div className='name'>
            <h1>{portfolioOwner.name} 포트폴리오</h1>
+           <div className='clickCount'>
+           <div>{portfolioOwner.visited}</div>
+           </div>
         </div>
         </div>
          <h1 className='line'></h1>
