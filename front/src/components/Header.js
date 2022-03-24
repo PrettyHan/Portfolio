@@ -1,46 +1,74 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
+import {Nav, Navbar, Container} from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
+import LoginForm from './user/LoginForm';
 
-function Header() {
+function Header({showLogin, showRegister}) {
   const navigate = useNavigate();
   const location = useLocation();
 
   const userState = useContext(UserStateContext);
   const dispatch = useContext(DispatchContext);
 
+  const [isClick, setIsClick] = useState(false);
+
   // 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
   const isLogin = !!userState.user;
 
   // 로그아웃 클릭 시 실행되는 함수
   const logout = () => {
-    // sessionStorage 에 저장했던 JWT 토큰을 삭제함.
     sessionStorage.removeItem("userToken");
-    // dispatch 함수를 이용해 로그아웃함.
     dispatch({ type: "LOGOUT" });
-    // 기본 페이지로 돌아감.
     navigate("/");
   };
 
+
+  // Navbar fixed = "top"
   return (
-    <Nav activeKey={location.pathname}>
-      <Nav.Item className="me-auto mb-5">
-        <Nav.Link disabled>안녕하세요, 포트폴리오 공유 서비스입니다.</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/network")}>네트워크</Nav.Link>
-      </Nav.Item>
-      {isLogin && (
-        <Nav.Item>
-          <Nav.Link onClick={logout}>로그아웃</Nav.Link>
-        </Nav.Item>
-      )}
-    </Nav>
+    <div>
+      <Navbar fixed = "top" expand="lg" style={{backgroundColor:"#228be6"}}> 
+        <Container>
+           <Nav.Item>
+           <Nav.Link style={{
+             color: "black",
+             fontSize: "20px",
+             fontWeight: "bold"
+          }} onClick={() => navigate("/")}>🦁</Nav.Link>
+           </Nav.Item>
+           <Nav>
+           {isLogin ? (
+             <>
+              <Nav.Item>
+                <Nav.Link style={{color:"black"}} onClick={logout}>로그아웃</Nav.Link>
+               </Nav.Item>
+               <Nav.Item> 
+                <Nav.Link  
+                style={{color:"white"}} 
+                onClick={(prev) => {navigate("/mypage") && setIsClick(!prev)}}
+                isClick = {isClick}
+                >마이 페이지</Nav.Link>
+               </Nav.Item>
+             </>
+           ) 
+           : (
+            <> 
+            <Nav.Item>
+            <Nav.Link  
+             style={{color:"black"}}
+             onClick={showLogin} >로그인</Nav.Link>
+             </Nav.Item>
+             <Nav.Item> 
+             <Nav.Link onClick={showRegister}>회원가입</Nav.Link>
+             </Nav.Item>
+           </> )}
+           </Nav>
+        </Container>
+    </Navbar>
+    </div>
   );
 }
+// onClick{() => navigate("/login")}
+//to={{pathname: "/login" , state:{background: location}}}
 
 export default Header;

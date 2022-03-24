@@ -21,8 +21,7 @@ function CertificateAddForm({
     // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
 
-    
-    try{
+
     // "certificate/create" 엔드포인트로 POST 요청
     await Api.post("certificate/create", {
       userId,
@@ -37,14 +36,6 @@ function CertificateAddForm({
     setCertificates(res.data);
     // certificate를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅
     setIsAdding(false);
-    }
-     catch(error){
-        console.log(error);
-        if (error.response) {
-          const { data } = error.response;
-          console.error("data : ", data);
-          }
-        }
   };
 
   return (
@@ -78,10 +69,25 @@ function CertificateAddForm({
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <Button 
+            mb="10"
+            style={{
+             border:"none",
+             backgroundColor:"#339AF0"
+           }} 
+          variant="primary"
+           type="submit"
+            className="me-3">
             확인
           </Button>
-          <Button variant="secondary" onClick={() => setIsAdding(false)}>
+          <Button
+           mb="10"
+           style={{
+            border:"none",
+            backgroundColor:"#C4C4C4"
+          }} 
+           variant="secondary"
+            onClick={() => setIsAdding(false)}>
             취소
           </Button>
         </Col>

@@ -28,7 +28,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>수상이력</Card.Title>
+        <Card.Title>🏆 수상이력</Card.Title>
         {awards.map((award) => (
           <Award
             key={award.id}
@@ -37,12 +37,19 @@ function Awards({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
+         {isEditable && (
+        <Row className="mt-3 text-center mb-4">
+        <Col sm={{ span: 20 }}>
+        <Button
+         className='m-3'
+         style={{
+          border:"none",
+          backgroundColor:"#CFD3FF",
+          borderRadius:50
+        }} 
+        onClick={() => setIsAdding(true)}>+</Button>
+        </Col>
+        </Row>
         )}
         {isAdding && (
           <AwardAddForm

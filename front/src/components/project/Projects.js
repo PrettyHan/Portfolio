@@ -27,7 +27,7 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
    return (
     <Card>
     <Card.Body>
-        <Card.Title className='text-start'>프로젝트</Card.Title>
+        <Card.Title className='text-start'>🗂 프로젝트</Card.Title>
         { projects.map((project) => (
           <Project 
               key={project.id}
@@ -37,6 +37,8 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
           />         
         ))}
         {isEditable && (
+        <Row className="mt-3 text-center mb-4">
+        <Col sm={{ span: 20 }}>
         <Button
          className='m-3'
          style={{
@@ -45,6 +47,8 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
           borderRadius:50
         }} 
         onClick={() => setOpen(true)}>+</Button>
+        </Col>
+        </Row>
         )}
           {open && (
           <ProjectAddForm  

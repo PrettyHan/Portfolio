@@ -9,14 +9,21 @@ const EducationCard = ({education, isEditable,setIsEditing}) => {
 
   return (
     <Card.Text className='text-start'>
-      <div class="alert alert-primary" role="alert">
       <Row className="align-items-start">
         <Col>
-          <span>{education.school}</span>
-          <br />
-          <span className="text-muted">{`${education.major} (${
+         <div style={{
+          display: "flex" ,
+          marginTop: "10px"
+          }}>
+        <div className='mvpCardItem'>
+           {education.school}
+            </div>
+        <div className='mvpCardItem2'>
+         {`${education.major} (${
             education.position || ""
-          })`}</span>
+          })`}
+        </div>
+        </div>
         </Col>
         {isEditable && (
           <Col xs lg="1">
@@ -31,7 +38,6 @@ const EducationCard = ({education, isEditable,setIsEditing}) => {
           </Col>
         )}
       </Row>
-       </div>
     </Card.Text>
   );
 

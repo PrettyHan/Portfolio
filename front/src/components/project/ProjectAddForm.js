@@ -46,9 +46,9 @@ const ProjectAddForm = ({
   
   return (
      <Form onSubmit={handleSubmit}  className="d-grid gap-2">
-        <Form.Group as={Row} className="mt-3">
+        <Form.Group>
         <Form.Control
-            className="p-2 bg-light border mb-2"
+            style={{marginBottom: "20px"}} 
             type="text"
             onChange={(e) => setTitle(e.target.value)}
             name="projectTitle"
@@ -56,14 +56,15 @@ const ProjectAddForm = ({
             placeholder="프로젝트 제목"/>
 
          <Form.Control
-            className="p-2 bg-light border mb-2" 
+            style={{marginBottom: "20px"}} 
             type="text"
             name="content"
             value={content} 
             onChange={(e) => setContent(e.target.value)}
             placeholder="상세내역" /> 
 
-          <Form.Control
+        <div style={{display: "flex"}}>
+        <Form.Control
           className="mr-3"
           style={{width: 200}}
           type="date"
@@ -73,12 +74,13 @@ const ProjectAddForm = ({
         />
           <Form.Control
           className='mr-3'
-          style={{width: 200}}
+          style={{width: 200, marginLeft: "10px"}}
           type="date"
           placeholder="종료날짜"
           value={toDate}
           onChange={(e) => setToDate(e.target.value)}
         />
+        </div>
       </Form.Group>
 
        <Form.Group as={Row} className="mt-3 text-center">

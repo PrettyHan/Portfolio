@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Container, Col, Row, Form, Button, Modal, NavLink } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 
-function LoginForm() {
+const LoginForm = ({show, handleClose, handleShow, showRegister}) => {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
 
@@ -31,38 +31,50 @@ function LoginForm() {
   // 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
   const isFormValid = isEmailValid && isPasswordValid;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
     try {
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
         email,
         password,
       });
-      // 유저 정보는 response의 data임.
       const user = res.data;
-      // JWT 토큰은 유저 정보의 token임.
       const jwtToken = user.token;
-      // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
       sessionStorage.setItem("userToken", jwtToken);
-      // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
       dispatch({
         type: "LOGIN_SUCCESS",
         payload: user,
       });
 
-      // 기본 페이지로 이동함.
+      // 기본 페이지로 이동함
       navigate("/", { replace: true });
+      e.target.reset();
+      handleClose(false);
+      setEmail("");
+      setPassword("");
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }
+
   };
 
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
+    <>
+       <Modal
+         size='lg'
+         style={{
+           borderRadius:"50px"         
+         }}
+         dialogClassName={"primaryModal"}
+         aria-labelledby="contained-modal-title-vcenter"
+         centered
+        show={show} className="loginModal" >
+       <Modal.Header closeButton onClick={handleClose} />
+        <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
+        <Modal.Title className='modalTitle'>Login</Modal.Title>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="loginEmail">
               <Form.Label>이메일 주소</Form.Label>
@@ -96,24 +108,20 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <Button variant="primary" 
+                type="submit"
+                 disabled={!isFormValid}
+                 style={{marginBottom: "30px"}}
+                 >
                   로그인
-                </Button>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/register")}>
-                  회원가입하기
                 </Button>
               </Col>
             </Form.Group>
           </Form>
         </Col>
       </Row>
-    </Container>
+       </Modal>
+    </>
   );
 }
-
 export default LoginForm;

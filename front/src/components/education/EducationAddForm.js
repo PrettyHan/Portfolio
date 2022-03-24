@@ -48,7 +48,8 @@ const EducationAddForm = ({
   return (
      <Form onSubmit={handleSubmit}>
         <Form.Group>
-            <Form.Control 
+            <Form.Control
+            style={{marginBottom: "20px"}} 
             type="text"
             onChange={(e) => setSchool(e.target.value)}
             name="shcool"
@@ -83,13 +84,23 @@ const EducationAddForm = ({
 
         <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
-        <Button 
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#339AF0"
+        }} 
         variant="primary" 
         type="submit" 
         className="me-3">
          확인
         </Button>
-        <Button 
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#C4C4C4"
+        }} 
         variant="secondary" 
         onClick={() => setOpen((prev) => !prev)}
         >
