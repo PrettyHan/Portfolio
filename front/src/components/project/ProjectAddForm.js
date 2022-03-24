@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Form, Button, Col, Row} from 'react-bootstrap';
+
 import * as Api from "../../api";
 
 const ProjectAddForm = ({
@@ -7,15 +8,33 @@ const ProjectAddForm = ({
   setOpen,
   setProjects
 }) => {
-
+  
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [fromDate, setFromDate] = useState(new Date());
   const [toDate, setToDate] = useState(new Date());
 
+  const [warning, setWarning] = useState(false);
+
+  const [disable, setDisalbe] = useState(false);
+
+  const selectDate = (event) => {
+     if(event.target.value < fromDate) {
+       setToDate(new Date());
+       console.log(new Date());
+       setWarning(true);
+       setDisalbe(true);
+     }
+     else {
+      setToDate(event.target.value);
+      setWarning(false);     
+      setDisalbe(false);
+     }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const userId = portfolioOwnerId;
 
          //사용자가 입력한 데이터, post 요청! 
@@ -78,15 +97,19 @@ const ProjectAddForm = ({
           type="date"
           placeholder="종료날짜"
           value={toDate}
-          onChange={(e) => setToDate(e.target.value)}
+          onChange={selectDate}
         />
         </div>
       </Form.Group>
+      {warning && (
+        <p style={{color:"red"}}>종료날짜가 시작날짜 이전 날짜입니다.</p>
+      )}
 
        <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20}}>
         <Button
          mb="10"
+         disabled={disable}
          style={{
           border:"none",
           backgroundColor:"#339AF0"
