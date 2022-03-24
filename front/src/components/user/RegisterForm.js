@@ -47,9 +47,16 @@ function RegisterForm({show, handleClose}) {
 
       // 로그인 페이지로 이동함.
       navigate("/login");
+
       handleClose(false);
-    } catch (err) {
-      console.log("회원가입에 실패하였습니다.", err);
+    } catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+       alert(data.error);
+     }
+
     }
   };
 
