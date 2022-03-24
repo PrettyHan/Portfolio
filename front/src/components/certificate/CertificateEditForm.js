@@ -26,7 +26,7 @@ function CertificateEditForm({
     const userId = currentCertificate.userId;
 
     // "certificates/자격증id" 엔드포인트로 PUT 요청
-    await Api.put(`certificates/${currentCertificate.id}`, {
+    await Api.put(`certificate/${currentCertificate.id}`, {
       userId,
       title,
       description,

@@ -8,7 +8,7 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
 
   const onClick = () => {
-   navigate(`/users/${user.id}`);
+   navigate(`/user/${user.id}`);
   }
 
   return (

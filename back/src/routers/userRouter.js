@@ -14,9 +14,11 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
+    // const name = req.body.name;
+    // const email = req.body.email;
+    // const password = req.body.password;
+    const { name, email, password } = req.body;
+
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userAuthService.addUser({
       name,
@@ -37,7 +39,8 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
 userAuthRouter.post("/user/login", async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
-    const {email,password} = req.body;
+    const email = req.body.email;
+    const password = req.body.password;
 
     // 위 데이터를 이용하여 유저 db에서 유저 찾기
     const user = await userAuthService.getUser({ email, password });
@@ -54,7 +57,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
 userAuthRouter.get(
   "/userlist",
-  //loginRequired,
+  loginRequired,
   async function (req, res, next) {
     try {
       // 전체 사용자 목록을 얻음
@@ -89,7 +92,7 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/users/:id",
+  "/user/:id",
   loginRequired,
   async function (req, res, next) {
     try {
@@ -100,14 +103,16 @@ userAuthRouter.put(
       const email = req.body.email ?? null;
       const password = req.body.password ?? null;
       const description = req.body.description ?? null;
-      const visited = req.body.visited ?? null;
-      const toUpdate = { name, email, password, description, visited};
+
+      const toUpdate = { name, email, password, description };
+
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedUser = await userAuthService.setUser({ userId, toUpdate });
 
       if (updatedUser.errorMessage) {
         throw new Error(updatedUser.errorMessage);
       }
+
       res.status(200).json(updatedUser);
     } catch (error) {
       next(error);
@@ -116,7 +121,7 @@ userAuthRouter.put(
 );
 
 userAuthRouter.get(
-  "/users/:id",
+  "/user/:id",
   loginRequired,
   async function (req, res, next) {
     try {
@@ -141,6 +146,21 @@ userAuthRouter.get("/afterlogin", loginRequired, function (req, res, next) {
     .send(
       `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
     );
+});
+
+userAuthRouter.delete(
+  "/user/:id", 
+  loginRequired, 
+  async function (req, res, next) {
+    try{
+      const userId = req.params.id;
+      
+      await userAuthService.deleteUser({ userId })
+
+      res.send("status : success")
+    } catch(error){
+      next(error)
+    }
 });
 
 export { userAuthRouter };

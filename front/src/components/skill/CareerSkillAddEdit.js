@@ -75,7 +75,7 @@ const CareerSkillAddEdit = ({
     console.log("dfd", userId);
     //사용자가 입력한 데이터, post 요청! 
    try{
-      await Api.put(`skills/${skills[0].id}`, {
+      await Api.put(`skill/${skills[0].id}`, {
         userId,
         career,
         language
@@ -117,8 +117,8 @@ const CareerSkillAddEdit = ({
       <option value="신입">신입</option>
       <option value="1~2년">1~2년</option>
       <option value="3~4년">3~4년</option>
-      <option value="5~6">5~6년</option>
-      <option value="7~8">7~8년</option>
+      <option value="5~6년">5~6년</option>
+      <option value="7~8년">7~8년</option>
      </Form.Select>
      </Form.Group>
      <Card.Title className='text-start'>주요 기술</Card.Title>

@@ -50,7 +50,7 @@ skillRouter.get("/skill/:id", async function (req, res, next) {
   }
 });
 
-skillRouter.get("/skilllist/:userId", async function (req, res, next) {
+skillRouter.get("/skillList/:userId", async function (req, res, next) {
   try {
     const userId = req.params.userId
     const skilllist = await SkillService.getSkilllist({ userId });
@@ -59,7 +59,18 @@ skillRouter.get("/skilllist/:userId", async function (req, res, next) {
     next(error);
   }
 });
-skillRouter.put("/skills/:id", async function (req, res, next) {
+
+skillRouter.get("/skillListByCareer/:career", async function (req, res, next) {
+  try {
+    const career = req.params.career
+    const skillListByCareer = await SkillService.getSkillListByCareer({ career });
+    res.status(200).send(skillListByCareer);
+  } catch (error) {
+    next(error);
+  }
+});
+
+skillRouter.put("/skill/:id", async function (req, res, next) {
   try {
     const skillId = req.params.id;
     const career = req.body.career ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
@@ -77,7 +88,7 @@ skillRouter.put("/skills/:id", async function (req, res, next) {
     next(error);
   }
 });
-skillRouter.delete("/skills/:userId", async function (req, res, next) {
+skillRouter.delete("/skill/:userId", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const userId = req.params.userId;

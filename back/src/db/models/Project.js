@@ -33,11 +33,11 @@ class Project {
       return updatedProject;
     }
   
-    // static async deleteById({ awardId }) {
-    //   const deleteResult = await AwardModel.deleteOne({ id: awardId });
-    //   const isDataDeleted = deleteResult.deletedCount === 1;
-    //   return isDataDeleted;
-    // }
+    static async deleteById({ projectId }) {
+      const deleteResult = await ProjectModel.deleteOne({ id: projectId });
+      const isDataDeleted = deleteResult.deletedCount === 1;
+      return isDataDeleted;
+    }
   }
   
   export { Project };

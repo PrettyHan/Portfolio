@@ -22,6 +22,14 @@ const EducationSchema = new Schema(
             type: String,
             required: true,
         },
+
+        comment: [
+            {
+                author : String,
+                content : String,
+                date : String,
+            },
+        ],
     },
     {
         timestamps: true,

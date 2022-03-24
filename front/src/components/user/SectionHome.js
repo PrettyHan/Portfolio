@@ -26,22 +26,8 @@ function SectionHome() {
 
   const onClick = async(e) => {
     e.preventDefault();
-   try{
-      await Api.post("userList/create", {
-        career,
-        language
-      });
-
-      const res = await Api.get(`userList/`);
-      setUsers(res.data);
-    }
-   catch(error){
-      console.log(error);
-      if (error.response) {
-        const { data } = error.response;
-        console.error("data : ", data);
-        }
-      }
+     const res = await Api.get(`skillListByCareer`, career);
+     setUsers(res.data);
   }
 
 
@@ -58,12 +44,12 @@ function SectionHome() {
       width: "200px",
       marginBottom: "20px"
     }}>
-      <option>경력</option>
+       <option>선택</option>
       <option value="신입">신입</option>
       <option value="1~2년">1~2년</option>
       <option value="3~4년">3~4년</option>
-      <option value="5~6">5~6년</option>
-      <option value="7~8">7~8년</option>
+      <option value="5~6년">5~6년</option>
+      <option value="7~8년">7~8년</option>
      </Form.Select>
      <Form.Select 
      aria-label="Default select example"
@@ -90,7 +76,8 @@ function SectionHome() {
         }}  
        variant="primary" 
        type="submit" 
-       className="me-3">
+       className="me-3"
+       onClick={onClick}>
         검색
       </Button>
     </div>

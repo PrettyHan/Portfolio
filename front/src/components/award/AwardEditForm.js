@@ -16,7 +16,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
     try{
       // "awards/수상 id" 엔드포인트로 PUT 요청
-      await Api.put(`awards/${currentAward.id}`, {
+      await Api.put(`award/${currentAward.id}`, {
          userId,
          title,
          description,

@@ -59,7 +59,7 @@ function App() {
             <Route path="/" exact element={<Main />} />
             {/* <Route path="/register" element={<RegisterForm />} /> */}
             <Route path="/mypage" exact element={<Portfolio />} />
-            <Route path="/users/:userId" element={<Portfolio />} />
+            <Route path="/user/:userId" element={<Portfolio />} />
             <Route path="*" element={<Main />} />
           </Routes>
         </Router>

@@ -33,10 +33,16 @@ class Award {
       return updatedAward;
     }
   
-    // static async deleteById({ awardId }) {
-    //   const deleteResult = await AwardModel.deleteOne({ id: awardId });
-    //   const isDataDeleted = deleteResult.deletedCount === 1;
-    //   return isDataDeleted;
+    static async deleteById({ awardId }) {
+      const deleteResult = await AwardModel.deleteOne({ id: awardId });
+      const isDataDeleted = deleteResult.deletedCount === 1;
+      return isDataDeleted;
+    }
+
+    // static async deleteAll({ userId }) {
+    //   const deleteAllResult = await AwardModel.deleteMany({ userId });
+    //   const isAllDataDeleted = deleteAllResult.deletedCount === 1; 
+    //   return isAllDataDeleted;
     // }
   }
   

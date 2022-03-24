@@ -52,13 +52,14 @@
   display: flex;
 }
 
-.mypage .name p {
+.mypage .name h1 {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 900 bold;
+  width: auto;
 }
 
 .mypage .name .clickCount {
-  margin-left: 650px;
+  margin-left: 550px;
   margin-top: 20px;
 }
 

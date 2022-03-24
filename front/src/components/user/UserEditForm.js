@@ -27,7 +27,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const res = await Api.put(`users/${user.id}`, {
+      const res = await Api.put(`user/${user.id}`, {
         name,
         email,
         description,
