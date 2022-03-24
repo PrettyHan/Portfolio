@@ -13,7 +13,7 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
 
   return (
      <Card className={isClick ? "myPageCard" : "homeUserCard"} >
-      <Card.Body>
+      <Card.Body style={{textAlign: "center"}}>
         <Col className="justify-content-md-center">
           <Card.Img
             style={{ width: "12rem", height: "8rem" }}
@@ -47,13 +47,14 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
         )}
 
         {isNetwork && (
-          <div style={{display: "flex", marginTop: "30px"}}>
+          <div style={{display: "flex", marginLeft:"150px",marginTop: "70px"}}>
           <button
             className='networkBtn'
             onClick={onClick}>
-              포트폴리오
+               🚀  
            </button>
-           <div className='clickCount'>{user.visited}</div> 
+           <div>👀</div>
+           <div style={{color: "#868e96"}}>{user.visited}</div>
           </div>
         )}
       </Card.Body>
@@ -62,3 +63,5 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
 }
 
 export default UserCard;
+
+//  className='clickCount'
