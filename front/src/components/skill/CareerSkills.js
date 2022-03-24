@@ -58,7 +58,7 @@ const CareerSkills = ({portfolioOwnerId, isEditable}) => {
              backgroundColor:"#CFD3FF",
              borderRadius:50}}
             onClick={onClick}
-            >편집</Button>
+            >열기</Button>
              </Col>
           </Form.Group> 
             )}

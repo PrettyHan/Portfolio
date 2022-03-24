@@ -169,3 +169,10 @@
   border: none;
   background-color: white;
 }
+
+/* SectionHome */
+.sectionHomeSelect {
+  display: flex;
+  padding-left: 100px;
+  cursor: pointer;
+}

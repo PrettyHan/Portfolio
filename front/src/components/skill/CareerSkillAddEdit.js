@@ -207,7 +207,7 @@ const CareerSkillAddEdit = ({
               size="sm"
               onClick={handleSubmit}
               >
-               처음 저장(데이터값 없음)
+                추가
               </Button>
             </Col>
           </Row>

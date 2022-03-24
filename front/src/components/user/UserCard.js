@@ -4,7 +4,7 @@ import { Card, Row, Button, Col, Container } from "react-bootstrap";
 import './Style.css';
 
 // homeUser
-function UserCard({ user, skill,setIsEditing, isEditable, isNetwork, isClick }) {
+function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
 
   const onClick = () => {
