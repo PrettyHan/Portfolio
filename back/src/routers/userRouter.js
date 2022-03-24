@@ -127,6 +127,7 @@ userAuthRouter.get(
     try {
       const userId = req.params.id;
       const currentUserInfo = await userAuthService.getUserInfo({ userId });
+      
 
       if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);

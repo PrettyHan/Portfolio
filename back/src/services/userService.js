@@ -23,7 +23,7 @@ class userAuthService {
 
     // id 는 유니크 값 부여
     const id = uuidv4();
-    const newUser = { id, name, email, password: hashedPassword };
+    const newUser = { id, name, email, password: hashedPassword};
 
     // db에 저장
     const createdNewUser = await User.create({ newUser });
@@ -120,6 +120,8 @@ class userAuthService {
 
   static async getUserInfo({ userId }) {
     const user = await User.findById({ userId });
+    user.visited += 1;
+    await user.save();
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
