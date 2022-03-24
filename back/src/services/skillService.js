@@ -28,6 +28,12 @@ class SkillService {
     const skills = await Skill.findByUserId({ userId });
     return skills;
   }
+
+  static async getSkillListByCareer({career}) {
+    const skills = await Skill.findByCareer({career});
+    return skills;
+  }
+
   // Put ("/skills/:skillId") / 함수
   static async setSkill({ skillId, toUpdate }) {
     let skill = await Skill.findById({ skillId })

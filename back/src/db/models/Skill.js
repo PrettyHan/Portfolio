@@ -16,6 +16,13 @@ class Skill {
     const skills = await SkillModel.find({ userId });
     return skills;
   }
+  static async findByCareer({career}) {
+    // 입력 받은 carrer를 기준으로 db에서 검색하여 추출
+    const skills = await SkillModel.find({ career });
+    return skills;
+
+  }
+
   // 입력 받은 userId를 기준으로 데이터를 찾고 업데이트
   static async update({ skillId, fieldToUpdate, newValue }) {
     // ServiceLayer에서 전달받은 인자들을 findOneAndUpdate 를 통해 리턴해줌.
