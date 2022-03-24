@@ -15,7 +15,7 @@ function SectionHome() {
   const [language, setLanguage] = useState("");
   const [users, setUsers] = useState([]);
 
-  const skiils =[{value: '기술'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
+  const skiils =[{value: '', name:'선택안함'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
   {value: 'Python'},{value: 'Html5'},{value: 'Css3'},{value: 'node.js'},
   {value: 'react'},{value: 'mongodb'},{value: 'mongoose'}, {value: 'django'},
   {value: 'mysql'}, {value: 'aws'}, {value: 'linux'}, {value: 'spring framework'}];
@@ -45,7 +45,7 @@ function SectionHome() {
       width: "200px",
       marginBottom: "20px"
     }}>
-       <option>선택</option>
+       <option value=''>선택안함</option>
       <option value="신입">신입</option>
       <option value="1~2년">1~2년</option>
       <option value="3~4년">3~4년</option>
@@ -63,7 +63,7 @@ function SectionHome() {
       marginLeft: "13px"
     }}>
     {  skiils.map((skill, index) => {
-        return (<option key={index} value={skill.value}>{skill.value}</option>)
+        return (<option key={index} value={skill.value}>{skill.value || skill.name}</option>)
        })
         }
       </Form.Select>

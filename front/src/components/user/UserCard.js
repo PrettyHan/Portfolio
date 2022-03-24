@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Card, Row, Button, Col, Container } from "react-bootstrap";
+import { Card, Row, Button, Col, Image } from "react-bootstrap";
 
 import './Style.css';
 
@@ -47,14 +47,16 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
         )}
 
         {isNetwork && (
-          <div style={{display: "flex", marginLeft:"150px",marginTop: "70px"}}>
+          <div style={{display: "flex", marginLeft:"10px",marginTop: "70px"}}>
           <button
             className='networkBtn'
             onClick={onClick}>
                🚀  
            </button>
-           <div>👀</div>
-           <div style={{color: "#868e96"}}>{user.visited}</div>
+           <div>
+           <Image className="homeImg" src={('./imgs/eye.png')}/>
+           </div>
+           <div className='clickCount'  style={{color: "#868e96"}}>{user.visited}</div>
           </div>
         )}
       </Card.Body>

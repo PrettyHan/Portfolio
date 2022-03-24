@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row, Button, Card, CardGroup } from "react-bootstrap";
+import { Container, Col, Row, Button, Card, Image } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 
@@ -61,17 +61,12 @@ function Portfolio(isClick) {
     <Container className='mypage'>
       <Row>
         <Col>
-        <Button
-          style={{
-            border:"none",
-            backgroundColor:"#CFD3FF",
-            width: "50px",
-            height: "50px",
-            marginTop:"90px",
-            borderRadius:50
-          }} 
+        <button
+          className='backHomeBtn'
           onClick={() => navigate("/")}
-        >←</Button>
+        >
+           <Image className="backHomeImg" src={('./imgs/home.png')}/>
+        </button>
         <div className='portfolioTitle'>
         <div className='name'>
            <h1>{portfolioOwner.name} 포트폴리오</h1>

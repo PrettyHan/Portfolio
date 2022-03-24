@@ -120,6 +120,8 @@ class userAuthService {
 
   static async getUserInfo({ userId }) {
     const user = await User.findById({ userId });
+    user.visited += 1;
+    await user.save();
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
