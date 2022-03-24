@@ -150,10 +150,10 @@ class userAuthService {
         }
       }
     }
-    const user = {
+    return {
       uploadProfile: async (req, res)=>{
         const uploadFile = req.file.path;
-        consloe.log(req.file);
+        console.log(req.file);
         if ( uploadFile === undefined){
           return res.status(400).send(util.fail(400, "이미지가 존재하지 않습니다."));
         }
