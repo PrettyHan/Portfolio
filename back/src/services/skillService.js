@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 // educatuinRouter에 사용 할 Service 함수 등록
 class SkillService {
   // Post("/skill/create") / 함수 
-  static async addSkill({ userId, career, language }) {
+  static async addSkill({ userId, career, language, portfolioOwner }) {
     const id = uuidv4();
-    const newSkill = { id, userId, career, language };
+    const newSkill = { id, userId, career, language , portfolioOwner};
 
     // db에 저장
     const createdNewSkill = await Skill.create({ newSkill });

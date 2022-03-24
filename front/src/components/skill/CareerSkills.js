@@ -4,7 +4,7 @@ import CareerSkillAddEdit from "./CareerSkillAddEdit";
 import * as Api from "../../api";
 import CareerSkillCard from './CareerSkilCard';
 
-const CareerSkills = ({portfolioOwnerId, isEditable}) => {
+const CareerSkills = ({portfolioOwnerId, portfolioOwner,isEditable}) => {
   
   const [isEditing, setIsEditing] = useState(false); // 편집버튼 
   const [checkData, setCheckData] = useState(false); // data 유무 확인 
@@ -26,6 +26,7 @@ const CareerSkills = ({portfolioOwnerId, isEditable}) => {
     }
   }, [portfolioOwnerId]);
 
+  //console.log(portfolioOwner);
 
   const onClick = () => {
     setOpen((prev)=> !prev);
@@ -34,7 +35,7 @@ const CareerSkills = ({portfolioOwnerId, isEditable}) => {
     } 
 
   }
-
+  
    return (
      <>
      <Card>
@@ -65,6 +66,7 @@ const CareerSkills = ({portfolioOwnerId, isEditable}) => {
             {open && (
             <CareerSkillAddEdit
              portfolioOwnerId = {portfolioOwnerId}
+             portfolioOwner = {portfolioOwner}
              key={skills.id}
              skills={skills}
              setSkill={setSkill}

@@ -4,6 +4,7 @@ import * as Api from "../../api";
 
 const CareerSkillAddEdit = ({
   portfolioOwnerId,
+  portfolioOwner,
   isEditable, 
   etIsEditing, 
   skills,
@@ -11,7 +12,7 @@ const CareerSkillAddEdit = ({
   setOpen, 
   checkData}) => {
   
-  const skiils =[{value: '선택'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
+  const skiils =[{value: ''}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
   {value: 'Python'},{value: 'Html5'},{value: 'Css3'},{value: 'node.js'},
   {value: 'react'},{value: 'mongodb'},{value: 'mongoose'}, {value: 'django'},
   {value: 'mysql'}, {value: 'aws'}, {value: 'linux'}, {value: 'spring framework'}];
@@ -43,9 +44,11 @@ const CareerSkillAddEdit = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = portfolioOwnerId;
+    //const email = portfolioOwner.email;
     console.log(userId);
    try{
       await Api.post("skill/create", {
+        portfolioOwner,
         userId,
         career,
         language
@@ -113,7 +116,7 @@ const CareerSkillAddEdit = ({
       width: "200px",
       marginBottom: "20px"
     }}>
-      <option>---경력---</option>
+      <option value=''></option>
       <option value="신입">신입</option>
       <option value="1~2년">1~2년</option>
       <option value="3~4년">3~4년</option>

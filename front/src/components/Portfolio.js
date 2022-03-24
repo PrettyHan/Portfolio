@@ -57,7 +57,6 @@ function Portfolio(isClick) {
   if (!isFetchCompleted) {
     return "loading...";
   }
-
   return (
     <Container className='mypage'>
       <Row>
@@ -136,6 +135,7 @@ function Portfolio(isClick) {
         </div>
         <div className='CareerSkill'>
         <CareerSkills
+              portfolioOwner = {portfolioOwner}
               portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />

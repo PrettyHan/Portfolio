@@ -30,6 +30,7 @@ function SectionHome() {
      setUsers(res.data);
   }
 
+  console.log(users);
 
   return (
     <>
