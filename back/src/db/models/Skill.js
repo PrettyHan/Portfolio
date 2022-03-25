@@ -16,7 +16,7 @@ class Skill {
     const skills = await SkillModel.find({ userId });
     return skills;
   }
-  static async findByCareer({career}) {
+  static async findBySearch({career}) {
     // 입력 받은 carrer를 기준으로 db에서 검색하여 추출
     const skills = await SkillModel.find({ career });
     return skills;

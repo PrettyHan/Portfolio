@@ -5,7 +5,8 @@ class SkillService {
   // Post("/skill/create") / 함수 
   static async addSkill({ userId, career, language, portfolioOwner }) {
     const id = uuidv4();
-    const newSkill = { id, userId, career, language , portfolioOwner};
+    const languageList = Object.values(language)
+    const newSkill = { id, userId, career, languageList , portfolioOwner};
 
     // db에 저장
     const createdNewSkill = await Skill.create({ newSkill });
@@ -29,8 +30,8 @@ class SkillService {
     return skills;
   }
 
-  static async getSkillListByCareer({career}) {
-    const skills = await Skill.findByCareer({career});
+  static async getSkillListBySearch({career, language}) {
+    const skills = await Skill.findBySearch({career, language});
     return skills;
   }
 
