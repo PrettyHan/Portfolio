@@ -20,13 +20,19 @@ const ProjectCard = ({project, isEditable, setIsEditing, setProjects}) => {
   return (
     <Card.Text>
     <Row className="justify-content-between align-items-center mb-2">
-      <Col>
-        {project.title}
-        <span className="text-muted">{project.content}</span>
-        <span className="text-muted">
-              {`${fromDate} ~ ${toDate}`}
-        </span>
-      </Col>
+    <Col>
+        <div style={{
+          display: "flex" ,
+          marginTop: "10px",
+          marginBottom: "10px"}}>
+        <div className='mvpCardItem'>
+        {project.content}
+            </div>
+        <div className='mvpCardItem2'>
+        {`${fromDate} ~ ${toDate}`}
+        </div>
+        </div>
+        </Col>
       {isEditable && (
         <Col xs lg="1">
           <Button

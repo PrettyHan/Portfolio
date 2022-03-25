@@ -2,8 +2,9 @@ import React, { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {Nav, Navbar, Container} from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
+import LoginForm from './user/LoginForm';
 
-function Header() {
+function Header({showLogin, showRegister}) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,20 +23,21 @@ function Header() {
     navigate("/");
   };
 
+
   // Navbar fixed = "top"
   return (
     <div>
-      <Navbar expand="lg" style={{backgroundColor:"#228be6"}}> 
+      <Navbar fixed = "top" expand="lg" style={{backgroundColor:"#228be6"}}> 
         <Container>
            <Nav.Item>
            <Nav.Link style={{
              color: "black",
              fontSize: "20px",
              fontWeight: "bold"
-          }} onClick={() => navigate("/")}>🦁멋쟁이 사자처럼</Nav.Link>
+          }} onClick={() => navigate("/")}>🦁</Nav.Link>
            </Nav.Item>
            <Nav>
-           {isLogin? (
+           {isLogin ? (
              <>
               <Nav.Item>
                 <Nav.Link style={{color:"black"}} onClick={logout}>로그아웃</Nav.Link>
@@ -49,17 +51,17 @@ function Header() {
                </Nav.Item>
              </>
            ) 
-           :
-           (
+           : (
             <> 
             <Nav.Item>
-            <Nav.Link  style={{color:"black"}} onClick={() => navigate("/login")}>로그인</Nav.Link>
+            <Nav.Link  
+             style={{color:"black"}}
+             onClick={showLogin} >로그인</Nav.Link>
              </Nav.Item>
              <Nav.Item> 
-             <Nav.Link style={{color:"white"}}  onClick={() => navigate("/register")}>회원가입</Nav.Link>
+             <Nav.Link onClick={showRegister}>회원가입</Nav.Link>
              </Nav.Item>
-           </>
-          )}
+           </> )}
            </Nav>
         </Container>
     </Navbar>

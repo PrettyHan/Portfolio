@@ -2,6 +2,11 @@ import { User } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
+import { AwardModel } from "../db/schemas/award";
+import { CertificateModel } from "../db/schemas/certificate";
+import { EducationModel } from "../db/schemas/education";
+import { ProjectModel } from "../db/schemas/project";
+import { UserModel } from "../db/schemas/user";
 
 class userAuthService {
   static async addUser({ name, email, password }) {
@@ -132,6 +137,25 @@ class userAuthService {
 
     return user;
   }
+
+  // 회원탈퇴
+  static async deleteUser({ userId }) {
+    const isDataDeleted = await User.delete({ userId });
+    await AwardModel.deleteMany({ userId });
+    await CertificateModel.deleteMany({ userId });
+    await EducationModel.deleteMany({ userId });
+    await ProjectModel.deleteMany({ userId });
+    await UserModel.deleteOne({ userId });
+    if (!isDataDeleted) {
+      const errorMessage =
+        "해당 id를 가진 사용자는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    return { status: "ok" };
+  }
+
+
 }
 
 export { userAuthService };

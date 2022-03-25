@@ -49,6 +49,7 @@
 /* Portfolio */
 .mypage .name {
   margin-top: 14px;
+  display: flex;
 }
 
 .mypage .name p {
@@ -56,11 +57,16 @@
   font-weight: 900 bold;
 }
 
+.mypage .name .clickCount {
+  margin-left: 650px;
+  margin-top: 20px;
+}
+
 .mypage .line {
   font-size: 45px;
   text-align: center;
   border-bottom: 1px solid gray;
-  margin: 0px;
+  margin-bottom: 50px;
 }
 
 .mypage .homeButton {
@@ -81,7 +87,6 @@
   padding: 0px;
   margin-top: 40px;
   margin-bottom: 20px;
-  background-color: pink;
 }
 
 .mypage .myPageCard p {
@@ -102,14 +107,23 @@
 }
 
 .mypage .email,
-.mypage .introduce,
+.mypage .introduce {
+  width: 1000px;
+  margin-bottom: 20px;
+}
+
 .mypage .projects,
 .mypage .educations,
 .mypage .awards,
-.mypage .certificates {
+.mypage .certificates,
+.mypage .CareerSkill {
   width: 1000px;
   margin-bottom: 20px;
   border: 1px #c7c8d2;
+}
+
+.portfolioTitle {
+  display: flex;
 }
 
 /* userCard Edit */
@@ -119,4 +133,56 @@
   padding: 0px;
   margin-top: 40px;
   margin-bottom: 20px;
+}
+
+/* modal */
+.loginModal {
+  width: 200px;
+}
+
+.modalTitle {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 100px;
+  font-weight: 900 bold;
+  padding-bottom: 20px;
+}
+
+.userName {
+  font-size: 20px;
+  font-weight: bold;
+  height: 30px;
+  margin-right: 10px;
+  padding: 0px 5px;
+}
+
+.userEmail {
+  font-size: 17px;
+  height: 30px;
+  margin-right: 10px;
+  padding: 0px 5px;
+}
+
+.clickCount {
+  background-color: #a5d8ff;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 25px;
+}
+
+.networkBtn {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: white;
+}
+
+/* SectionHome */
+.sectionHomeSelect {
+  display: flex;
+  padding-left: 100px;
+  cursor: pointer;
 }

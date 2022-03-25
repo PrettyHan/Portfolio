@@ -1,26 +1,30 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from '../../api'
 
-function CertificateCard({ certificate, isEditable, setIsEditing, setCertificates }) {
-  const stringwhenDate = ''+ certificate.whenDate;
-  const whenDate = stringwhenDate.substring(0,10);
-
-  // 삭제기능
-  const deleteHandler = async () => {
-    const userId = certificate.userId;
-    await Api.delete(`certificates/${certificate.id}`);
-    await Api.get('certificatelist', userId).then((res) => setCertificates(res.data));
-};
+function CertificateCard({ certificate, isEditable, setIsEditing }) {
+    // const whenDate = ''+ certificate.whenDate;
+    const stringwhenDate = ''+ certificate.whenDate;
+    const whenDate = stringwhenDate.substring(0,10);
+  
 
   return (
     <Card.Text>
       <Row className="align-items-center">
-        <Col>
-          {certificate.title}
-          <br />
-          <span className="text-muted">{certificate.description}</span>
-          <br />
-          <span className="text-muted">{whenDate}</span>
+      <Col>
+      <div style={{
+          display: "flex" ,
+          marginTop: "10px"
+          }}>
+        <div className='mvpCardItem'>
+        {certificate.title}
+            </div>
+        <div className='mvpCardItem1'>
+        {certificate.description}
+        </div>
+        <div className='mvpCardItem2'>
+        {whenDate}
+        </div>
+        </div>
         </Col>
         {isEditable && (
           <Col xs lg="1">

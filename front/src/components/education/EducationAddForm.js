@@ -48,7 +48,8 @@ const EducationAddForm = ({
   return (
      <Form onSubmit={handleSubmit}>
         <Form.Group>
-            <Form.Control 
+            <Form.Control
+            style={{marginBottom: "20px"}} 
             type="text"
             onChange={(e) => setSchool(e.target.value)}
             name="shcool"

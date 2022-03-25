@@ -5,10 +5,9 @@ import * as Api from "./api";
 import { loginReducer } from "./reducer";
 
 import LoginForm from "./components/user/LoginForm";
-import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
-import SectionHome from './components/user/SectionHome';
+import Main from "./components/user/Main"
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -57,13 +56,11 @@ function App() {
       <UserStateContext.Provider value={userState}>
         <Router>
           <Routes>
-            <Route path="/" exact element={<SectionHome />} />
-            <Route path="/network" element={<Network />} />
-            <Route path="/login" element={<LoginForm />} /> 
-            <Route path="/register" element={<RegisterForm />} />
+            <Route path="/" exact element={<Main />} />
+            {/* <Route path="/register" element={<RegisterForm />} /> */}
             <Route path="/mypage" exact element={<Portfolio />} />
-            <Route path="/users/:userId" element={<Portfolio />} />
-            <Route path="*" element={<SectionHome />} />
+            <Route path="/user/:userId" element={<Portfolio />} />
+            <Route path="*" element={<Main />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

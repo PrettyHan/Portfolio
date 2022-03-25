@@ -15,9 +15,14 @@ class certificateAuthService {
 
     // 자격증 내용 불러오기
     static async getCertificates({certificateId}){
-        const  certificates = await Certificate.findById({certificateId})
-        return certificates;
-    }
+        const certificates = await Certificate.findById({certificateId})
+        if (!certificates){
+            const errorMessage = "해당 id를 가진 자격증은 없습니다. 다시 한 번 확인해주세요.";
+            return { errorMessage }
+        }
+        return certificates
+      }
+    
 
     // 자격증 내용 수정
     static async setCertificate({certificateId,toUpdate}){
@@ -53,10 +58,18 @@ class certificateAuthService {
         const certificates = await Certificate.findByUserId({userId});
         return certificates;
     }
-    // 자격증 삭제
-    // static async deleteCertificateList({userId}){
-    //     const deletedCertificates = await Certificate.delete({userId});
-    //     return deletedCertificates;
-    // }
+
+    static async deleteCertificate({ certificateId }) {
+        const isDataDeleted = await Certificate.deleteById({ certificateId });
+    
+        // db에서 찾지 못한 경우, 에러 메시지 반환
+        if (!isDataDeleted) {
+          const errorMessage =
+            "해당 id를 가진 자격증은 없습니다. 다시 한 번 확인해 주세요.";
+          return { errorMessage };
+        }
+    
+        return { status: "ok" };
+      }
 }
 export {certificateAuthService};
