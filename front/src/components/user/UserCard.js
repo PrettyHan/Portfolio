@@ -14,7 +14,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
       if (window.confirm('정말로 탈퇴하시겠습니까?')) {
         await Api.delete(`user/${id}`);
         alert('탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.');
-        navigate('/login', { replace: true });
+        navigate('/', { replace: true });
       }
     } 
     catch (error) {
