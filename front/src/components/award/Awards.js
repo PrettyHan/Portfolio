@@ -15,18 +15,13 @@ function Awards({ portfolioOwnerId, isEditable }) {
   const deleteHandler = async (id) => {
     try {
       if (window.confirm('정말로 삭제하시겠습니까?')) {
-<<<<<<< HEAD
-        await Api.delete(`awards/${id}`);
-=======
         await Api.delete(`award/${id}`);
->>>>>>> origin/Dev_back
         await Api.get(`awardlist/${portfolioOwnerId}`).then((res) => setAwards(res.data));
       }
     } 
     catch (error) {
       alert('삭제에 실패하였습니다. 다시 시도해주세요.', error)
     }
-    
 };
 
   useEffect(() => {
