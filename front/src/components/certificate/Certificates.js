@@ -15,8 +15,7 @@ function Certificates({ portfolioOwnerId, isEditable }) {
     try {
       if (window.confirm('정말로 삭제하시겠습니까?')) {
         await Api.delete(`certificates/${id}`);
-        const res = await Api.get(`certificatelist/${portfolioOwnerId}`);
-        setCertificates(res.data);
+        await Api.get(`certificatelist/${portfolioOwnerId}`).then((res) => setCertificates(res.data));
       }
     } 
     catch (error) {

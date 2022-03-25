@@ -16,8 +16,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
     try {
       if (window.confirm('정말로 삭제하시겠습니까?')) {
         await Api.delete(`awards/${id}`);
-        const res = await Api.get(`awardlist/${portfolioOwnerId}`);
-        setAwards(res.data);
+        await Api.get(`awardlist/${portfolioOwnerId}`).then((res) => setAwards(res.data));
       }
     } 
     catch (error) {

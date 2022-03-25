@@ -4,14 +4,7 @@ import * as Api from '../../api'
 function CertificateCard({ certificate, isEditable, setIsEditing, deleteHandler }) {
     
     const stringwhenDate = ''+ certificate.whenDate;
-    const whenDate = stringwhenDate.substring(0,10);
-
-  //   // 삭제기능
-  //   const deleteHandler = async () => {
-  //     const userId = certificate.userId;
-  //     await Api.delete(`certificate/${certificate.id}`);
-  //     await Api.get('certificatelist', userId).then((res) => setCertificates(res.data));
-  // };  
+    const whenDate = stringwhenDate.substring(0,10); 
 
   return (
     <Card.Text>

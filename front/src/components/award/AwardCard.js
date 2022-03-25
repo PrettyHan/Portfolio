@@ -2,13 +2,6 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from '../../api'
 
 function AwardCard({ award, isEditable, setIsEditing, deleteHandler }) {
-  
-//   // 삭제기능
-//   const deleteHandler = async () => {
-//     const userId = award.userId;
-//     await Api.delete(`award/${award.id}`);
-//     await Api.get('awardlist', userId).then((res) => setAwards(res.data));
-// };
 
   return (
     <Card.Text>
@@ -39,7 +32,7 @@ function AwardCard({ award, isEditable, setIsEditing, deleteHandler }) {
               className="mr-3"
               variant="outline-danger"
               size="sm"
-              onClick={() => deleteHandler(award.id)}
+              onClick={() => deleteHandler(true)}
             >
               삭제
             </Button>

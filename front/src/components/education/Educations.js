@@ -15,8 +15,7 @@ const Educations = ({portfolioOwnerId, isEditable}) => {
     try {
       if (window.confirm('정말로 삭제하시겠습니까?')) {
         await Api.delete(`educations/${id}`);
-        const res = await Api.get(`educationlist/${portfolioOwnerId}`);
-        setEducations(res.data);
+        await Api.get(`educationlist/${portfolioOwnerId}`).then((res) => setEducations(res.data));
       }
     } 
     catch (error) {

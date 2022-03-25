@@ -10,13 +10,6 @@ const ProjectCard = ({project, isEditable, setIsEditing, setProjects, deleteHand
   const fromDate = stringFromDate.substring(0,10);
   const toDate = stringToDate.substring(0,10);
 
-//   // 삭제기능
-//   const deleteHandler = async () => {
-//     const userId = project.userId;
-//     await Api.delete(`project/${project.id}`);
-//     await Api.get('projectlist', userId).then((res) => setProjects(res.data));
-// };
-
   return (
     <Card.Text>
     <Row className="justify-content-between align-items-center mb-2">

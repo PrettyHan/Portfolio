@@ -8,13 +8,6 @@ import * as Api from '../../api'
  */
 const EducationCard = ({ education, isEditable, setIsEditing, setEducations, deleteHandler }) => {
 
-//   // 삭제기능
-//   const deleteHandler = async () => {
-//     const userId = education.userId;
-//     await Api.delete(`education/${education.id}`);
-//     await Api.get('educationlist', userId).then((res) => setEducations(res.data));
-// };
-
   return (
     <Card.Text className='text-start'>
       <Row className="align-items-start">
