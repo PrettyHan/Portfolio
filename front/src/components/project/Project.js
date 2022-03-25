@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectEditForm from "./ProjectEditForm";
 
-function Project({ project, setProjects , isEditable}) {
+function Project({ project, setProjects , isEditable, deleteHandler }) {
   const [isEditing, setIsEditing] = useState(false);
   
-
   return (
     <>
       {isEditing ? (
@@ -20,6 +19,7 @@ function Project({ project, setProjects , isEditable}) {
           isEditable={isEditable}
           setIsEditing={setIsEditing}
           setProjects={setProjects}
+          deleteHandler={deleteHandler}
         />
       )}
     </>

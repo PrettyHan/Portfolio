@@ -24,15 +24,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     }
   }
 
-  const onChangeImg = (e) => {
-    e.preventDefault();
-    
-    if(e.target.files){
-      const uploadFile = e.target.files[0]
-      console.log(uploadFile)
-    }
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{

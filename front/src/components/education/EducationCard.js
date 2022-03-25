@@ -6,14 +6,14 @@ import * as Api from '../../api'
  * 학력 목록 컴포넌트입니다.
  * item : EducationForm 에서 전달받음.
  */
-const EducationCard = ({ education, isEditable, setIsEditing, setEducations }) => {
+const EducationCard = ({ education, isEditable, setIsEditing, setEducations, deleteHandler }) => {
 
-  // 삭제기능
-  const deleteHandler = async () => {
-    const userId = education.userId;
-    await Api.delete(`educations/${education.id}`);
-    await Api.get('educationlist', userId).then((res) => setEducations(res.data));
-};
+//   // 삭제기능
+//   const deleteHandler = async () => {
+//     const userId = education.userId;
+//     await Api.delete(`education/${education.id}`);
+//     await Api.get('educationlist', userId).then((res) => setEducations(res.data));
+// };
 
   return (
     <Card.Text className='text-start'>
@@ -45,9 +45,9 @@ const EducationCard = ({ education, isEditable, setIsEditing, setEducations }) =
             </Button>
             <Button
               className="mr-3"
-              variant="danger"
+              variant="outline-danger"
               size="sm"
-              onClick={deleteHandler}
+              onClick={() => deleteHandler(education.id)}
             >
               삭제
             </Button>
