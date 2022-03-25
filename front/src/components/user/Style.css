@@ -77,6 +77,8 @@
   margin-top: 90px;
   border-radius: 50px;
   transition: all 0.2s ease-in-out;
+  font-size: 30px;
+  color: white;
 }
 
 .mypage .backHomeImg {
@@ -109,14 +111,13 @@
   width: 25px;
   height: 25px;
   padding: 0px 2px;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .mypage .line {
   font-size: 45px;
   text-align: center;
   border-bottom: 1px solid gray;
+  width: 1112px;
   margin-bottom: 50px;
 }
 
@@ -215,7 +216,6 @@
   padding: 0px 2px;
   border-radius: 5px;
   margin-left: 3px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .homeUserCard .clickHome {
@@ -232,6 +232,7 @@
   background-color: white;
   margin-right: 12px;
   padding: auto;
+  transition: all 0.2s ease-in-out;
 }
 
 .networkBtn:hover {
@@ -262,6 +263,18 @@
   background-color: white;
   padding: 5px 10px;
   border-radius: 25px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navBtn1:hover {
+  outline: none;
+  box-shadow: none;
+  margin-right: 20px;
+  border: none;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  transform: scale(1.1);
 }
 
 .navBtn2 {
@@ -271,6 +284,17 @@
   background-color: #4dabf7;
   padding: 5px 10px;
   border-radius: 25px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navBtn2:hover {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: #4dabf7;
+  padding: 5px 10px;
+  border-radius: 25px;
+  transform: scale(1.1);
 }
 
 .userCardBtn {

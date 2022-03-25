@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
-import { Form, Button, Col, Row, Card} from 'react-bootstrap';
+import {Row, Card} from 'react-bootstrap';
 import * as Api from "../../api";
 import './CardStyle.css'
 
 const CareerSkillCard = ({skill}) => {
+  let putSkill;
+
+  if(skill.career !== null){
+     putSkill = skill.career + "년";
+  }
 
   return (
     <Card.Text className='text-center'>
@@ -12,7 +17,7 @@ const CareerSkillCard = ({skill}) => {
         marginTop: "10px",
         display: "flex"
       }}>
-       <div className='cardItem'> {skill.career} </div>
+       <div className='cardItem'> {putSkill} </div>
          <div className='cardItem2'>
            {skill.languageList[0] } 
         </div>

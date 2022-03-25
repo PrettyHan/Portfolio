@@ -27,9 +27,14 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
     });
 
     if (newUser.errorMessage) {
-      throw new Error(newUser.errorMessage);
-    }
+      // throw new Error(newUser.errorMessage);
+      return res.status(400).json({
+        status: 'error',
+        error : newUser.errorMessage,
+      });
 
+    }
+    
     res.status(201).json(newUser);
   } catch (error) {
     next(error);
@@ -46,7 +51,12 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
     const user = await userAuthService.getUser({ email, password });
 
     if (user.errorMessage) {
-      throw new Error(user.errorMessage);
+         // throw new Error(user.errorMessage);
+         return res.status(400).json({
+          status: 'error',
+          error : user.errorMessage,
+        });
+  
     }
 
     res.status(200).send(user);
@@ -164,3 +174,5 @@ userAuthRouter.delete(
 });
 
 export { userAuthRouter };
+
+

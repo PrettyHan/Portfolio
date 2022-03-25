@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
+import { Col, Row, Form, Button, Modal } from "react-bootstrap";
 
 import * as Api from "../../api";
 
@@ -44,13 +44,25 @@ function RegisterForm({show, handleClose}) {
         password,
         name,
       });
-
-      // 로그인 페이지로 이동함.
-      navigate("/login");
       handleClose(false);
-    } catch (err) {
-      console.log("회원가입에 실패하였습니다.", err);
-    }
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setName("")
+      e.target.reset();
+      alert("회원가입이 완료되었습니다.😄")
+    } catch (error) {
+      if (error.response) {
+        const { data } = error.response;
+        console.error("data : ", data);
+        alert(data.error);
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setName("")
+        e.target.reset();
+      }
+      }
   };
 
   return (

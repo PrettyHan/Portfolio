@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-import './Style.css';
-
-
-
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
@@ -13,58 +9,29 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
-  const [photo, setPhoto] = useState(undefined);
 
-  const onChangeImg = (e) => {
-    e.preventDefault();
-    
-    if(e.target.files){
-      
-      const uploadFile = e.target.files[0]
-      console.log(uploadFile)
-      setPhoto(uploadFile);
-    }
-
-  }
-   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('description', description);
-      formData.append('image', photo);
 
-      const res = await Api.userCardSubmit(`user/${user.id}`, formData);
-      const updatedUser = res.data;
-      // 해당 유저 정보로 user을 세팅함.
-      setUser(updatedUser);
-      // isEditing을 false로 세팅함.
-      setIsEditing(false);
-    }
-    catch(error){
-      console.log(error);
-      if (error.response) {
-       const { data } = error.response;
-       console.error("data : ", data);
-       alert(data);
-     }
-  };
+    // "users/유저id" 엔드포인트로 PUT 요청함.
+    const res = await Api.put(`users/${user.id}`, {
+      name,
+      email,
+      description,
+    });
+    // 유저 정보는 response의 data임.
+    const updatedUser = res.data;
+    // 해당 유저 정보로 user을 세팅함.
+    setUser(updatedUser);
+
+    // isEditing을 false로 세팅함.
+    setIsEditing(false);
   };
 
   return (
-    <Card className="userCardEdit">
+    <Card>
       <Card.Body>
         <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-            <Form.Control
-              type="file"
-              placeholder="파일"
-              onChange={onChangeImg}
-            />
-          </Form.Group>
-
           <Form.Group controlId="useEditName" className="mb-3">
             <Form.Control
               type="text"
