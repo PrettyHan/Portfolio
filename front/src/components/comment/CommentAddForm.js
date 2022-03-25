@@ -6,8 +6,7 @@ import * as Api from "../../api";
 function CommentAddForm({
   portfolioOwner,
   portfolioOwnerId,
-  setComments,
-  comments
+  userState
 }) {
 
   const [content, setPutComment] = useState("");
@@ -16,16 +15,19 @@ function CommentAddForm({
     e.preventDefault();
 
     const userId = portfolioOwnerId;
-
     const author = portfolioOwner.name;
-
     const date = "111";
+
+    console.log(userState.user.id); // 자신의 아이디
+    console.log(portfolioOwnerId); // 포트폴리오 주인 id
 
     // "certificate/create" 엔드포인트로 POST 요청
     await Api.post("comment/create", {
       author,
       content
     });
+
+
 
   };
 

@@ -4,7 +4,7 @@ import * as Api from "../../api";
 import CommentCard from "./CommentCard";
  import CommentAddForm from "./CommentAddForm";
 
-function Comments({portfolioOwnerId, portfolioOwner}) {
+function Comments({portfolioOwnerId, portfolioOwner, userState}) {
 
   const [getcomments, setGetComments] = useState([]);
 
@@ -36,6 +36,7 @@ function Comments({portfolioOwnerId, portfolioOwner}) {
           <CommentAddForm 
           portfolioOwnerId = {portfolioOwnerId}
           portfolioOwner = {portfolioOwner}
+          userState = {userState}
           />
         </Card.Body>
       </Card>
