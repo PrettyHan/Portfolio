@@ -8,7 +8,7 @@ const userAuthRouter = Router();
 const upload = multer({
   dest: 'uploads/'
 });
-userAuthRouter.post('/upload', upload.single('uploadFile'), userAuthService.user().uploadProfile);
+userAuthRouter.post('/user/:id', upload.single('uploadFile'), userAuthService.user().uploadProfile);
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -96,7 +96,7 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/users/:id",
+  "/user/:id",
   loginRequired,
   async function (req, res, next) {
     try {
@@ -126,7 +126,7 @@ userAuthRouter.put(
 );
 
 userAuthRouter.get(
-  "/users/:id",
+  "/user/:id",
   loginRequired,
   async function (req, res, next) {
     try {
