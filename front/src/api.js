@@ -61,7 +61,7 @@ async function del(endpoint, params = "") {
 
 async function userCardSubmit(endpoint, formData) {
   console.log(`formData put 요청 ${serverUrl + endpoint + "/" + formData}`);
-  return axios.put(serverUrl + endpoint, formData, {
+  return axios.post(serverUrl + endpoint, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,

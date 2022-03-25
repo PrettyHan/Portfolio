@@ -77,9 +77,9 @@ skillRouter.put("/skill/:id", async function (req, res, next) {
   try {
     const skillId = req.params.id;
     const career = req.body.career ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
-    const language = req.body.language ?? null;
+    const languageList = req.body.languageList ?? null;
 
-    const toUpdate = { career, language };
+    const toUpdate = { career, languageList };
 
     const skill = await SkillService.setSkill({ skillId, toUpdate }); // 업데이트 할 목록을 toUpdate 변수에 담아 ServiceLayer 의 setEducation에 전달
 

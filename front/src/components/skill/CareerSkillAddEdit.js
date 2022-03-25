@@ -18,20 +18,23 @@ const CareerSkillAddEdit = ({
   {value: 'mysql'}, {value: 'aws'}, {value: 'linux'}, {value: 'spring framework'}];
  
   const [career, setCareer] = useState("");
-  const [language, setLangue] = useState({
+  const [language, setLanguage] = useState({
     language1: "",
     language2:"",
     language3: ""
   })
 
+  const [languageList, setLanguageList] = useState([]);
 
-  const onChange = (e) => {
-    setLangue(cur => {
+  // language => post , languageList => get 
+  const onChangeLanguage = (e) => {
+    setLanguage(cur => {
       return {
         ...cur,
         [e.target.name]: e.target.value
       }
     })
+    setLanguageList([...languageList, e.target.value]);
   }
 
   const onChangeCareer = (e) => {
@@ -44,17 +47,17 @@ const CareerSkillAddEdit = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = portfolioOwnerId;
-    //const email = portfolioOwner.email;
-    console.log(userId);
+
+    console.log(languageList);
    try{
       await Api.post("skill/create", {
         portfolioOwner,
         userId,
         career,
-        language
+        languageList
       });
 
-      const res = await Api.get(`skillList/${userId}`);
+      const res = await Api.get(`skilllist/${userId}`);
       setSkill(res.data);
     }
    catch(error){
@@ -66,26 +69,20 @@ const CareerSkillAddEdit = ({
       }
     setOpen(false);  
   };
-
-  console.log("get",skills);
   
   // 편집 (career, language data 가 존재하면 편집!)
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     const userId = skills[0].userId;
-    console.log(userId);
-
-    console.log("dfd", userId);
-    //사용자가 입력한 데이터, post 요청! 
    try{
       await Api.put(`skill/${skills[0].id}`, {
         userId,
         career,
-        language
+        languageList
       });
 
       // "projectlist/유저id" 엔드포인트로 get요청함.
-      const res = await Api.get(`skilllist/${userId}`);
+      const res = await Api.get(`skillList/${userId}`);
       setSkill(res.data);
       console.log(skills);
     }
@@ -99,8 +96,6 @@ const CareerSkillAddEdit = ({
     setOpen(false);  
   };
 
-  const putSkill = skills[0];
-  console.log(putSkill);
 
    return (
       <Card className="skillCard">
@@ -131,7 +126,7 @@ const CareerSkillAddEdit = ({
      aria-label="Default select example" 
      disabled={ isEditable === false ? true : false}
      name="language1"
-     onChange={onChange}
+     onChange={onChangeLanguage}
      value={language.language1}
     style={{
       width: "200px",
@@ -144,10 +139,10 @@ const CareerSkillAddEdit = ({
         }
       </Form.Select>
       <Form.Select aria-label="Default select example" 
-    disabled={ isEditable === false ? true : false}
+      disabled={ isEditable === false ? true : false}
       name="language2"
       value={language.language2}
-      onChange={onChange}
+      onChange={onChangeLanguage}
       style={{
       width: "200px",
       marginBottom: "20px",
@@ -162,7 +157,7 @@ const CareerSkillAddEdit = ({
      disabled={ isEditable === false ? true : false}
      name="language3"
      value={language.language3}
-      onChange={onChange}
+      onChange={onChangeLanguage}
     style={{
       width: "200px",
       marginBottom: "20px",

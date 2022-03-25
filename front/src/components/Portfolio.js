@@ -65,7 +65,7 @@ function Portfolio(isClick) {
           className='backHomeBtn'
           onClick={() => navigate("/")}
         >
-           <Image className="backHomeImg" src={('./imgs/home.png')}/>
+          ←
         </button>
         <div className='portfolioTitle'>
         <div className='name'>

@@ -15,7 +15,7 @@ const SkillSchema = new Schema(
             required: false,
         },
         languageList: {
-            type: Array, // Array 로 가공 // 조회수 user 에서 +1 로직 백엔드에서 짜보기 
+            type: Array,
             required: false,
         },
         portfolioOwner: {

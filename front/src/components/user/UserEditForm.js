@@ -24,8 +24,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       console.log(uploadFile)
       setPhoto(uploadFile);
     }
-  }
 
+  }
+   
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{

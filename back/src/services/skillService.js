@@ -43,14 +43,18 @@ class SkillService {
       const errorMessage = "해당 id를 가진 데이터는 없습니다. 다시 한 번 확인해주세요.";
       return { errorMessage }
     }
-
+    if (toUpdate.career == "") {
+      const fieldToUpdate = "career";
+      const newValue = null
+      skill = await Skill.update({ skillId, fieldToUpdate, newValue });
+    }
     if (toUpdate.career) {
       const fieldToUpdate = "career";
-      const newValue = toUpdate.career;
+      const newValue = toUpdate.career
       skill = await Skill.update({ skillId, fieldToUpdate, newValue });
     }
     if (toUpdate.languageList) {
-      const fieldToUpdate = "langaugeList";
+      const fieldToUpdate = "languageList";
       const newValue = toUpdate.languageList
       skill = await Skill.update({ skillId, fieldToUpdate, newValue });
     }

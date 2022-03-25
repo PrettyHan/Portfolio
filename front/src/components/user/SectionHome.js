@@ -12,7 +12,7 @@ function SectionHome() {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [career, setCareer] = useState("");
-  const [language, setLanguage] = useState("");
+  const [languageList, setLanguageList] = useState("");
   const [users, setUsers] = useState([]);
 
   const skiils =[{value: '', name:'선택안함'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
@@ -26,11 +26,17 @@ function SectionHome() {
 
   const onClick = async(e) => {
     e.preventDefault();
-     const res = await Api.get(`skillListByCareer`, career);
-     setUsers(res.data);
-  }
+    //  const res = await Api.get(`skillListBySearch`, career);
+    //  setUsers(res.data);
 
-  console.log(users);
+    const res = await Api.get("skillListBySearch", {
+      params: { career, languageList}
+    });
+
+
+    setUsers(res.data);
+
+  }
 
   return (
     <>
@@ -47,16 +53,16 @@ function SectionHome() {
     }}>
        <option value=''>선택안함</option>
       <option value="신입">신입</option>
-      <option value="1~2년">1~2년</option>
-      <option value="3~4년">3~4년</option>
-      <option value="5~6년">5~6년</option>
-      <option value="7~8년">7~8년</option>
+      <option value="1~2">1~2년</option>
+      <option value="3~4">3~4년</option>
+      <option value="5~6">5~6년</option>
+      <option value="7~8">7~8년</option>
      </Form.Select>
      <Form.Select 
      aria-label="Default select example"
      name="language"
-     onChange={(e) => setLanguage(e.target.value)}
-     value={language}
+     onChange={(e) => setLanguageList(e.target.value)}
+     value={languageList}
     style={{
       width: "200px",
       marginBottom: "20px",

@@ -13,13 +13,13 @@ const CareerSkillCard = ({skill}) => {
       }}>
        <div className='cardItem'> {skill.career} </div>
          <div className='cardItem2'>
-           {skill.language.language1} 
+           {skill.languageList[0] } 
         </div>
         <div className='cardItem2'>
-            {skill.language.language2} 
+            {skill.languageList[1]} 
        </div>
        <div className='cardItem2'>
-           {skill.language.language3}
+           {skill.languageList[2]}
        </div>
       </div>
     </Row>
