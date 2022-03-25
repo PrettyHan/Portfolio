@@ -14,7 +14,7 @@ const Educations = ({portfolioOwnerId, isEditable}) => {
   const deleteHandler = async (id) => {
     try {
       if (window.confirm('정말로 삭제하시겠습니까?')) {
-        await Api.delete(`educations/${id}`);
+        await Api.delete(`education/${id}`);
         await Api.get(`educationlist/${portfolioOwnerId}`).then((res) => setEducations(res.data));
       }
     } 

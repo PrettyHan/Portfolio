@@ -14,7 +14,7 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
   const deleteHandler = async (id) => {
     try {
       if (window.confirm('정말로 삭제하시겠습니까?')) {
-        await Api.delete(`projects/${id}`);
+        await Api.delete(`project/${id}`);
         await Api.get(`projectlist/${portfolioOwnerId}`).then((res) => setProjects(res.data));
       }
     } 

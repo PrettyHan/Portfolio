@@ -32,7 +32,7 @@ function AwardCard({ award, isEditable, setIsEditing, deleteHandler }) {
               className="mr-3"
               variant="outline-danger"
               size="sm"
-              onClick={() => deleteHandler(true)}
+              onClick={() => deleteHandler(award.id)}
             >
               삭제
             </Button>
