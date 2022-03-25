@@ -15,7 +15,7 @@ function SectionHome() {
   const [languageList, setLanguageList] = useState("");
   const [users, setUsers] = useState([]);
 
-  const skiils =[{value: '', name:'선택안함'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
+  const skiils =[{value:'0', name:'선택안함'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
   {value: 'Python'},{value: 'Html5'},{value: 'Css3'},{value: 'node.js'},
   {value: 'react'},{value: 'mongodb'},{value: 'mongoose'}, {value: 'django'},
   {value: 'mysql'}, {value: 'aws'}, {value: 'linux'}, {value: 'spring framework'}];
@@ -24,18 +24,15 @@ function SectionHome() {
     Api.get("userlist").then((res) => setUsers(res.data));
   }, [userState]);
 
+  console.log(users);
+
   const onClick = async(e) => {
     e.preventDefault();
     //  const res = await Api.get(`skillListBySearch`, career);
     //  setUsers(res.data);
 
-    const res = await Api.get("skillListBySearch", {
-      params: { career, languageList}
-    });
-
-
+    const res = await Api.get(`skillListBySearch/${career}/${languageList}`);
     setUsers(res.data);
-
   }
 
   return (
@@ -51,8 +48,7 @@ function SectionHome() {
       width: "200px",
       marginBottom: "20px"
     }}>
-       <option value=''>선택안함</option>
-      <option value="신입">신입</option>
+      <option value="0">선택안함</option>
       <option value="1~2">1~2년</option>
       <option value="3~4">3~4년</option>
       <option value="5~6">5~6년</option>

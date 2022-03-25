@@ -112,11 +112,10 @@ const CareerSkillAddEdit = ({
       marginBottom: "20px"
     }}>
       <option value=''>선택안함</option>
-      <option value="신입">신입</option>
-      <option value="1~2년">1~2년</option>
-      <option value="3~4년">3~4년</option>
-      <option value="5~6년">5~6년</option>
-      <option value="7~8년">7~8년</option>
+      <option value="1~2">1~2년</option>
+      <option value="3~4">3~4년</option>
+      <option value="5~6">5~6년</option>
+      <option value="7~8">7~8년</option>
      </Form.Select>
      </Form.Group>
      <Card.Title className='text-start'>주요 기술</Card.Title>

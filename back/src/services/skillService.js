@@ -29,8 +29,8 @@ class SkillService {
     return skills;
   }
 
-  static async getSkillListBySearch({career, languageList}) {
-    const skills = await Skill.findBySearch({career, languageList});
+  static async getSkillListBySearch({careerSearch, languageSerach}) {
+    const skills = await Skill.findBySearch({careerSearch, languageSerach});
     return skills;
   }
 

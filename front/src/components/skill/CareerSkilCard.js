@@ -4,6 +4,7 @@ import * as Api from "../../api";
 import './CardStyle.css'
 
 const CareerSkillCard = ({skill}) => {
+
   return (
     <Card.Text className='text-center'>
     <Row className="align-items-center">
