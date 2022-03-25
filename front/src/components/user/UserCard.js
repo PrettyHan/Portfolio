@@ -13,8 +13,9 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
     try {
       if (window.confirm('정말로 탈퇴하시겠습니까?')) {
         await Api.delete(`user/${id}`);
+        sessionStorage.clear(); // 모든 데이터 삭제
         alert('탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.');
-        navigate('/', { replace: true });
+        window.location.href="/";
       }
     } 
     catch (error) {
