@@ -16,10 +16,9 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
       <Card.Body style={{textAlign: "center"}}>
         <Col className="justify-content-md-center">
           <Card.Img
-            style={{ width: "12rem", height: "8rem" }}
+            style={{ width: "10rem", height: "8rem" , marginTop: "20px" }}
             className="mb-3"
-            src={('./imgs/example.png')}
-            // alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"          
+            src={('./imgs/lion.png')}  
           />
         </Col>
         <div className='userName'>{user?.name}</div>
@@ -47,7 +46,7 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
         )}
 
         {isNetwork && (
-          <div style={{display: "flex", marginLeft:"10px",marginTop: "70px"}}>
+          <div style={{display: "flex", marginLeft:"10px",marginTop: "50px"}}>
           <button
             className='networkBtn'
             onClick={onClick}>
