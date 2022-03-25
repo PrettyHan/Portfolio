@@ -12,10 +12,10 @@ const CareerSkillAddEdit = ({
   setOpen, 
   checkData}) => {
   
-  const skiils =[{value: '', name:'선택안함'}, {value: 'Java'}, {value: 'Javasript'}, {value: 'jquery'},
-  {value: 'Python'},{value: 'Html5'},{value: 'Css3'},{value: 'node.js'},
-  {value: 'react'},{value: 'mongodb'},{value: 'mongoose'}, {value: 'django'},
-  {value: 'mysql'}, {value: 'aws'}, {value: 'linux'}, {value: 'spring framework'}];
+    const skiils =[{value:'0', name:'언어'}, {value: 'Java', name: 'Java'}, {value: 'Javasript', name: 'Javascript'}, {value: 'jquery', name:'jquery'},
+    {value: 'Python', name: 'Python'},{value: 'Html5', name: 'Html5'},{value: 'Css3', name: 'Css3'},{value: 'node.js', name:'node.js'},
+    {value: 'react', name:'react'},{value: 'mongodb', name:'mongodb'},{value: 'mongoose', name:'mongoose'}, {value: 'django', name:'django'},
+    {value: 'mysql', name: 'mysql'}, {value: 'aws', name:'aws'}, {value: 'linux', name:'linux'}, {value: 'spring framework', name:'spring framework'}];
  
   const [career, setCareer] = useState("");
   const [language, setLanguage] = useState({
@@ -111,7 +111,7 @@ const CareerSkillAddEdit = ({
       width: "200px",
       marginBottom: "20px"
     }}>
-      <option value=''>선택안함</option>
+      <option value="0">경력</option>
       <option value="1~2">1~2년</option>
       <option value="3~4">3~4년</option>
       <option value="5~6">5~6년</option>
@@ -133,7 +133,7 @@ const CareerSkillAddEdit = ({
       marginLeft: "13px"
     }}>
     {  skiils.map((skill, index) => {
-      return (<option key={index} value={skill.value}>{skill.value || skill.name}</option>)
+      return (<option key={index} value={skill.value}>{skill.name}</option>)
        })
         }
       </Form.Select>
@@ -148,7 +148,7 @@ const CareerSkillAddEdit = ({
       marginLeft: "20px"
       }}>
     {  skiils.map((skill, index) => {
-         return (<option key={index} value={skill.value}>{skill.value || skill.name}</option>)
+         return (<option key={index} value={skill.value}>{skill.name}</option>)
        })
         }
       </Form.Select>
@@ -163,7 +163,7 @@ const CareerSkillAddEdit = ({
       marginLeft: "20px"
     }}>
        {skiils.map((skill, index) => {
-        return (<option key={index} value={skill.value}>{skill.value || skill.name}</option>)
+        return (<option key={index} value={skill.value}>{skill.name}</option>)
        })
         }
       </Form.Select>

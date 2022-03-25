@@ -11,7 +11,8 @@ import Educations from './education/Educations';
 import Awards from "./award/Awards";
 import Certificates from "./certificate/Certificates";
 import Projects from './project/Projects';
-import CareerSkills from './skill/CareerSkills'
+import CareerSkills from './skill/CareerSkills';
+import Comments from './comment/Comments';
 
 function Portfolio(isClick) {
   const navigate = useNavigate();
@@ -128,14 +129,22 @@ function Portfolio(isClick) {
               isEditable={portfolioOwner.id === userState.user?.id}
             />
         </div>
-        <div className='CareerSkill'>
+        <div className='careerSkill'>
         <CareerSkills
               portfolioOwner = {portfolioOwner}
               portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
         </div>
+        <div className='comments'>
+        <Comments
+              portfolioOwner = {portfolioOwner}
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+        </div>
         </Col>
+        
       </Row>
     </Container>
   );

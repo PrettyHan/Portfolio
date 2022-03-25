@@ -22,12 +22,11 @@ const EducationSchema = new Schema(
             type: String,
             required: true,
         },
-
         comment: [
             {
-                author : String,
-                content : String,
-                date : String,
+                author : {type: String},
+                content : {type: String},
+                date : {type: Date, default : () => Date.now()},
             },
         ],
     },
