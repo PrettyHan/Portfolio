@@ -7,6 +7,7 @@ import { CertificateModel } from "../db/schemas/certificate";
 import { EducationModel } from "../db/schemas/education";
 import { ProjectModel } from "../db/schemas/project";
 import { UserModel } from "../db/schemas/user";
+import { SkillModel } from "../db/schemas/skill";
 
 class userAuthService {
   static async addUser({ name, email, password }) {
@@ -127,6 +128,9 @@ class userAuthService {
 
   static async getUserInfo({ userId }) {
     const user = await User.findById({ userId });
+    user.visited += 1;
+    await user.save();
+
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
@@ -145,7 +149,8 @@ class userAuthService {
     await CertificateModel.deleteMany({ userId });
     await EducationModel.deleteMany({ userId });
     await ProjectModel.deleteMany({ userId });
-    await UserModel.deleteOne({ userId });
+    await SkillModel.deleteMany({ userId });
+    // await UserModel.deleteOne({ userId });
     if (!isDataDeleted) {
       const errorMessage =
         "해당 id를 가진 사용자는 없습니다. 다시 한 번 확인해 주세요.";
