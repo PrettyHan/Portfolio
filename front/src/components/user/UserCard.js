@@ -9,10 +9,10 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
 
   // 탈퇴기능
-  const deleteHandler = async (id) => {
+  const deleteUser = async (id) => {
     try {
       if (window.confirm('정말로 탈퇴하시겠습니까?')) {
-        await Api.delete(`users/${id}`);
+        await Api.delete(`user/${id}`);
         alert('탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.');
         navigate('/login', { replace: true });
       }
@@ -61,7 +61,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
                   className="ml-3 mr-3"
                   variant="outline-danger"
                   size="sm"
-                  onClick={() => deleteHandler(true)}
+                  onClick={() => deleteUser(true)}
                 >
                   탈퇴
                 </Button>
