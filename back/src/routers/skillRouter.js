@@ -62,11 +62,12 @@ skillRouter.get("/skillList/:userId", async function (req, res, next) {
   }
 });
 
-skillRouter.get("/skillListByCareer/:career", async function (req, res, next) {
+skillRouter.get("/skillListBySearch", async function (req, res, next) {
   try {
-    const career = req.params.career
-    const skillListByCareer = await SkillService.getSkillListByCareer({ career });
-    res.status(200).send(skillListByCareer);
+    const career = req.body.career ?? null ;
+    const languageList = req.body.languageList ?? null;
+    const skillListBySearch = await SkillService.getSkillListBySearch({career, languageList});
+    res.status(200).send(skillListBySearch);
   } catch (error) {
     next(error);
   }

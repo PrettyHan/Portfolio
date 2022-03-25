@@ -30,13 +30,14 @@ class SkillService {
     return skills;
   }
 
-  static async getSkillListBySearch({career, language}) {
-    const skills = await Skill.findBySearch({career, language});
+  static async getSkillListBySearch({career, languageList}) {
+    const skills = await Skill.findBySearch({career, languageList});
     return skills;
   }
 
   // Put ("/skills/:skillId") / 함수
   static async setSkill({ skillId, toUpdate }) {
+    const langaugeList = Object.values(toUpdate.language)
     let skill = await Skill.findById({ skillId })
 
     if (!skill) {
@@ -49,9 +50,9 @@ class SkillService {
       const newValue = toUpdate.career;
       skill = await Skill.update({ skillId, fieldToUpdate, newValue });
     }
-    if (toUpdate.language) {
-      const fieldToUpdate = "language";
-      const newValue = toUpdate.language;
+    if (langaugeList) {
+      const fieldToUpdate = "langaugeList";
+      const newValue = langaugeList;
       skill = await Skill.update({ skillId, fieldToUpdate, newValue });
     }
     return skill;
