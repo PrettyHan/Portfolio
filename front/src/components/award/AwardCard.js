@@ -28,6 +28,7 @@ function AwardCard({ award, isEditable, setIsEditing, deleteHandler }) {
             >
               편집
             </Button>
+            
             <Button
               className="mr-3"
               variant="outline-danger"
