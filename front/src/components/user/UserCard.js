@@ -1,11 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col, Container } from "react-bootstrap";
+import * as Api from "../../api";
 
 import './Style.css';
 
 // homeUser
-function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
+function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
+
+  // 탈퇴기능
+  const deleteUser = async (id) => {
+    try {
+      if (window.confirm('정말로 탈퇴하시겠습니까?')) {
+        await Api.delete(`user/${id}`);
+        sessionStorage.removeItem("userToken");
+        alert('탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.');
+        navigate('/login', { replace: true });
+      }
+    } 
+    catch (error) {
+      alert('탈퇴에 실패하였습니다. 다시 시도해주세요.', error)
+    }
+    
+};
 
   const onClick = () => {
    navigate(`/user/${user.id}`);
@@ -41,6 +58,15 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
                 >
                   편집
                 </Button>
+                <Button
+                  className="ml-3 mr-3"
+                  variant="outline-danger"
+                  size="sm"
+                  onClick={() => deleteUser(user.id)}
+                >
+                  탈퇴
+                </Button>
+
               </Col>
             </Row>
           </Col>
