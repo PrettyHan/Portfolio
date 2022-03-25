@@ -9,7 +9,20 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
   console.log(portfolioOwnerId)
   const [open, setOpen] = useState(false); // Add 버튼 누르면 open!
   const [projects, setProjects] = useState([]);
-  
+
+  // 삭제기능
+  const deleteHandler = async (id) => {
+    try {
+      if (window.confirm('정말로 삭제하시겠습니까?')) {
+        await Api.delete(`project/${id}`);
+        await Api.get(`projectlist/${portfolioOwnerId}`).then((res) => setProjects(res.data));
+      }
+    } 
+    catch (error) {
+      alert('삭제에 실패하였습니다.  다시 시도해주세요.', error)
+    }
+};
+
    useEffect(() => {
     try{
       Api.get(`projectlist/${portfolioOwnerId}`).then((res) =>
@@ -34,6 +47,7 @@ const Projects = ({portfolioOwnerId, isEditable}) => {
               project={project} 
               setProjects= {setProjects}
               isEditable = {isEditable}
+              deleteHandler={deleteHandler}
           />         
         ))}
         {isEditable && (
