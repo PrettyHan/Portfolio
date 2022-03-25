@@ -1,4 +1,5 @@
 import { SkillModel } from "../schemas/skill";
+import {UserModel} from "../schemas/user"
 
 class Skill {
   // 입력 받은 education 정보를 생성 
@@ -20,10 +21,9 @@ class Skill {
     // 입력 받은 carrer를 기준으로 db에서 검색하여 추출
 
   if(languageSerach == 0 && careerSearch == 0){
-  var result = []
-  const skills = await SkillModel.find({}, {portfolioOwner : 1, _id : 0} )
-  skills.forEach(function(u) { result.push(u.portfolioOwner) })
-    return result;
+
+    const users = await UserModel.find({});
+    return users;
 
   }
   else if(careerSearch == 0){
