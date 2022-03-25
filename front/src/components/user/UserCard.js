@@ -61,7 +61,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
                   className="ml-3 mr-3"
                   variant="outline-danger"
                   size="sm"
-                  onClick={() => deleteUser(true)}
+                  onClick={() => deleteUser(user.id)}
                 >
                   탈퇴
                 </Button>
