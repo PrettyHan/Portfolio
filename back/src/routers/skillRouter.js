@@ -18,11 +18,11 @@ skillRouter.post("/skill/create", async (req, res, next) => {
     const { userId} = req.body;
     const {portfolioOwner} = req.body
     const career = req.body.career ?? null;
-    const language = req.body.language ?? null;
+    const languageList = req.body.languageList ?? null;
     const newSkill = await SkillService.addSkill({
       userId,
       career,
-      language,
+      languageList,
       portfolioOwner
     });
     if (newSkill.errorMessage) {

@@ -3,9 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 // educatuinRouter에 사용 할 Service 함수 등록
 class SkillService {
   // Post("/skill/create") / 함수 
-  static async addSkill({ userId, career, language, portfolioOwner }) {
+  static async addSkill({ userId, career, languageList, portfolioOwner }) {
     const id = uuidv4();
-    const languageList = Object.values(language)
     const newSkill = { id, userId, career, languageList , portfolioOwner};
 
     // db에 저장
@@ -37,9 +36,9 @@ class SkillService {
 
   // Put ("/skills/:skillId") / 함수
   static async setSkill({ skillId, toUpdate }) {
-    const langaugeList = Object.values(toUpdate.language)
-    let skill = await Skill.findById({ skillId })
 
+    let skill = await Skill.findById({ skillId })
+    
     if (!skill) {
       const errorMessage = "해당 id를 가진 데이터는 없습니다. 다시 한 번 확인해주세요.";
       return { errorMessage }
@@ -50,9 +49,9 @@ class SkillService {
       const newValue = toUpdate.career;
       skill = await Skill.update({ skillId, fieldToUpdate, newValue });
     }
-    if (langaugeList) {
+    if (toUpdate.languageList) {
       const fieldToUpdate = "langaugeList";
-      const newValue = langaugeList;
+      const newValue = toUpdate.languageList
       skill = await Skill.update({ skillId, fieldToUpdate, newValue });
     }
     return skill;
