@@ -160,7 +160,6 @@ class userAuthService {
         res.status(200).send(util.success(200, "파일 업로드 성공", uploadFile));
       }
     }
-    return 
   }
 }
 
