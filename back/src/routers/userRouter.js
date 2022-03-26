@@ -2,13 +2,10 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
-import multer from "multer";
+import {upload} from "../module/multer";
 
 const userAuthRouter = Router();
-const upload = multer({
-  dest: 'uploads/'
-});
-userAuthRouter.post('/user/:id', upload.single('uploadFile'), userAuthService.user().uploadProfile);
+
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -30,6 +27,7 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
       email,
       password,
     });
+
 
     if (newUser.errorMessage) {
       throw new Error(newUser.errorMessage);
@@ -94,12 +92,18 @@ userAuthRouter.get(
     }
   }
 );
-
+userAuthRouter.post('/user/:id', upload.single('uploadFile'),userAuthService.user().uploadProfile );
 userAuthRouter.put(
   "/user/:id",
   loginRequired,
   async function (req, res, next) {
     try {
+      const uploadFile = upload.single('uploadFile');
+      uploadFile(req,res,async function error(){
+        if (error){
+          return res.status(400).json({success:false, message: error.message});
+        }
+      })
       // URI로부터 사용자 id를 추출함.
       const userId = req.params.id;
       // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -124,7 +128,6 @@ userAuthRouter.put(
     }
   }
 );
-
 userAuthRouter.get(
   "/user/:id",
   loginRequired,

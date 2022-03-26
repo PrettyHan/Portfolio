@@ -33,7 +33,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       formData.append('name', name);
       formData.append('email', email);
       formData.append('description', description);
-      formData.append('image', photo);
+      formData.append('photo', photo);
 
       const res = await Api.userCardSubmit(`user/${user.id}`, formData);
       const updatedUser = res.data;

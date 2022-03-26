@@ -25,8 +25,8 @@ const UserSchema = new Schema(
     },
     photo: {
       type:String,
-      required: false,
-      default: "프로필 사진이 아직 없습니다. 추가해 주세요.",
+      required: true,
+      default: "lion.png",
     }
   },
   {

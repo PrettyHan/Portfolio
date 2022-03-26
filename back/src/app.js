@@ -6,12 +6,11 @@ import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { projectRouter } from "./routers/projectRouter";
 import { awardRouter } from "./routers/awardRouter";
 import { certificateAuthRouter} from './routers/certificateRouter';
-import {photoRouter} from './routers/photoRouter';
-import multer from "multer";
+import path from "path";
 
 const app = express();
 //상대 경로를 이용하여 접근
-app.use('/upload',express.static('public'));
+app.use('/uploads',express.static(path.join(__dirname, 'uploadFile')));
 // CORS 에러 방지
 app.use(cors());
 // express 기본 제공 middleware
