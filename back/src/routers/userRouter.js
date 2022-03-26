@@ -2,10 +2,9 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
-import {upload} from "../module/multer";
 
 const userAuthRouter = Router();
-
+const upload = require('../module/multer');
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -92,14 +91,14 @@ userAuthRouter.get(
     }
   }
 );
-userAuthRouter.post('/user/:id', upload.single('uploadFile'),userAuthService.user().uploadProfile );
+
 userAuthRouter.put(
   "/user/:id",
   loginRequired,
   async function (req, res, next) {
     try {
-      const uploadFile = upload.single('uploadFile');
-      uploadFile(req,res,async function error(){
+      const uploadSingle = upload.single('photo');
+      uploadSingle(req,res,async function error(){
         if (error){
           return res.status(400).json({success:false, message: error.message});
         }
@@ -111,9 +110,9 @@ userAuthRouter.put(
       const email = req.body.email ?? null;
       const password = req.body.password ?? null;
       const description = req.body.description ?? null;
-      const photo = req.body.photo ?? null;
+      const photoUrl = req.file.location ?? null;
 
-      const toUpdate = { name, email, password, description, photo };
+      const toUpdate = { name, email, password, description, photoUrl };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedUser = await userAuthService.setUser({ userId, toUpdate });
@@ -128,6 +127,24 @@ userAuthRouter.put(
     }
   }
 );
+
+userAuthRouter.put('/photo/upload/:id', loginRequired, async function(req,res,next){
+  try{
+    const userId = req.params.id;
+    const uploadSingle = upload.single('photo');
+    uploadSingle(req,res, async function error(){
+      if (error){
+        return res.status(400).json({success:false, message:error.message});
+      }
+      const photoUrl = req.file.location;
+      const updated = await userAuthService.setPhoto({userId, photoUrl});
+      res.status(200).json({data: req.file, updated: updated});
+    })
+  }
+  catch(error){
+    next(error);
+  }
+})
 userAuthRouter.get(
   "/user/:id",
   loginRequired,
@@ -155,5 +172,6 @@ userAuthRouter.get("/afterlogin", loginRequired, function (req, res, next) {
       `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
     );
 });
+
 
 export { userAuthRouter };

@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import { startSession } from "mongoose";
-import path from "path";
 class userAuthService {
   static async addUser({ name, email, password}) {
     // 이메일 중복 확인
@@ -133,7 +132,7 @@ class userAuthService {
 
     return user;
   }
-  static async user (){
+  static user (){
     const util = {
       success: (status, message, data)=>{
         return {
