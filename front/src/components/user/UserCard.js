@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Card, Row, Button, Col, Container } from "react-bootstrap";
+import { Card, Row, Button, Col, Image } from "react-bootstrap";
 import * as Api from "../../api";
 
 import './Style.css';
