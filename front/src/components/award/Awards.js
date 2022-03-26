@@ -11,6 +11,20 @@ function Awards({ portfolioOwnerId, isEditable }) {
   //useState로 isAdding 상태를 생성
   const [isAdding, setIsAdding] = useState(false);
 
+  // 삭제기능
+  const deleteHandler = async (id) => {
+    try {
+      if (window.confirm('정말로 삭제하시겠습니까?')) {
+        await Api.delete(`award/${id}`);
+        await Api.get(`awardlist/${portfolioOwnerId}`).then((res) => setAwards(res.data));
+        alert('삭제가 완료되었습니다.');
+      }
+    } 
+    catch (error) {
+      alert('삭제에 실패하였습니다. 다시 시도해주세요.', error)
+    }
+};
+
   useEffect(() => {
     try{
   // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅
@@ -35,6 +49,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
             award={award}
             setAwards={setAwards}
             isEditable={isEditable}
+            deleteHandler={deleteHandler}
           />
         ))}
          {isEditable && (

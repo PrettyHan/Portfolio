@@ -10,6 +10,20 @@ const Educations = ({portfolioOwnerId, isEditable}) => {
   const [open, setOpen] = useState(false); 
   const [educations, setEducations] = useState([]);
   
+  // 삭제기능
+  const deleteHandler = async (id) => {
+    try {
+      if (window.confirm('정말로 삭제하시겠습니까?')) {
+        await Api.delete(`education/${id}`);
+        await Api.get(`educationlist/${portfolioOwnerId}`).then((res) => setEducations(res.data));
+        alert('삭제가 완료되었습니다.');
+      }
+    } 
+    catch (error) {
+      alert('삭제에 실패하였습니다. 다시 시도해주세요.', error)
+    }
+};
+
   
    useEffect(() => { 
     try{
@@ -36,6 +50,7 @@ const Educations = ({portfolioOwnerId, isEditable}) => {
                   education={education} 
                   setEducations= {setEducations}
                   isEditable = {isEditable}
+                  deleteHandler={deleteHandler}
               />         
             ))}
              {isEditable && (

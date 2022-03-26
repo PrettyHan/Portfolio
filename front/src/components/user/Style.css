@@ -113,6 +113,11 @@
   padding: 0px 2px;
 }
 
+.mypage .name .clickCount {
+  margin-left: 650px;
+  margin-top: 20px;
+}
+
 .mypage .line {
   font-size: 45px;
   text-align: center;
