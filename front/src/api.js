@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendPortNumber = "5001";
+const backendPortNumber = "5003";
 const serverUrl =
   "http://" + window.location.hostname + ":" + backendPortNumber + "/";
 
@@ -59,8 +59,18 @@ async function del(endpoint, params = "") {
   });
 }
 
+async function userCardSubmit(endpoint, formData) {
+  console.log(`formData put 요청 ${serverUrl + endpoint + "/" + formData}`);
+  return axios.post(serverUrl + endpoint, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+      },
+    });
+}
+
 
 
 // 아래처럼 export한 후, import * as A 방식으로 가져오면,
 // A.get, A.post 로 쓸 수 있음.
-export { get, post, put, del as delete };
+export { get, post, put, del as delete , userCardSubmit };

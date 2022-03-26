@@ -16,12 +16,14 @@ skillRouter.post("/skill/create", async (req, res, next) => {
       )
     }
     const { userId} = req.body;
+    const {portfolioOwner} = req.body
     const career = req.body.career ?? null;
-    const language = req.body.language ?? null;
+    const languageList = req.body.languageList ?? null;
     const newSkill = await SkillService.addSkill({
       userId,
       career,
-      language
+      languageList,
+      portfolioOwner
     });
     if (newSkill.errorMessage) {
       throw new Error(newSkill.errorMessage)
@@ -60,11 +62,12 @@ skillRouter.get("/skillList/:userId", async function (req, res, next) {
   }
 });
 
-skillRouter.get("/skillListByCareer/:career", async function (req, res, next) {
+skillRouter.get("/skillListBySearch/:career/:languageList", async function (req, res, next) {
   try {
-    const career = req.params.career
-    const skillListByCareer = await SkillService.getSkillListByCareer({ career });
-    res.status(200).send(skillListByCareer);
+    const careerSearch = req.params.career  ;
+    const languageSerach = req.params.languageList ;
+    const skillListBySearch = await SkillService.getSkillListBySearch({careerSearch, languageSerach});
+    res.status(200).send(skillListBySearch);
   } catch (error) {
     next(error);
   }
@@ -73,10 +76,10 @@ skillRouter.get("/skillListByCareer/:career", async function (req, res, next) {
 skillRouter.put("/skill/:id", async function (req, res, next) {
   try {
     const skillId = req.params.id;
-    const career = req.body.career ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
-    const language = req.body.language ?? null;
+    const career = req.body.career ?? null;
+    const languageList = req.body.languageList ?? null;
 
-    const toUpdate = { career, language };
+    const toUpdate = { career, languageList };
 
     const skill = await SkillService.setSkill({ skillId, toUpdate }); // 업데이트 할 목록을 toUpdate 변수에 담아 ServiceLayer 의 setEducation에 전달
 

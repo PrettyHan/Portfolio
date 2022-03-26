@@ -1,4 +1,5 @@
 import { SkillModel } from "../schemas/skill";
+import {UserModel} from "../schemas/user"
 
 class Skill {
   // 입력 받은 education 정보를 생성 
@@ -16,11 +17,31 @@ class Skill {
     const skills = await SkillModel.find({ userId });
     return skills;
   }
-  static async findByCareer({career}) {
+  static async findBySearch({careerSearch, languageSerach}) {
     // 입력 받은 carrer를 기준으로 db에서 검색하여 추출
-    const skills = await SkillModel.find({ career });
-    return skills;
 
+  if(languageSerach == 0 && careerSearch == 0){
+
+    const users = await UserModel.find({});
+    return users;
+
+  }
+  else if(careerSearch == 0){
+    var result = []
+    const skills = await SkillModel.find( {"languageList": languageSerach }, {portfolioOwner : 1, _id : 0} )
+    skills.forEach(function(u) { result.push(u.portfolioOwner) })
+      return result;
+  }
+  else if(languageSerach == 0){
+    var result = []
+    const skills = await SkillModel.find( {"career": careerSearch }, {portfolioOwner : 1, _id : 0} )
+    skills.forEach(function(u) { result.push(u.portfolioOwner) })
+      return result;
+  }
+  var result = []
+  const skills = await SkillModel.find( {"carrer": careerSearch ,"languageList": languageSerach }, {portfolioOwner : 1, _id : 0} )
+  skills.forEach(function(u) { result.push(u.portfolioOwner) })
+    return result;
   }
 
   // 입력 받은 userId를 기준으로 데이터를 찾고 업데이트

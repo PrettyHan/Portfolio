@@ -13,8 +13,8 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
       );
     }
 
-    const { name, email, password } = req.body;
-
+    // req (request) 에서 데이터 가져오기
+    const {name, email, password} = req.body
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userAuthService.addUser({
       name,
@@ -65,8 +65,8 @@ userAuthRouter.get(
   async function (req, res, next) {
     try {
       // 전체 사용자 목록을 얻음
-      const users = await userAuthService.getUsers();
-      res.status(200).send(users);
+      const user = await userAuthService.getUsers();
+      res.status(200).send(user);
     } catch (error) {
       next(error);
     }
@@ -107,16 +107,14 @@ userAuthRouter.put(
       const email = req.body.email ?? null;
       const password = req.body.password ?? null;
       const description = req.body.description ?? null;
-
-      const toUpdate = { name, email, password, description };
-
+      const visited = req.body.visited ?? null;
+      const toUpdate = { name, email, password, description, visited};
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedUser = await userAuthService.setUser({ userId, toUpdate });
 
       if (updatedUser.errorMessage) {
         throw new Error(updatedUser.errorMessage);
       }
-
       res.status(200).json(updatedUser);
     } catch (error) {
       next(error);

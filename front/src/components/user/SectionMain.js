@@ -7,13 +7,11 @@ const SectionMain = () => {
    
     return (
         <>
-            <div className="text-wrap sectionMain">
+            <div className="sectionMain">
                 <Image className="MainImg" src={('./imgs/main.png')}/>
-                <div className="TextBox">
-                    <div>
-                    <span className='mainText1'>개발자 포트폴리오<br />
-                      이젠 쉽게 공유하자!</span> 
-                    </div>
+                <div className="textBox">
+                    <p className="title1">포트폴리오를 공유하세요.</p>
+                    <p className="title2">다양한 개발자 포트폴리오를 공유하는 서비스를 제공합니다.</p>
                 </div>
             </div>
         </>

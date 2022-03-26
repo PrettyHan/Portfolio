@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-import './Style.css';
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -13,19 +12,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [description, setDescription] = useState(user.description);
   const [photo, setPhoto] = useState(undefined);
 
-  const onChangeImg = (e) => {
-    e.preventDefault();
-    
-    if(e.target.files){
-      
-      const uploadFile = e.target.files[0]
-      console.log(uploadFile)
-      setPhoto(uploadFile);
-    }
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try{
       const res = await Api.put(`user/${user.id}`, {
         name,
@@ -52,14 +41,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     <Card className="userCardEdit">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-            <Form.Control
-              type="file"
-              placeholder="파일"
-              onChange={onChangeImg}
-            />
-          </Form.Group>
-
           <Form.Group controlId="useEditName" className="mb-3">
             <Form.Control
               type="text"

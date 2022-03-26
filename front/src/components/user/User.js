@@ -17,6 +17,7 @@ function User({ portfolioOwnerId, isEditable, isClick}) {
   }, [portfolioOwnerId]);
 
 
+
   return (
     <>
       {isEditing ? (

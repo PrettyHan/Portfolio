@@ -50,19 +50,19 @@ const LoginForm = ({show, handleClose, handleShow, showRegister}) => {
 
       // 기본 페이지로 이동함
       navigate("/", { replace: true });
-
       e.target.reset();
       handleClose(false);
       setEmail("");
       setPassword("");
-    }catch(error){
-      console.log(error);
-      if (error.response) {
-       const { data } = error.response;
-       console.error("data : ", data);
-       alert(data.error);
-     }
-
+    } catch (err)
+     {
+       if(err.response){
+        const { data } = err.response;
+        setEmail("");
+        setPassword("");
+        e.target.reset();
+        alert("로그인에 실패하였습니다.");
+       }
     }
 
   };

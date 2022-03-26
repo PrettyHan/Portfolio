@@ -24,7 +24,7 @@ class userAuthService {
 
     // id 는 유니크 값 부여
     const id = uuidv4();
-    const newUser = { id, name, email, password: hashedPassword };
+    const newUser = { id, name, email, password: hashedPassword, visited: 0 };
 
     // db에 저장
     const createdNewUser = await User.create({ newUser });
@@ -76,8 +76,8 @@ class userAuthService {
   }
 
   static async getUsers() {
-    const users = await User.findAll();
-    return users;
+    const user = await User.findAll();
+    return user;
   }
 
   static async setUser({ userId, toUpdate }) {
@@ -92,12 +92,14 @@ class userAuthService {
         "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
+    
     if(user.email != email && chack){
       const errorMessage =
       "이미 존재하는 이메일 입니다.";
       console.log(errorMessage)
     return { errorMessage };
     }
+
     // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행
     if (toUpdate.name) {
       const fieldToUpdate = "name";
@@ -121,6 +123,11 @@ class userAuthService {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
       user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+    if (toUpdate.visited) {
+      const fieldToUpdate = "visited";
+      const newValue = toUpdate.visited;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
     }
 
     return user;

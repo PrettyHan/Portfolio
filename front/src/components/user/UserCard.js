@@ -5,7 +5,7 @@ import * as Api from "../../api";
 import './Style.css';
 
 // homeUser
-function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
+function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
   const navigate = useNavigate();
 
   // 탈퇴기능
@@ -30,13 +30,12 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
 
   return (
      <Card className={isClick ? "myPageCard" : "homeUserCard"} >
-      <Card.Body>
+      <Card.Body style={{textAlign: "center"}}>
         <Col className="justify-content-md-center">
           <Card.Img
-            style={{ width: "12rem", height: "8rem" }}
+            style={{ width: "10rem", height: "8rem" , marginTop: "20px" }}
             className="mb-3"
-            src={('./imgs/example.png')}
-            // alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"          
+            src={('./imgs/lion.png')}  
           />
         </Col>
         <div className='userName'>{user?.name}</div>
@@ -69,13 +68,16 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
         )}
 
         {isNetwork && (
-          <div style={{display: "flex", marginTop: "30px"}}>
+          <div style={{display: "flex", marginLeft:"10px",marginTop: "50px"}}>
           <button
             className='networkBtn'
             onClick={onClick}>
-              포트폴리오
+               🚀  
            </button>
-           <div className='clickCount'>{user.visited}</div> 
+           <div>
+           <Image className="homeImg" src={('./imgs/eye.png')}/>
+           </div>
+           <div className='clickCount'  style={{color: "#868e96"}}>{user.visited}</div>
           </div>
         )}
       </Card.Body>
@@ -84,3 +86,5 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, isClick }) {
 }
 
 export default UserCard;
+
+//  className='clickCount'

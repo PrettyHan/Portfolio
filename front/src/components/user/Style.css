@@ -1,31 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap');
 
 /* SectonMain */
 .sectionMain {
   position: relative;
+  display: flex;
+  text-align: center;
 }
 
 .sectionMain .MainImg {
-  margin: 33px 33px 33px 600px;
+  margin: 80px 33px 33px 600px;
   width: 50%;
   height: 50%;
   position: relative;
 }
 
-.sectionMain .mainText1 {
+.sectionMain .textBox {
   position: absolute;
-  top: 30%;
-  left: 1%;
+  left: 140px;
+  top: 250px;
+}
+
+.sectionMain .title1 {
   color: black;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 48px;
+  font-weight: 800;
+  margin-left: 50px;
+  margin-bottom: 0px;
+}
+
+.sectionMain .title2 {
+  color: #868e96;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 20px;
   font-weight: 900;
-  margin-left: 300px;
+  margin-left: 30px;
+  margin-bottom: 90px;
 }
 
 /* LoginForm */
 .login {
-  position: absolute;
+  /* position: absolute; */
   width: 500px;
   height: 491px;
   border-radius: 50px;
@@ -52,9 +69,48 @@
   display: flex;
 }
 
-.mypage .name p {
+.mypage .backHomeBtn {
+  border: none;
+  background-color: #cfd3ff;
+  width: 50px;
+  height: 50px;
+  margin-top: 90px;
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;
+  font-size: 30px;
+  color: white;
+}
+
+.mypage .backHomeImg {
+  width: 30px;
+  height: 30px;
+}
+
+.mypage .backHomeBtn:hover {
+  border: none;
+  background-color: #cfd3ff;
+  width: 50px;
+  height: 50px;
+  margin-top: 90px;
+  border-radius: 50px;
+  transform: scale(1.1);
+}
+
+.mypage .name h1 {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 900 bold;
+  width: auto;
+}
+
+.mypage .name .clickCount {
+  margin-left: 550px;
+  margin-top: 20px;
+  color: black;
+  text-align: center;
+  font-weight: 600;
+  width: 25px;
+  height: 25px;
+  padding: 0px 2px;
 }
 
 .mypage .name .clickCount {
@@ -66,14 +122,8 @@
   font-size: 45px;
   text-align: center;
   border-bottom: 1px solid gray;
+  width: 1112px;
   margin-bottom: 50px;
-}
-
-.mypage .homeButton {
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  background: #339af0;
 }
 
 .mypage div {
@@ -162,22 +212,44 @@
   padding: 0px 5px;
 }
 
-.clickCount {
-  background-color: #a5d8ff;
+.homeUserCard .clickCount {
   color: white;
   text-align: center;
   font-weight: 600;
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  border-radius: 25px;
+  width: 25px;
+  height: 25px;
+  padding: 0px 2px;
+  border-radius: 5px;
+  margin-left: 3px;
+}
+
+.homeUserCard .clickHome {
+  width: 25px;
+  height: 25px;
+  padding: 0px 2px;
 }
 
 .networkBtn {
+  border-radius: 25px;
   outline: none;
   box-shadow: none;
   border: none;
   background-color: white;
+  margin-right: 12px;
+  padding: auto;
+  transition: all 0.2s ease-in-out;
+}
+
+.networkBtn:hover {
+  background-color: #a5d8ff;
+  border-radius: 25px;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: white;
+  margin-right: 12px;
+  padding: auto;
+  transform: scale(1.2);
 }
 
 /* SectionHome */
@@ -185,4 +257,62 @@
   display: flex;
   padding-left: 100px;
   cursor: pointer;
+}
+
+/* Nav */
+.navBtn1 {
+  outline: none;
+  box-shadow: none;
+  margin-right: 20px;
+  border: none;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navBtn1:hover {
+  outline: none;
+  box-shadow: none;
+  margin-right: 20px;
+  border: none;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  transform: scale(1.1);
+}
+
+.navBtn2 {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: #4dabf7;
+  padding: 5px 10px;
+  border-radius: 25px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navBtn2:hover {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: #4dabf7;
+  padding: 5px 10px;
+  border-radius: 25px;
+  transform: scale(1.1);
+}
+
+.userCardBtn {
+  background-color: white;
+  border-radius: 25px;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: white;
+}
+
+.homeImg {
+  width: 15px;
+  height: 15px;
+  margin-left: 150px;
 }
