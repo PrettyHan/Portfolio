@@ -13,9 +13,10 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
     // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
-
+    
+    try{
     // "award/create" 엔드포인트로 POST 요청
-    await Api.post("award/create", {
+      await Api.post("award/create", {
       userId: portfolioOwnerId,
       title,
       description,
@@ -27,6 +28,14 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     setAwards(res.data);
     // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅
     setIsAdding(false);
+    }
+    catch(error){
+      console.log(error);
+      if (error.response) {
+       const { data } = error.response;
+       console.error("data : ", data);
+     }
+    } 
   };
 
   return (
@@ -51,15 +60,31 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
-            확인
-          </Button>
-          <Button variant="secondary" onClick={() => setIsAdding(false)}>
-            취소
-          </Button>
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#339AF0"
+        }} 
+        variant="primary" 
+        type="submit" 
+        className="me-3">
+         확인
+        </Button>
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#C4C4C4"
+        }} 
+        variant="secondary" 
+        onClick={() => setIsAdding((prev) => !prev)}
+        >
+         취소
+        </Button>
         </Col>
       </Form.Group>
-    </Form>
+      </Form>
   );
 }
 

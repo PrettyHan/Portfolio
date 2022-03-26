@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import EducationList from "./EducationCard";
+import EducationCard from "./EducationCard";
 import EducationEditForm from "./EducationEditForm";
 
-function Education({ education, setEducations,isEditable}) {
+function Education({ education, setEducations,isEditable, deleteHandler }) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   return (
@@ -14,10 +14,11 @@ function Education({ education, setEducations,isEditable}) {
           setIsEditing={setIsEditing}
         />
       ) : (
-        <EducationList
+        <EducationCard
         education={education}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
+          deleteHandler={deleteHandler}
         />
       )}
     </>

@@ -3,10 +3,10 @@ import {v4 as uuidv4} from 'uuid';
 
 class certificateAuthService {
     // 자격증 추가
-    static async addCertificate({userId, title, description,when_date}){
+    static async addCertificate({userId, title, description,whenDate}){
         // 자격증 id의 유니크 값
         const id = uuidv4();
-        const newCertificate = {id, userId, title, description, when_date};
+        const newCertificate = {id, userId, title, description, whenDate};
         
         const createdNewCertificate = await Certificate.create({newCertificate});
         createdNewCertificate.errorMessage=null;
@@ -15,9 +15,14 @@ class certificateAuthService {
 
     // 자격증 내용 불러오기
     static async getCertificates({certificateId}){
-        const  certificates = await Certificate.findById({certificateId})
-        return certificates;
-    }
+        const certificates = await Certificate.findById({certificateId})
+        if (!certificates){
+            const errorMessage = "해당 id를 가진 자격증은 없습니다. 다시 한 번 확인해주세요.";
+            return { errorMessage }
+        }
+        return certificates
+      }
+    
 
     // 자격증 내용 수정
     static async setCertificate({certificateId,toUpdate}){
@@ -40,9 +45,9 @@ class certificateAuthService {
             certificate = await Certificate.update({certificateId,fieldToUpdate,newValue});
         }
         // 자격증 날짜 수정
-        if (toUpdate.when_date) {
-            const fieldToUpdate = "when_date";
-            const newValue = toUpdate.when_date;
+        if (toUpdate.whenDate) {
+            const fieldToUpdate = "whenDate";
+            const newValue = toUpdate.whenDate;
             certificate = await Certificate.update({certificateId,fieldToUpdate,newValue});
         }
         return certificate;
@@ -53,10 +58,18 @@ class certificateAuthService {
         const certificates = await Certificate.findByUserId({userId});
         return certificates;
     }
-    // 자격증 삭제
-    // static async deleteCertificateList({userId}){
-    //     const deletedCertificates = await Certificate.delete({userId});
-    //     return deletedCertificates;
-    // }
+
+    static async deleteCertificate({ certificateId }) {
+        const isDataDeleted = await Certificate.deleteById({ certificateId });
+    
+        // db에서 찾지 못한 경우, 에러 메시지 반환
+        if (!isDataDeleted) {
+          const errorMessage =
+            "해당 id를 가진 자격증은 없습니다. 다시 한 번 확인해 주세요.";
+          return { errorMessage };
+        }
+    
+        return { status: "ok" };
+      }
 }
 export {certificateAuthService};

@@ -1,19 +1,19 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
-
+import { Container, Col, Row, Button, Card, Image } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
+
+import './user/Style.css';
+
 import User from "./user/User";
 import Educations from './education/Educations';
 import Awards from "./award/Awards";
 import Certificates from "./certificate/Certificates";
-// import Educations from './education/Educations';
-// import Projects from "./project/Projects";
-
 import Projects from './project/Projects';
+import CareerSkills from './skill/CareerSkills'
 
-function Portfolio() {
+function Portfolio(isClick) {
   const navigate = useNavigate();
   const params = useParams();
   // useState 훅을 통해 portfolioOwner 상태를 생성함.
@@ -25,7 +25,7 @@ function Portfolio() {
 
   const fetchPorfolioOwner = async (ownerId) => {
     // 유저 id를 가지고 "/users/유저id" 엔드포인트로 요청해 사용자 정보를 불러옴.
-    const res = await Api.get("users", ownerId);
+    const res = await Api.get("user", ownerId);
     // 사용자 정보는 response의 data임.
     const ownerData = res.data;
     // portfolioOwner을 해당 사용자 정보로 세팅함.
@@ -57,55 +57,85 @@ function Portfolio() {
   if (!isFetchCompleted) {
     return "loading...";
   }
-
   return (
-    <Container fluid>
+    <Container className='mypage'>
       <Row>
-        <Col lg="3">
-          <User
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
-        </Col>
-         <Col>
-          <div style={{ textAlign: "center" }}>
-            <Projects
+        <Col>
+        <button
+          className='backHomeBtn'
+          onClick={() => navigate("/")}
+        >
+          ←
+        </button>
+        <div className='portfolioTitle'>
+        <div className='name'>
+           <h1>{portfolioOwner.name} 포트폴리오</h1>
+           <div className='clickCount'>
+           <div>{portfolioOwner.visited}</div>
+           </div>
+        </div>
+        </div>
+         <h1 className='line'></h1>
+         {portfolioOwner.id === userState.user?.id ?
+          (
+            <>
+            <User
+                isClick = {isClick}
+                portfolioOwnerId={portfolioOwner.id}
+                isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            </>
+          )
+          :
+          (
+            <>
+             <Card className='email'>
+            <Card.Body>
+            <Card.Title>📧 이메일</Card.Title>
+            <Card.Text>{portfolioOwner.email}</Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className='introduce'>
+            <Card.Body>
+              <Card.Title>👋 간단한 소개</Card.Title>
+              <Card.Text>{portfolioOwner.description}</Card.Text>
+            </Card.Body>
+          </Card>
+            </>
+          )
+        }
+        <div className='projects'>
+        <Projects
              portfolioOwnerId={portfolioOwner.id} // 사용자 아이디 느낌...?
              isEditable={portfolioOwner.id === userState.user?.id}
              />
-             </div>
-         </Col>
-         <Col>
-          <div style={{ textAlign: "center" }}>
-            <Educations
+        </div>
+        <div className='educations'>
+        <Educations
              portfolioOwnerId={portfolioOwner.id} // 사용자 아이디 느낌...?
              isEditable={portfolioOwner.id === userState.user?.id}
              />
-             </div>
-          </Col>   
-          <Col>
-           <div style={{ textAlign: "center" }}>
-            <Awards
+        </div>
+        <div className='awards'>
+        <Awards
               portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
-          </div>
-          </Col>
-          {/* <div style={{ textAlign: "center" }}>
-            <Projects
+        </div>
+        <div className='certificates'>
+        <Certificates
               portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
-          </div> */}
-          <Col>
-          <div style={{ textAlign: "center" }}>
-            <Certificates
+        </div>
+        <div className='CareerSkill'>
+        <CareerSkills
+              portfolioOwner = {portfolioOwner}
               portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
-          </div>
+        </div>
         </Col>
-
       </Row>
     </Container>
   );

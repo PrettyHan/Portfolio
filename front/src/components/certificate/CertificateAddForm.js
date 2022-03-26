@@ -20,14 +20,14 @@ function CertificateAddForm({
 
     // portfolioOwnerId를 userId 변수에 할당
     const userId = portfolioOwnerId;
-    const when_date = whenDate.toISOString().split("T")[0];
+
 
     // "certificate/create" 엔드포인트로 POST 요청
     await Api.post("certificate/create", {
       userId,
       title,
       description,
-      when_date,
+      whenDate,
     });
 
     // "educationlist/유저id" 엔드포인트로 GET 요청
@@ -69,10 +69,25 @@ function CertificateAddForm({
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <Button 
+            mb="10"
+            style={{
+             border:"none",
+             backgroundColor:"#339AF0"
+           }} 
+          variant="primary"
+           type="submit"
+            className="me-3">
             확인
           </Button>
-          <Button variant="secondary" onClick={() => setIsAdding(false)}>
+          <Button
+           mb="10"
+           style={{
+            border:"none",
+            backgroundColor:"#C4C4C4"
+          }} 
+           variant="secondary"
+            onClick={() => setIsAdding(false)}>
             취소
           </Button>
         </Col>

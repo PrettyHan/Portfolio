@@ -11,8 +11,15 @@ class User {
     return user;
   }
 
-  static async findById({ user_id }) {
-    const user = await UserModel.findOne({ id: user_id });
+   // 이메일 중복확인!
+   static async findByEmails({ email }) {
+    const user = await UserModel.find({ email });
+    return user;
+  }
+
+
+  static async findById({ userId }) {
+    const user = await UserModel.findOne({ id: userId });
     return user;
   }
 
@@ -21,8 +28,8 @@ class User {
     return users;
   }
 
-  static async update({ user_id, fieldToUpdate, newValue }) {
-    const filter = { id: user_id };
+  static async update({ userId, fieldToUpdate, newValue }) {
+    const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
 
@@ -32,6 +39,12 @@ class User {
       option
     );
     return updatedUser;
+  }
+
+  static async delete({ userId }) {
+    const deleteResult = await UserModel.deleteOne({ id: userId });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
   }
 }
 

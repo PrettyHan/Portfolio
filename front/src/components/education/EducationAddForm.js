@@ -12,28 +12,44 @@ const EducationAddForm = ({
   const [major, setMajor] = useState("");
   const [position, setPosition] = useState("");
 
-  const userId = portfolioOwnerId;
-  
+  const positionArray = ["재학 중", "학사 졸업", "석사 졸업", "박사 졸업"];
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setPosition(value);
+  };
   const handleSubmit = async(e) => {
      e.preventDefault();
 
-     //사용자가 입력한 데이터, post 요청! 
-     await Api.post("education/register", {
-       userId : userId,
-       school : school,
-       major : major,
-       position : position,
-   });
+     const userId = portfolioOwnerId;
 
-       const res = await Api.get(`educationlist/${userId}`);
-       setEducations(res.data);
-       setOpen(false);
+     //사용자가 입력한 데이터, post 요청! 
+     try{
+       await Api.post("education/create", {
+        userId,
+        school,
+        major,
+        position,
+      });
+
+      const res = await Api.get(`educationlist/${userId}`);
+      setEducations(res.data);
+      setOpen(false);
+     }
+     catch(error){
+       console.log(error);
+       if (error.response) {
+        const { data } = error.response;
+        console.error("data : ", data);
+      }
+     }
   };
 
   return (
      <Form onSubmit={handleSubmit}>
         <Form.Group>
-            <Form.Control 
+            <Form.Control
+            style={{marginBottom: "20px"}} 
             type="text"
             onChange={(e) => setSchool(e.target.value)}
             name="shcool"
@@ -51,52 +67,40 @@ const EducationAddForm = ({
         </Form.Group>
 
         <div key={`inline-radio`} className="mb-3 mt-3">
-        <Form.Check
-          inline
-          label="재학중"
-          type="radio"
-          name="position"
-          value="재학중"
-          checked={position === "재학중"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="학사졸업"
-          type="radio"
-          name="position"
-          value="학사졸업"
-          checked={position === "학사졸업"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="석사졸업"
-          type="radio"
-          name="position"
-          value="석사졸업"
-          checked={position === "석사졸업"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="박사졸업"
-          type="radio"
-          name="position"
-          value="박사졸업"
-          checked={position === "박사졸업"}
-          onChange={(e) => setPosition(e.target.value)}
-        />
+        <Form.Group key=" inline-radio" className="mb-3 m-2">
+        {positionArray.map((position, idx) => (
+          <Form.Check
+            inline
+            key={`inline-radio-${idx}`}
+            label={position}
+            name="position"
+            type="radio"
+            defaultValue={position}
+            onChange={handleChange}
+          />
+        ))}
+      </Form.Group>
       </div>
+
         <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
-        <Button 
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#339AF0"
+        }} 
         variant="primary" 
         type="submit" 
         className="me-3">
          확인
         </Button>
-        <Button 
+        <Button
+         mb="10"
+         style={{
+          border:"none",
+          backgroundColor:"#C4C4C4"
+        }} 
         variant="secondary" 
         onClick={() => setOpen((prev) => !prev)}
         >

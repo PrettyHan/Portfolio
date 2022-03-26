@@ -49,6 +49,32 @@ class AwardService {
     return award;
   }
 
+  static async deleteAward({ awardId }) {
+    const isDataDeleted = await Award.deleteById({ awardId });
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!isDataDeleted) {
+      const errorMessage =
+        "해당 id를 가진 수상 이력은 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    return { status: "ok" };
+  }
+
+  // static async deleteAllAward({ userId }) {
+  //   const isAllDataDeleted = await Award.deleteAll({ userId });
+
+  //   // db에서 찾지 못한 경우, 에러 메시지 반환
+  //   if (!isAllDataDeleted) {
+  //     const errorMessage =
+  //       "해당 id를 가진 사용자는 없습니다. 다시 한 번 확인해 주세요.";
+  //     return { errorMessage };
+  //   }
+
+  //   return { status: "ok" };
+  // }
+
 }
 
 export { AwardService }

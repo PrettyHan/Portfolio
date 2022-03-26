@@ -1,13 +1,14 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { EducationService } from "../services/EducationService";
-import { login_required } from "../middlewares/login_required";
+import { loginRequired } from "../middlewares/loginRequired";
+import { EducationModel } from "../db/schemas/education";
 const educationRouter = Router();
 // register
 
-educationRouter.use(login_required);
+educationRouter.use(loginRequired);
 
-educationRouter.post("/education/register", async (req, res, next) => {
+educationRouter.post("/education/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -58,7 +59,7 @@ educationRouter.get("/educationlist/:userId", async function (req, res, next) {
     next(error);
   }
 });
-educationRouter.put("/educations/:id", async function (req, res, next) {
+educationRouter.put("/education/:id", async function (req, res, next) {
   try {
     const educationId = req.params.id;
     const school = req.body.school ?? null; // ??는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자 반환 그렇지 않으면 왼쪽 피연산자 반환
@@ -73,6 +74,24 @@ educationRouter.put("/educations/:id", async function (req, res, next) {
       throw new Error(education.errorMessage);
     }
     res.status(200).send(education);
+  } catch (error) {
+    next(error);
+  }
+});
+
+educationRouter.delete("/education/:id", async function (req, res, next) {
+  try {
+    // req (request) 에서 id 가져오기
+    const educationId = req.params.id;
+
+    // 위 id를 이용하여 db에서 데이터 삭제하기
+    const result = await EducationService.deleteEducation({ educationId });
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+
+    res.status(200).send(result);
   } catch (error) {
     next(error);
   }
