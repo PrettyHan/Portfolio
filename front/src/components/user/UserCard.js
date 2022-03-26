@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col, Image } from "react-bootstrap";
 import * as Api from "../../api";
-
+import lionImg from '../imgs/lion.png';
 import './Style.css';
 
 // homeUser
@@ -35,14 +35,14 @@ function UserCard({ user,setIsEditing, isEditable, isNetwork, isClick }) {
           <Card.Img
             style={{ width: "10rem", height: "8rem" , marginTop: "20px" }}
             className="mb-3"
-            src={('./imgs/lion.png')}  
+            src={lionImg}  
           />
         </Col>
         <div className='userName'>{user?.name}</div>
         <div className='userEmail'>{user?.email}</div>
         {isEditable && (
           <Col>
-           <div>{user?.description}</div>
+           <dsiv>{user?.description}</dsiv>
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
                 <Button
