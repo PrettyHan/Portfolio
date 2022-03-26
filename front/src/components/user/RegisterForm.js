@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Col, Row, Form, Button, Modal } from "react-bootstrap";
 
 import * as Api from "../../api";
 
-function RegisterForm() {
+function RegisterForm({show, handleClose}) {
   const navigate = useNavigate();
 
-  //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
-  //useState로 password 상태를 생성함.
   const [password, setPassword] = useState("");
-  //useState로 confirmPassword 상태를 생성함.
   const [confirmPassword, setConfirmPassword] = useState("");
-  //useState로 name 상태를 생성함.
   const [name, setName] = useState("");
 
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
@@ -48,16 +44,38 @@ function RegisterForm() {
         password,
         name,
       });
-
-      // 로그인 페이지로 이동함.
-      navigate("/login");
-    } catch (err) {
-      console.log("회원가입에 실패하였습니다.", err);
-    }
+      handleClose(false);
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setName("")
+      e.target.reset();
+      alert("회원가입이 완료되었습니다.😄")
+    } catch (error) {
+      if (error.response) {
+        const { data } = error.response;
+        console.error("data : ", data);
+        alert(data.error);
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setName("")
+        e.target.reset();
+      }
+      }
   };
 
   return (
-    <Container>
+    <Modal
+         size='lg'
+         style={{
+           borderRadius:"50px"         
+         }}
+         dialogClassName={"primaryModal"}
+         aria-labelledby="contained-modal-title-vcenter"
+         centered
+        show={show} className="loginModal" >
+      <Modal.Header closeButton onClick={handleClose} />
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
           <Form onSubmit={handleSubmit}>
@@ -123,23 +141,19 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <Button variant="primary" 
+                type="submit" 
+                disabled={!isFormValid}
+                style={{marginBottom: "20px"}}
+                >
                   회원가입
-                </Button>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/login")}>
-                  로그인하기
                 </Button>
               </Col>
             </Form.Group>
           </Form>
         </Col>
       </Row>
-    </Container>
+      </Modal>
   );
 }
 

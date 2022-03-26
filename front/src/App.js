@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as Api from "./api";
 import { loginReducer } from "./reducer";
 
-import Header from "./components/Header";
 import LoginForm from "./components/user/LoginForm";
-import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
+import Main from "./components/user/Main"
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -51,23 +50,22 @@ function App() {
   if (!isFetchCompleted) {
     return "loading...";
   }
-
+  
   return (
     <DispatchContext.Provider value={dispatch}>
       <UserStateContext.Provider value={userState}>
         <Router>
-          <Header />
           <Routes>
-            <Route path="/" exact element={<Portfolio />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/users/:userId" element={<Portfolio />} />
-            <Route path="/network" element={<Network />} />
-            <Route path="*" element={<Portfolio />} />
+            <Route path="/" exact element={<Main />} />
+            {/* <Route path="/register" element={<RegisterForm />} /> */}
+            <Route path="/mypage" exact element={<Portfolio />} />
+            <Route path="/user/:userId" element={<Portfolio />} />
+            <Route path="*" element={<Main />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
+    
   );
 }
 
