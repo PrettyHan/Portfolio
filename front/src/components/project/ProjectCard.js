@@ -19,6 +19,9 @@ const ProjectCard = ({project, isEditable, setIsEditing, setProjects, deleteHand
           marginTop: "10px",
           marginBottom: "10px"}}>
         <div className='mvpCardItem'>
+        {project.title}
+            </div>
+        <div className='mvpCardItem1'>
         {project.content}
             </div>
         <div className='mvpCardItem2'>
