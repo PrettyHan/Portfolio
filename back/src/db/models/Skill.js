@@ -26,13 +26,13 @@ class Skill {
     return users;
 
   }
-  else if(careerSearch == 0){
+  if(careerSearch == 0 && languageSerach != 0){
     var result = []
     const skills = await SkillModel.find( {"languageList": languageSerach }, {portfolioOwner : 1, _id : 0} )
     skills.forEach(function(u) { result.push(u.portfolioOwner) })
       return result;
   }
-  else if(languageSerach == 0){
+  if(languageSerach == 0 && careerSearch != 0){
     var result = []
     const skills = await SkillModel.find( {"career": careerSearch }, {portfolioOwner : 1, _id : 0} )
     skills.forEach(function(u) { result.push(u.portfolioOwner) })
