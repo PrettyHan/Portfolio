@@ -2,8 +2,10 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
+import { User } from "../db";
 
 const userAuthRouter = Router();
+const viewObj = new Object()
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -128,13 +130,37 @@ userAuthRouter.get(
   async function (req, res, next) {
     try {
       const userId = req.params.id;
-      const currentUserInfo = await userAuthService.getUserInfo({ userId });
 
-      if (currentUserInfo.errorMessage) {
-        throw new Error(currentUserInfo.errorMessage);
+      // 사용자마다 하루에 조회수 1씩
+      const currentId = req.currentUserId
+      // const currentUserInfo = await userAuthService.getUserInfo({ userId });
+      const user = await User.findById({ userId });
+      if (user){
+        if (!viewObj[userId]) {
+               viewObj[userId] = []
+        }
+        if (viewObj[userId].indexOf(currentId) == -1){
+          user.visited ++
+          viewObj[userId].push(currentId)
+          setTimeout(() => {
+            viewObj[userId].splice(
+              viewObj[userId].indexOf(currentId),
+              1
+            )
+          }, 86400000)
+          for (let i in viewObj){
+             if (i.length ==0){
+               delete viewObj.i
+             }
+           }
+        }
+        console.log(viewObj)
+        await user.save()
+      // if (user.errorMessage) {
+      //   throw new Error(user.errorMessage);
+      // }
+      res.status(200).send(user);
       }
-
-      res.status(200).send(currentUserInfo);
     } catch (error) {
       next(error);
     }
