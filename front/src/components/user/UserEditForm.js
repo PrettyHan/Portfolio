@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import * as Api from "../../api";
 
 
@@ -10,22 +11,23 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
-  const [photo, setPhoto] = useState(undefined);
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
 
     try{
       const res = await Api.put(`user/${user.id}`, {
         name,
         email,
         description,
-        photo,
       });
      
       const updatedUser = res.data;
       setUser(updatedUser);
       setIsEditing(false);
+      window.location.reload();
     }
     catch(error){
       console.log(error);
@@ -35,6 +37,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
        alert(data);
      }
   };
+
   };
 
   return (

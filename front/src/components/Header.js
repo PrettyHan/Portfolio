@@ -31,10 +31,10 @@ function Header({showLogin, showRegister}) {
         <Container>
            <Nav.Item>
            <Nav.Link style={{
-             color: "black",
+             color: "#228be6",
              fontSize: "20px",
              fontWeight: "bold"
-          }} onClick={() => navigate("/")}>🦁</Nav.Link>
+          }} onClick={() => navigate("/")}>🦁 멋쟁이 코더처럼</Nav.Link>
            </Nav.Item>
            <Nav>
            {isLogin ? (
